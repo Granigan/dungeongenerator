@@ -35,20 +35,26 @@ Space: O(1)
 
 ### Second stage: Corridors
 The flood fill algorithm is quite time consuming. It also requires an equal amount of space as the map itself. Adding randomisation to this may further slow down the algorithm.
+n = amount of squares
 Time: O(n²)
 Space: O(n)
 
 ### Third stage: Connectors
 All the squares are checked to find squares that are adjacent to different segments. Starting with a random connector, what is essentially a spanning tree, is built to connect everything together. However, some cycles improve the look and playability, which is done by leaving a chance for there to be more than one connection. This should be doable with e.g. Kruskal's algorithm.
+m = amount of segments (= number of rooms and corridor segments)
+n = amount of squares
 Time: O(n log m)
 Space: O(n + m)
 
 ### Fourth stage: Pruning
 All squares that are next to three wall squares, i.e. are dead ends, are replaced with walls. As this process to check every square is repeated until no such dead ends are left, the process can be extremely slow. However, it is likely that the process can be optimised greatly by adding a check for neighbouring squares after having changed the one to a wall.
+n = amount of squares
 Time: O(n²)
 Space: O(1)
 
 ### In total:
+m = amount of segments (= number of rooms and corridor segments)
+n = amount of squares
 Time: O(n²)
 Space: O(n+m)
 
