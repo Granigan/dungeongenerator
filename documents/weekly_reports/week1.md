@@ -20,7 +20,7 @@ It seemed the map creation algorithms weren't a huge subject for academical stud
 I hope to get a good start early next week, and get down to business. Only then will I really get the big picture and be able to evaluate whether the project is adequate, yet doable.
 
 ## Time spent this week
-Total:
+**Total:13h**
 
 | Day	| Time Spent	| Tasks	|
 | ------|:-------------:|------:|

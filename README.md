@@ -12,5 +12,5 @@ A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12
 ### Documents and Links
 - [Trello board](https://trello.com/b/HVYZZHt6/tiralab-dungeon-generator)
 
-- [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md) (**Määrittelydokumentti**)
+- [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md) (*Määrittelydokumentti*)
 
