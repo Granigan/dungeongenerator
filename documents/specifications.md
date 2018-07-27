@@ -16,15 +16,20 @@ The application uses a multi-staged approach to create rooms and corridors, desc
 [The source code](https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart) for the method is  available at GitHub. The original is created with Dart, this project uses Java instead.
 
 ## Required Algorithms and Data Structures
+*This is the initial estimate only, and will be updated as the project progresses.*
+
 At least these are required:
 - Spanning Tree
 - Random number generator
 - Stack
-- 
+- modified Flood Fill
+- Kruskal's algorithm
 
 ## Time and Space Requirements
+*This is the initial estimate only, and will be updated as the project progresses.*
+
 ### First stage: Rooms
-Time requirement is actually defined by the wanted amount of rooms. The higher the value, the more attempts are made to place a new room into the map. If the room overlaps an existing room, it won't be placed, but instead a new attempt is made. Once the defined amount of attempts are made, the process finishes. The attempts require constant time, and have no notable space requirements.
+Time requirement is defined by the wanted amount of rooms. The higher the value, the more attempts are made to place a new room into the map. If the room overlaps an existing room, it won't be placed, but instead a new attempt is made. Once the defined amount of attempts are made, the process finishes. The attempts require constant time, and have no notable space requirements.
 Time: O(1)
 Space: O(1)
 
@@ -34,21 +39,21 @@ Time: O(n²)
 Space: O(n)
 
 ### Third stage: Connectors
-
-
+All the squares are checked to find squares that are adjacent to different segments. Starting with a random connector, what is essentially a spanning tree, is built to connect everything together. However, some cycles improve the look and playability, which is done by leaving a chance for there to be more than one connection. This should be doable with e.g. Kruskal's algorithm.
+Time: O(n log m)
+Space: O(n + m)
 
 ### Fourth stage: Pruning
 All squares that are next to three wall squares, i.e. are dead ends, are replaced with walls. As this process to check every square is repeated until no such dead ends are left, the process can be extremely slow. However, it is likely that the process can be optimised greatly by adding a check for neighbouring squares after having changed the one to a wall.
 Time: O(n²)
 Space: O(1)
 
-
 ### In total:
 Time: O(n²)
-Space: O(
+Space: O(n+m)
 
 ## Other Generic and Related Knowledge Sources
 [Map Generation algorithms and tools at Procedural Content Generation Wiki](http://pcg.wikidot.com/pcg-algorithm:map-generation)
-[(http://donjon.bin.sh/code/dungeon/)
+[Random Dungeon Generator for caverns and bunkers](http://donjon.bin.sh/code/dungeon/)
 
 [Cellular Automata Method](http://roguebasin.roguelikedevelopment.org/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels)
