@@ -1,15 +1,18 @@
 package dungeon;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /**
          * PARAMETERS
          * These will eventually be gotten from the CLI command.
          */
         int width = 180; // map width
-        int height = 60; // map height
+        int height = 50; // map height
         int roomAttempts = 150; // how many times is addRoom() ran
         int minRoomSize = 4; // including walls, 3 is thus the absolute minimum
         int maxRoomRandom = 15; // up to this much is added to the minRoomSize
@@ -54,7 +57,9 @@ public class Main {
         /**
          * PRINT out the final map.
          */
-        printMap(map, width, height);
+        System.out.println(mapToString(map, width, height));
+        saveMap(mapToString(map, width, height));
+        
 
     }
 
@@ -133,7 +138,7 @@ public class Main {
      * @param width of the map
      * @param height of the map
      */
-    public static void printMap(int [][] map, int width, int height) {
+    public static String mapToString(int [][] map, int width, int height) {
         String output = "";
         for(int y = 0; y < height; y++) {
             for(int x = 0; x < width; x++) {
@@ -145,6 +150,13 @@ public class Main {
             }
             output += "\n";
         }
-        System.out.println(output);
+        return output;
+    }
+    
+    public static void saveMap(String map) throws IOException {
+        FileWriter fw = new FileWriter("generated_map.txt");
+        PrintWriter pw = new PrintWriter(fw);
+        pw.print(map);
+        pw.close();
     }
 }
