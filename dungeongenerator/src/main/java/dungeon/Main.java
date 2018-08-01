@@ -1,4 +1,5 @@
 package dungeon;
+import java.util.Random;
 
 public class Main {
 
@@ -7,16 +8,20 @@ public class Main {
          * PARAMETERS
          * These will eventually be gotten from the CLI command.
          */
-        int width = 22; // map width
-        int height = 8; // map height
-        int roomAttempts = 15; // how many times is addRoom() ran
+        int width = 180; // map width
+        int height = 60; // map height
+        int roomAttempts = 150; // how many times is addRoom() ran
+        int minRoomSize = 4; // including walls, 3 is thus the absolute minimum
+        int maxRoomRandom = 15; // up to this much is added to the minRoomSize
+       
+        Random r = new Random();
 
         /**
          * MAP INITIALISATION
          * 0 is an empty square
          * 1 is a wall
          * 
-         * Edges will be wall, everything inside will be empty.
+         * Edges will be wall, everything inside will be empty at start.
          */
         int[][] map = new int[height][width];
         for(int y = 0; y < height; y++) {
@@ -34,9 +39,20 @@ public class Main {
         }
         
         
+        /**
+         * ROOMS
+         */
+        
+        while(roomAttempts > 0) {
+            map = addRoom(map, minRoomSize + r.nextInt(maxRoomRandom), minRoomSize + r.nextInt(maxRoomRandom),
+                    width, height);
+            roomAttempts--;
+        }
+        
+        
         
         /**
-         * Print out the final map.
+         * PRINT out the final map.
          */
         printMap(map, width, height);
 
@@ -47,12 +63,49 @@ public class Main {
      * room, then choosing random coordinates for it on the map. If it collides
      * with another room or wall, the room is not placed.
      * 
+     * First iteration is to check each square for collision. This probably 
+     * can be optimised later on. Also something to consider: should the room's
+     * starting location be fully random inside the map area, or limited so
+     * that it will always at least fit inside the outer walls. For now, going
+     * with the option to limit starting location so that the walls won't be a 
+     * problem. This I think will be easier, though it means the slight 
+     * change in how often addRoom will be able to fit the room in.
+     * 
      * @param map before addition
-     * @param width for the room to be added
-     * @param height for the room to be added
+     * @param rwidth width of the room to be added
+     * @param rheight height of the room to be added
+     * @param width of the map
+     * @param height of the map
      * @return the map with the new room if it was added
      */
-    public static int[][] addRoom(int[][] map, int width, int height) {
+    public static int[][] addRoom(int[][] map, int rwidth, int rheight, int width, int height) {
+//        System.out.println("trying to add a room");
+        Random r = new Random();
+        int x = r.nextInt(width - rwidth);
+        int y = r.nextInt(height - rheight);
+//        System.out.println("starting corner is " + x + "," + y + ", and size is " + rwidth + "x" + rheight);
+
+        // test each square for collision
+        for(int j = 0; j < rheight; j++) {
+            for(int i = 0; i < rwidth; i++) {
+                if(!checkCollision(map, x+i, y+j)) {
+//                    System.out.println("collision detected");
+                    return map;
+                }
+            }
+        }
+        
+        // build walls for the room
+//        System.out.println("building walls");
+        for(int j = 0; j < rheight; j++) {
+            map[j+y][x] = 1;
+            map[j+y][x+rwidth-1] = 1;
+        }
+        for(int i = 0; i < rwidth; i++) {
+            map[y][i+x] = 1;
+            map[y+rheight-1][i+x] = 1;
+        }
+        
         
         return map;
     }
@@ -67,7 +120,7 @@ public class Main {
      * @return true if square is free
      */
     public static boolean checkCollision(int[][] map, int x, int y) {
-        if(map[x][y] == 0) {
+        if(map[y][x] == 0) {
             return true;
         }
         return false;
@@ -87,7 +140,7 @@ public class Main {
                 if(map[y][x] == 0) {
                     output += ".";
                 } else {
-                    output += "X";
+                    output += "#";
                 }
             }
             output += "\n";

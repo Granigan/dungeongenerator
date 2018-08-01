@@ -29,9 +29,10 @@ At least these are required:
 **This is the initial estimate only, and will be updated as the project progresses.**
 
 ### First stage: Rooms
-Time requirement is defined by the wanted amount of rooms. The higher the value, the more attempts are made to place a new room into the map. If the room overlaps an existing room, it won't be placed, but instead a new attempt is made. Once the defined amount of attempts are made, the process finishes. The attempts require constant time, and have no notable space requirements.
+Time requirement is defined by the wanted amount of rooms. The higher the value, the more attempts are made to place a new room into the map. If the room overlaps an existing room, it won't be placed, but instead a new attempt is made. Once the defined amount of attempts are made, the process finishes. Thus the time requirement is directly related to the attempts chosen to be made. The attempts have no notable space requirements.
 
-Time: O(1)
+n = amount of attempts to create a room
+Time: O(n)
 Space: O(1)
 
 ### Second stage: Corridors
