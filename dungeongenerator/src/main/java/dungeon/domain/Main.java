@@ -1,4 +1,4 @@
-package dungeon;
+package dungeon.domain;
 
 import java.io.FileWriter;
 import java.io.IOException;

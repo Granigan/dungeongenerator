@@ -5,6 +5,9 @@ A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12
 
 ## Weekly Progress
 
+### Week 2
+- [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week2.md)
+
 ### Week 1
 - [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week1.md)
 - [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md)

@@ -1,4 +1,4 @@
-## First week
+##  week
 
 ### What I got done
 
@@ -13,4 +13,12 @@
 
 
 ### Going forward
+
+## Time spent this week
+**Total: h**
+
+| Day	| Time Spent	| Tasks	|
+| ------|:-------------:|------:|
+| Tue	| h		| thisandthat |
+| Thu	| h		| thatandthis |
 
