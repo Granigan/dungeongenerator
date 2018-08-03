@@ -10,6 +10,7 @@ public class DungeonMap {
     private final int height;
     private final int width;
     private int[][] map;
+    private int roomCount;
 
     /**
      * Constructor for the map object.
@@ -21,6 +22,7 @@ public class DungeonMap {
         this.height = height;
         this.width = width;
         this.map = new int[height][width];
+        this.roomCount = 0;
     }
 
     /**
@@ -114,6 +116,7 @@ public class DungeonMap {
             map[y][i + x] = 0;
             map[y + rheight - 1][i + x] = 0;
         }
+        roomCount++;
     }
 
     /**
@@ -148,7 +151,7 @@ public class DungeonMap {
             }
             output += "\n";
         }
-        return output;
+        return output + roomCount + " rooms placed";
     }
 
     /**
