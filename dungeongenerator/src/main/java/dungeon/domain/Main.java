@@ -1,8 +1,7 @@
 package dungeon.domain;
 
-import dungeon.map.DungeonMap;
+import dungeon.maptools.DungeonMap;
 import java.io.IOException;
-import java.util.Random;
 
 public class Main {
 
@@ -19,15 +18,9 @@ public class Main {
         int minRoomSize = 4; // including walls, 3 is thus the absolute minimum
         int maxRoomRandom = 15; // up to this much is added to the minRoomSize
 
-        Random r = new Random();
-
         DungeonMap map = new DungeonMap(height, width);
         map.initMap();
-
-        while (roomAttempts > 0) {
-            map.addRoom(minRoomSize + r.nextInt(maxRoomRandom), minRoomSize + r.nextInt(maxRoomRandom));
-            roomAttempts--;
-        }
+        map.addRooms(roomAttempts, minRoomSize, maxRoomRandom);
 
         System.out.println(map.mapToString());
         map.saveMap();

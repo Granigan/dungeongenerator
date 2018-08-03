@@ -1,4 +1,4 @@
-package dungeon.map;
+package dungeon.maptools;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,6 +11,12 @@ public class DungeonMap {
     private final int width;
     private int[][] map;
 
+    /**
+     * Constructor for the map object.
+     *
+     * @param height of the map (y)
+     * @param width of the map (x)
+     */
     public DungeonMap(int height, int width) {
         this.height = height;
         this.width = width;
@@ -37,12 +43,23 @@ public class DungeonMap {
         }
     }
 
-    public int[][] getMap() {
-        return map;
-    }
-
-    public void setMap(int[][] map) {
-        this.map = map;
+    /**
+     * Loop for adding rooms to the map. Rooms are checked for collision and
+     * their size is randomised based on the parameters given.
+     *
+     * @param attempts of room placement **NOT THE ACTUAL AMOUNT OF ROOMS
+     **
+     * @param minRoomSize defines the minimum dimension length for the room,
+     * should not be less than 3 to avoid rooms with no floor.
+     * @param maxRoomRandom defines x in the 0-x to be added to each room
+     * dimension
+     */
+    public void addRooms(int attempts, int minRoomSize, int maxRoomRandom) {
+        Random r = new Random();
+        while (attempts > 0) {
+            addRoom(minRoomSize + r.nextInt(maxRoomRandom), minRoomSize + r.nextInt(maxRoomRandom));
+            attempts--;
+        }
     }
 
     /**
@@ -103,7 +120,6 @@ public class DungeonMap {
      * Checks to see if the square in the given coordinates is 'empty', i.e. 0.
      * Returns true if square is empty, false if square is 'wall', i.e. 1.
      *
-     * @param map of the room
      * @param x coordinate
      * @param y coordinate
      * @return true if square is free
@@ -139,7 +155,6 @@ public class DungeonMap {
      * Saves the map to a file on disk, under project directory with name
      * 'generated_map.txt'.
      *
-     * @param map in string format
      * @throws IOException problem with writing to disk
      */
     public void saveMap() throws IOException {
