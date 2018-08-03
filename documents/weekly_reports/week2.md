@@ -17,19 +17,19 @@ Adding a simple printing to file was also nice little thing to add the program t
 ### Troubles I've seen
 Codewise, a bug with drawing the walls for the room kept me wondering for a while, as it turns out coordinates can be a bit tricky. After some whiteboard debugging I realised I didn't start the count from zero and thus the walls were a bit leaky.
 
-On a more comprehensive level, I struggle to get a grasp on testing logic, or paradigm. It always feels that either I build a test to test something tiny and obvious - irrelevant, or something vast, like the end result - which is essentially what happens every time the program is ran anyway. I'd really appreciate a recommendations on how to improve my understanding over testing, it feels that as a topic it's been slightly overlooked during the courses so far. Though of course, tests alone are not really the emphasis on this project, so this is just an 'optional side quest', if you will.
+On a more comprehensive level, I struggle to get a grasp on testing logic, or paradigm. It always feels that either I build a test to test something tiny and obvious - irrelevant, or something vast, like the end result - which is essentially what happens every time the program is ran anyway. I'd really appreciate e.g. recommended reading/etc on how to improve my understanding over testing, it feels that as a topic it's been slightly overlooked during the courses so far. Though of course, tests alone are not really the emphasis on this project, so this is just an 'optional side quest', if you will.
 
 
 ### Going forward
-Much refactoring is needed as everything is currently in Main.java. I'll start by creating a class for the map itself, and move most, if not all methods there. After this, I can also add tests for the methods.
-
-After that, I'll be adding segmentation for the rooms, which also should prevent them spawning inside other rooms. After that, it's time to create an algorithm for filling the empty space with a maze of corridors. 
+Next step will be to add segmentation for the rooms, which also should prevent them spawning inside other rooms. After that, it's time to create an algorithm for filling the empty space with a maze of corridors. This'll be the goal for next week.
 
 ## Time spent this week
-**Total: 7h**
+**Total: 10h**
 
 | Day	| Time Spent	| Tasks	|
 | ------|:-------------:|------:|
 | Wed	| 7h		| Creation of a blank map, support for adding rooms to it, learning about and planning testing, weekly report |
+| Fri	| 3h		| Refactoring, creating tests |
+
 
 
