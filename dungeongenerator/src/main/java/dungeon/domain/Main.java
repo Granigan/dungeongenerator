@@ -22,7 +22,7 @@ public class Main {
         map.initMap();
         map.addRooms(roomAttempts, minRoomSize, maxRoomRandom);
 
-        System.out.println(map.mapToString());
+        System.out.println(map.toString() + map.getRoomCount() + " rooms placed");
         map.saveMap();
 
     }

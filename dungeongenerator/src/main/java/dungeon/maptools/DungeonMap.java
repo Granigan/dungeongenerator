@@ -49,8 +49,7 @@ public class DungeonMap {
      * Loop for adding rooms to the map. Rooms are checked for collision and
      * their size is randomised based on the parameters given.
      *
-     * @param attempts of room placement **NOT THE ACTUAL AMOUNT OF ROOMS
-     **
+     * @param attempts of room placement **NOT THE ACTUAL AMOUNT OF ROOMS *
      * @param minRoomSize defines the minimum dimension length for the room,
      * should not be less than 3 to avoid rooms with no floor.
      * @param maxRoomRandom defines x in the 0-x to be added to each room
@@ -135,11 +134,12 @@ public class DungeonMap {
     }
 
     /**
-     * Creates a string of the map, and prints it.
+     * Creates a string of the map.
      *
      * @return map as a string
      */
-    public String mapToString() {
+    @Override
+    public String toString() {
         String output = "";
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -151,7 +151,17 @@ public class DungeonMap {
             }
             output += "\n";
         }
-        return output + roomCount + " rooms placed";
+        return output;
+    }
+
+    /**
+     * Mostly for convenience, useful for reports or analysis or just to avoid
+     * counting the rooms on the screen.
+     *
+     * @return amount of rooms in the map
+     */
+    public int getRoomCount() {
+        return roomCount;
     }
 
     /**
@@ -163,7 +173,26 @@ public class DungeonMap {
     public void saveMap() throws IOException {
         FileWriter fw = new FileWriter("generated_map.txt");
         PrintWriter pw = new PrintWriter(fw);
-        pw.print(mapToString());
+        pw.print(toString());
         pw.close();
     }
+
+    /**
+     * Sets a specific map, for testing use.
+     *
+     * @param map to test with
+     */
+    public void setMap(int[][] map) {
+        this.map = map;
+    }
+
+    /**
+     * Gets the map, for testing use.
+     *
+     * @return the map arrays as int[][]
+     */
+    public int[][] getMap() {
+        return map;
+    }
+
 }

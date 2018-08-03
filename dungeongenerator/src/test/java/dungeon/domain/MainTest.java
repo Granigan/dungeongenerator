@@ -13,8 +13,6 @@ import static org.junit.Assert.*;
  */
 public class MainTest {
     
-    int[][] testMap = new int[20][20];
-    
     public MainTest() {
     }
     
@@ -34,9 +32,5 @@ public class MainTest {
     public void tearDown() {
     }
     
-    @Test
-    public void roomFitsInsideTheMap() {
-        
-    }
     
 }
