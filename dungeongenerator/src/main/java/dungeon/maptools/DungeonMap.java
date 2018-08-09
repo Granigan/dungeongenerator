@@ -49,7 +49,8 @@ public class DungeonMap {
      * Loop for adding rooms to the map. Rooms are checked for collision and
      * their size is randomised based on the parameters given.
      *
-     * @param attempts of room placement **NOT THE ACTUAL AMOUNT OF ROOMS *
+     * @param attempts of room placement **NOT THE ACTUAL AMOUNT OF ROOMS
+     *
      * @param minRoomSize defines the minimum dimension length for the room,
      * should not be less than 3 to avoid rooms with no floor.
      * @param maxRoomRandom defines x in the 0-x to be added to each room
@@ -95,6 +96,16 @@ public class DungeonMap {
         }
         if (noCollision) {
             buildWalls(x, y, rwidth, rheight);
+            buildFloors(x, y, rwidth, rheight);
+        }
+    }
+
+    public void buildFloors(int x, int y, int rwidth, int rheight) {
+        int roomNumber = roomCount + 2;
+        for (int j = 1; j < rheight - 1; j++) {
+            for (int i = 1; i < rwidth - 1; i++) {
+                map[j+y][i+x] = roomNumber;
+            }
         }
     }
 
@@ -146,7 +157,8 @@ public class DungeonMap {
                 if (map[y][x] == 0) {
                     output += "#";
                 } else {
-                    output += ".";
+//                    output += ".";
+                    output += "" + map[y][x];
                 }
             }
             output += "\n";

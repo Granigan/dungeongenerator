@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int width = 180; // map width
         int height = 50; // map height
-        int roomAttempts = 150; // how many times is addRoom() ran
+        int roomAttempts = 9; // how many times is addRoom() ran
         int minRoomSize = 4; // including walls, 3 is thus the absolute minimum
         int maxRoomRandom = 15; // up to this much is added to the minRoomSize
 
