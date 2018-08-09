@@ -12,7 +12,7 @@ public class MazeBuilder {
 
     private final int height;
     private final int width;
-    private final int mazeId;
+    private int mazeId;
 
     // x and y mark the current location
     private int x;
@@ -34,6 +34,7 @@ public class MazeBuilder {
                 if (map[j][i] == 1) {
                     x = i;
                     y = j;
+                    mazeId++;
                     return true;
                 }
             }
@@ -64,7 +65,6 @@ public class MazeBuilder {
 
     public int[][] findNextCorridorSquare(int[][] map) {
         while (!neighbouringWalls.isEmpty()) {
-            System.out.println("possible routes:" + neighbouringWalls.size());
             int ri = r.nextInt(neighbouringWalls.size());
             x = neighbouringWalls.get(ri).getX();
             y = neighbouringWalls.get(ri).getY();

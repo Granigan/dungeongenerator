@@ -15,8 +15,8 @@ public class Main {
         int width = 40; // map width
         int height = 16; // map height
         int roomAttempts = 10; // how many times is addRoom() ran
-        int minRoomSize = 4; // including walls, 3 is thus the absolute minimum
-        int maxRoomRandom = 8; // up to this much is added to the minRoomSize
+        int minRoomSize = 3; // including walls, 3 is thus the absolute minimum
+        int maxRoomRandom = 6; // up to this much is added to the minRoomSize
 
         DungeonMap map = new DungeonMap(height, width);
         map.initialise();

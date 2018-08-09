@@ -51,10 +51,11 @@ public class DungeonMap {
     }
     
     public void createMaze() {
-        maze = new MazeBuilder(height, width, rooms.getRoomCount() + 1);
-        maze.findFirstEmpty(map);
-        map = maze.placeCorridorWithWalls(map);
-        map = maze.findNextCorridorSquare(map);
+        maze = new MazeBuilder(height, width, rooms.getRoomCount());
+        while(maze.findFirstEmpty(map)) {
+            map = maze.placeCorridorWithWalls(map);
+            map = maze.findNextCorridorSquare(map);            
+        }
     }
 
     /**
