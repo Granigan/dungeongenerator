@@ -11,9 +11,9 @@ import static org.junit.Assert.*;
  *
  * @author tgtapio
  */
-public class DungeonMapTest {
+public class RoomBuilderTest {
 
-    DungeonMap map = new DungeonMap(3, 3);
+    RoomBuilder map = new RoomBuilder(3, 3);
     int[][] filledWithOnes = new int[3][3];
 
     public int[][] fillWithOnes() {
@@ -25,7 +25,7 @@ public class DungeonMapTest {
         return filledWithOnes;
     }
 
-    public DungeonMapTest() {
+    public RoomBuilderTest() {
     }
 
     @BeforeClass

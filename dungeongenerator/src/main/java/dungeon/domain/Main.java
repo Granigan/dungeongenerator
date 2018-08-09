@@ -14,15 +14,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int width = 180; // map width
         int height = 50; // map height
-        int roomAttempts = 9; // how many times is addRoom() ran
+        int roomAttempts = 8; // how many times is addRoom() ran
         int minRoomSize = 4; // including walls, 3 is thus the absolute minimum
         int maxRoomRandom = 15; // up to this much is added to the minRoomSize
 
         DungeonMap map = new DungeonMap(height, width);
-        map.initMap();
+        map.initialise();
+        
         map.addRooms(roomAttempts, minRoomSize, maxRoomRandom);
 
-        System.out.println(map.toString() + map.getRoomCount() + " rooms placed");
+        System.out.println(map.toString() + map.getAddedRoomCount() + " rooms placed");
         map.saveMap();
 
     }
