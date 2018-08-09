@@ -56,6 +56,7 @@ public class DungeonMap {
             map = maze.placeCorridorWithWalls(map);
             map = maze.findNextCorridorSquare(map);            
         }
+        map = maze.sealDeadEnds(map);
     }
 
     /**

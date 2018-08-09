@@ -13,6 +13,7 @@ public class MazeBuilder {
     private final int height;
     private final int width;
     private int mazeId;
+    private int roomCount;
 
     // x and y mark the current location
     private int x;
@@ -24,6 +25,7 @@ public class MazeBuilder {
         this.height = height;
         this.width = width;
         this.mazeId = mazeId;
+        this.roomCount = mazeId;
         this.r = new Random();
         neighbouringWalls = new ArrayList<>();
     }
@@ -97,5 +99,37 @@ public class MazeBuilder {
         }
 
         return true;
+    }
+
+    public int[][] sealDeadEnds(int[][] map) {
+        boolean runAgain = true;
+        while (runAgain) {
+            runAgain = false;
+
+            for (int j = 1; j < height - 1; j++) {
+                for (int i = 1; i < width - 1; i++) {
+                    if (map[j][i] > roomCount) {
+                        int surroundingWalls = 0;
+                        if (map[j + 1][i] == 0) {
+                            surroundingWalls++;
+                        }
+                        if (map[j - 1][i] == 0) {
+                            surroundingWalls++;
+                        }
+                        if (map[j][i + 1] == 0) {
+                            surroundingWalls++;
+                        }
+                        if (map[j][i - 1] == 0) {
+                            surroundingWalls++;
+                        }
+                        if (surroundingWalls > 2) {
+                            map[j][i] = 0;
+                            runAgain = true;
+                        }
+                    }
+                }
+            }
+        }
+        return map;
     }
 }
