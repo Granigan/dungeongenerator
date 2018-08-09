@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int width = 40; // map width
         int height = 16; // map height
-        int roomAttempts = 6; // how many times is addRoom() ran
+        int roomAttempts = 10; // how many times is addRoom() ran
         int minRoomSize = 4; // including walls, 3 is thus the absolute minimum
         int maxRoomRandom = 8; // up to this much is added to the minRoomSize
 
@@ -26,6 +26,7 @@ public class Main {
         map.createMaze();
 
         System.out.println(map.toString() + map.getAddedRoomCount() + " rooms placed");
+        System.out.println(map.toDebugString() + map.getAddedRoomCount() + " rooms placed");
         map.saveMap();
 
     }

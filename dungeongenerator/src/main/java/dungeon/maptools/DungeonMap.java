@@ -54,6 +54,7 @@ public class DungeonMap {
         maze = new MazeBuilder(height, width, rooms.getRoomCount() + 1);
         maze.findFirstEmpty(map);
         map = maze.placeCorridorWithWalls(map);
+        map = maze.findNextCorridorSquare(map);
     }
 
     /**
@@ -69,7 +70,21 @@ public class DungeonMap {
                 if (map[y][x] == 0) {
                     output += "#";
                 } else {
-//                    output += ".";
+                    output += ".";
+                }
+            }
+            output += "\n";
+        }
+        return output;
+    }
+    
+    public String toDebugString() {
+        String output = "";
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (map[y][x] == 0) {
+                    output += "#";
+                } else {
                     output += "" + map[y][x];
                 }
             }
