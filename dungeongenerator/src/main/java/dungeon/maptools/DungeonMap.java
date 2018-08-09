@@ -97,9 +97,20 @@ public class DungeonMap {
         if (noCollision) {
             buildWalls(x, y, rwidth, rheight);
             buildFloors(x, y, rwidth, rheight);
+            roomCount++;
         }
     }
 
+    /**
+     * Numbers the floor squares, getting the room id from global roomCount
+     * variable. roomCount is incremented in the addRoom method, allowing this 
+     * to be used in other context as well.
+     * 
+     * @param x starting coordinate for the WALLS, floor begins at x+1, y+1
+     * @param y starting coordinate for the WALLS, floor begins at x+1, y+1
+     * @param rwidth of the room, INCLUDING walls
+     * @param rheight of the room, INCLUDING walls
+     */
     public void buildFloors(int x, int y, int rwidth, int rheight) {
         int roomNumber = roomCount + 2;
         for (int j = 1; j < rheight - 1; j++) {
@@ -126,12 +137,12 @@ public class DungeonMap {
             map[y][i + x] = 0;
             map[y + rheight - 1][i + x] = 0;
         }
-        roomCount++;
     }
 
     /**
-     * Checks to see if the square in the given coordinates is 'empty', i.e. 0.
-     * Returns true if square is empty, false if square is 'wall', i.e. 1.
+     * Checks to see if the square in the given coordinates is 'empty', i.e. 1.
+     * Returns true if square is empty, false if square is 'wall' (0), or belongs
+     * to another room (>1).
      *
      * @param x coordinate
      * @param y coordinate
@@ -170,7 +181,7 @@ public class DungeonMap {
      * Mostly for convenience, useful for reports or analysis or just to avoid
      * counting the rooms on the screen.
      *
-     * @return amount of rooms in the map
+     * @return [amount of rooms in the map + 1] - empty map is 'room 1'
      */
     public int getRoomCount() {
         return roomCount;
