@@ -17,12 +17,14 @@ public class DungeonMap {
     private int[][] map;
     private RoomBuilder rooms;
     private MazeBuilder maze;
+    private int mazeId;
 
     public DungeonMap(int height, int width) {
         this.height = height;
         this.width = width;
         this.map = new int[height][width];
         rooms = new RoomBuilder();
+        
     }
 
     public void initialise() {
@@ -46,6 +48,12 @@ public class DungeonMap {
             map = rooms.addRoom(map, minRoomSize + r.nextInt(maxRoomRandom), minRoomSize + r.nextInt(maxRoomRandom));
             attempts--;
         }
+    }
+    
+    public void createMaze() {
+        maze = new MazeBuilder(height, width, rooms.getRoomCount());
+        map = maze.findFirstEmpty(map);
+        map = maze.continueCorridor(map);
     }
 
     /**

@@ -2,6 +2,12 @@ package dungeon.maptools;
 
 import java.util.Random;
 
+/**
+ * Includes methods to build rooms by placing walls and floors. Also used to
+ * initialise the map.
+ * 
+ * @author tgtapio
+ */
 public class RoomBuilder {
 
     private int roomCount;

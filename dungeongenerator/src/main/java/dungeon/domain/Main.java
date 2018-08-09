@@ -22,6 +22,8 @@ public class Main {
         map.initialise();
         
         map.addRooms(roomAttempts, minRoomSize, maxRoomRandom);
+        
+        map.createMaze();
 
         System.out.println(map.toString() + map.getAddedRoomCount() + " rooms placed");
         map.saveMap();
