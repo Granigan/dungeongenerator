@@ -35,7 +35,7 @@ public class DungeonMap {
      * Loop for adding rooms to the map. Rooms are checked for collision and
      * their size is randomised based on the parameters given.
      *
-     * @param attempts of room placement **NOT THE ACTUAL AMOUNT OF ROOMS
+     * @param attempts of room placement **NOT THE ACTUAL AMOUNT OF ROOMS**
      *
      * @param minRoomSize defines the minimum dimension length for the room,
      * should not be less than 3 to avoid rooms with no floor.
@@ -51,9 +51,9 @@ public class DungeonMap {
     }
     
     public void createMaze() {
-        maze = new MazeBuilder(height, width, rooms.getRoomCount());
-        map = maze.findFirstEmpty(map);
-        map = maze.continueCorridor(map);
+        maze = new MazeBuilder(height, width, rooms.getRoomCount() + 1);
+        maze.findFirstEmpty(map);
+        map = maze.placeCorridorWithWalls(map);
     }
 
     /**

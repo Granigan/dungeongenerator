@@ -12,11 +12,11 @@ public class Main {
      * @throws IOException problem with writing to disk
      */
     public static void main(String[] args) throws IOException {
-        int width = 180; // map width
-        int height = 50; // map height
-        int roomAttempts = 8; // how many times is addRoom() ran
+        int width = 40; // map width
+        int height = 16; // map height
+        int roomAttempts = 6; // how many times is addRoom() ran
         int minRoomSize = 4; // including walls, 3 is thus the absolute minimum
-        int maxRoomRandom = 15; // up to this much is added to the minRoomSize
+        int maxRoomRandom = 8; // up to this much is added to the minRoomSize
 
         DungeonMap map = new DungeonMap(height, width);
         map.initialise();
