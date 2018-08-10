@@ -5,6 +5,10 @@ A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12
 
 ## Weekly Progress
 
+### Week 3
+- [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week3.md)
+- [User's Ruide]([Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/users_guide.md)
+
 ### Week 2
 - [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week2.md)
 - [Testing Document (WIP)](https://github.com/Granigan/dungeongenerator/blob/master/documents/testing_plan.md)
@@ -14,6 +18,8 @@ A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12
 - [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md)
 
 ### Documents and Links
+- [User's Ruide]([Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/users_guide.md)
+
 - [Trello board](https://trello.com/b/HVYZZHt6/tiralab-dungeon-generator)
 
 - [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md) (*Määrittelydokumentti*)
