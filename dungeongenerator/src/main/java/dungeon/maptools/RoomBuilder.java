@@ -144,6 +144,10 @@ public class RoomBuilder {
         return false;
     }
 
+    public void setRoomCount(int roomCount) {
+        this.roomCount = roomCount;
+    }
+
     /**
      * Mostly for convenience, useful for reports or analysis or just to avoid
      * counting the rooms on the screen.

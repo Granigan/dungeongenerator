@@ -14,15 +14,15 @@ import static org.junit.Assert.*;
 public class RoomBuilderTest {
 
     RoomBuilder rb = new RoomBuilder();
-    int[][] filledWithOnes = new int[3][3];
 
-    public int[][] fillWithOnes() {
-        for(int j = 0; j < 3; j++) {
-            for(int i = 0; i < 3; i++) {
-                filledWithOnes[j][i] = 1;
+    public int[][] mapCreator(int filler, int size) {
+        int[][] map = new int[size][size];
+        for (int j = 0; j < size; j++) {
+            for (int i = 0; i < size; i++) {
+                map[j][i] = filler;
             }
         }
-        return filledWithOnes;
+        return map;
     }
 
     public RoomBuilderTest() {
@@ -44,80 +44,43 @@ public class RoomBuilderTest {
     public void tearDown() {
     }
 
-//    @Test
-//    public void buildWallsOneByOneTest() {
-//        rb.setMap(fillWithOnes());
-//        rb.buildWalls(0, 0, 1, 1);
-//        assertEquals(0, rb.getMap()[0][0]);
-//    }
-//
-//    @Test
-//    public void buildWallsTwoByTwoTest() {
-//        rb.setMap(fillWithOnes());
-//        rb.buildWalls(0, 0, 2, 2);
-//        assertEquals(0, rb.getMap()[1][1]);
-//    }
-//
-//    @Test
-//    public void buildWallsThreeByThreeTest1() {
-//        rb.setMap(fillWithOnes());
-//        rb.buildWalls(0, 0, 3, 3);
-//        assertEquals(1, rb.getMap()[1][1]);
-//    }
-//
-//    @Test
-//    public void buildWallsThreeByThreeTest2() {
-//        rb.setMap(fillWithOnes());
-//        rb.buildWalls(0, 0, 3, 3);
-//        assertEquals(0, rb.getMap()[2][0]);
-//    }
-//
-//    @Test
-//    public void collisionTrueTest() {
-//        int[][] oneSquare = new int[1][1];
-//        oneSquare[0][0] = 1;
-//        rb.setMap(oneSquare);
-//
-//        assertTrue(rb.checkCollision(0, 0));
-//    }
-//
-//    @Test
-//    public void collisionFalseTest() {
-//        int[][] oneSquare = new int[1][1];
-//        oneSquare[0][0] = 0;
-//        rb.setMap(oneSquare);
-//
-//        assertFalse(rb.checkCollision(0, 0));
-//    }
-//
-//    @Test
-//    public void initMapFirstCornermustBeWallTest() {
-//        rb.initMap();
-//        assertEquals(0, rb.getMap()[0][0]);
-//    }
-//
-//    @Test
-//    public void initMapLastCornermustBeWallTest() {
-//        rb.initMap();
-//        assertEquals(0, rb.getMap()[2][2]);
-//    }
-//
-//    @Test
-//    public void initMapMiddleMustBeFloorTest() {
-//        rb.initMap();
-//        assertEquals(1, rb.getMap()[1][1]);
-//    }
-//
-//    @Test
-//    public void toStringAllOnesTest(){
-//        rb.setMap(fillWithOnes());
-//        assertEquals("...\n...\n...\n", rb.toString());
-//    }
-//    
-//    @Test
-//    public void toStringJustBorders(){
-//        rb.initMap();
-//        assertEquals("###\n#.#\n###\n", rb.toString());
-//    }
+    @Test
+    public void buildWallsTest1() {
+        int[][] map = mapCreator(5, 3);
+        int[][] target = mapCreator(0, 3);
+        target[1][1] = 5;
+        assertEquals(target, rb.buildWalls(map, 0, 0, 3, 3));
+    }
+
+    @Test
+    public void buildFloorsTest1() {
+        int[][] map = mapCreator(5, 3);
+        int[][] target = mapCreator(5, 3);
+        rb.setRoomCount(1);
+        target[1][1] = 1;
+        assertEquals(target, rb.buildFloors(map, 0, 0, 3, 3));
+    }
     
+    @Test
+    public void initMapTest1() {
+        int[][] map = mapCreator(5, 3);
+        int[][] target = mapCreator(0, 3);
+        rb.setRoomCount(0);
+        target[1][1] = 1;
+        assertEquals(target, rb.initMap(map, 3, 3));
+    }
+    
+    @Test
+    public void checkCollisionTest1() {
+        int[][] collision = mapCreator(1, 1);
+        assertTrue(rb.checkCollision(collision, 0, 0));
+    }
+    
+    @Test
+    public void checkCollisionTest2() {
+        int[][] noCollision = mapCreator(0, 1);
+        assertFalse(rb.checkCollision(noCollision, 0, 0));
+    }
+    
+
 }
