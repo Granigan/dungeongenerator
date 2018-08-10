@@ -14,8 +14,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int width = 180; // map width, screen max 180
         int height = 50; // map height, screen max 50
-        int roomAttempts = 15; // how many times is addRoom() ran
-        int minRoomSize = 7; // including walls, so 3 is the minimum
+        int roomAttempts = 50; // how many times is addRoom() ran
+        int minRoomSize = 6; // including walls, so 3 is the minimum
         int maxRoomRandom = 12; // up to this much is added to the minRoomSize
 
         DungeonMap map = new DungeonMap(height, width);
