@@ -18,7 +18,7 @@ A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12
 - [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md)
 
 ### Documents and Links
-- [User's Ruide]([Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/users_guide.md)
+- [User's Guide](https://github.com/Granigan/dungeongenerator/blob/master/documents/users_guide.md)
 
 - [Trello board](https://trello.com/b/HVYZZHt6/tiralab-dungeon-generator)
 
