@@ -31,5 +31,5 @@ public class MazeBuilderTest {
     @After
     public void tearDown() {
     }
-    
+
 }

@@ -10,6 +10,12 @@ public class Coordinates {
     private final int x;
     private final int y;
 
+    /**
+     * Default constructor, needs coordinates.
+     * 
+     * @param x coordinate
+     * @param y coordinate
+     */
     public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;

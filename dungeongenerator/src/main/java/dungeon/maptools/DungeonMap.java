@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 /**
- * The map object that hosts the tool objects for creating the dungeon
+ * The map object that hosts the tool objects for creating the dungeon.
  *
  * @author tgtapio
  */
@@ -18,14 +18,26 @@ public class DungeonMap {
     private RoomBuilder rooms;
     private MazeBuilder maze;
 
+    /**
+     * Constructor that stores the map size and creates the map object. Also
+     * creates a RoomBuilder to be used for creating rooms.
+     *
+     * @param height of the map, outer walls included
+     * @param width of the map, outer walls included
+     */
     public DungeonMap(int height, int width) {
         this.height = height;
         this.width = width;
         this.map = new int[height][width];
         rooms = new RoomBuilder();
-        
+
     }
 
+    /**
+     * Runs the initialise process that uses RoomBuilder to set up walls (0) and
+     * empty space (1).
+     *
+     */
     public void initialise() {
         map = rooms.initMap(map, height, width);
     }
@@ -48,12 +60,17 @@ public class DungeonMap {
             attempts--;
         }
     }
-    
+
+    /**
+     * Method to run the MazeBuilder in steps. Creates a perfect maze, filling
+     * the empty space left after placing the rooms.
+     *
+     */
     public void createMaze() {
         maze = new MazeBuilder(height, width, rooms.getRoomCount());
-        while(maze.findFirstEmpty(map)) {
+        while (maze.findFirstEmpty(map)) {
             map = maze.placeCorridorWithWalls(map);
-            map = maze.findNextCorridorSquare(map);            
+            map = maze.findNextCorridorSquare(map);
         }
 //        map = maze.sealDeadEnds(map);
     }
@@ -78,7 +95,13 @@ public class DungeonMap {
         }
         return output;
     }
-    
+
+    /**
+     * Creates a string of the map, showing segment ids instead of ASCII
+     * graphics.
+     *
+     * @return map described with segment ids.
+     */
     public String toDebugString() {
         String output = "";
         for (int y = 0; y < height; y++) {
@@ -93,7 +116,14 @@ public class DungeonMap {
         }
         return output;
     }
-    
+
+    /**
+     * Retrieves the current room count number from RoomBuilder, subtacts one to
+     * get the actual number of rooms that were placed, and returns as int.
+     *
+     * @return number of segments, i.e. placed rooms + 1 for the original
+     * dungeon floor.
+     */
     public int getAddedRoomCount() {
         return rooms.getRoomCount() - 1;
     }
