@@ -136,7 +136,7 @@ public class MazeBuilder {
 //            System.out.println("current location: " + x + "," + y + "\n"
 //                    + toDebugString(map)
 //            );
-            if (checkIfCorridorNotYetConnected(map)) {
+            if (checkIfSquareConnectsToOneCorridor(map)) {
                 map = placeCorridorWithWalls(map);
             }
         }
@@ -150,6 +150,7 @@ public class MazeBuilder {
      * @param map being worked on
      * @return map being worked on
      */
+    /* not yet in use, though should work
     public int[][] sealDeadEnds(int[][] map) {
         boolean runAgain = true;
         while (runAgain) {
@@ -167,7 +168,7 @@ public class MazeBuilder {
         }
         return map;
     }
-
+     */
     /**
      * Checks the four neighbouring squares for corridors. If exactly one is
      * corridor, this square should also be a corridor.
@@ -176,7 +177,7 @@ public class MazeBuilder {
      * @return true if there's exactly one neighbouring corridor, otherwise
      * false
      */
-    public boolean checkIfCorridorNotYetConnected(int[][] map) {
+    public boolean checkIfSquareConnectsToOneCorridor(int[][] map) {
         int connections = 0;
         if (map[y - 1][x] > 1) {
             connections++;
@@ -199,7 +200,7 @@ public class MazeBuilder {
     }
 
     /**
-     * Counts walls surrounding the given i,j coordinates and returns the 
+     * Counts walls surrounding the given i,j coordinates and returns the
      * amount.
      *
      * @param map being worked on
@@ -245,4 +246,29 @@ public class MazeBuilder {
         }
         return output;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public ArrayList<Coordinates> getNeighbouringWalls() {
+        return neighbouringWalls;
+    }
+
+    public void setNeighbouringWalls(ArrayList<Coordinates> neighbouringWalls) {
+        this.neighbouringWalls = neighbouringWalls;
+    }
+
 }
