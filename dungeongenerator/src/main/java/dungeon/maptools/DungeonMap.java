@@ -17,7 +17,6 @@ public class DungeonMap {
     private int[][] map;
     private RoomBuilder rooms;
     private MazeBuilder maze;
-    private int mazeId;
 
     public DungeonMap(int height, int width) {
         this.height = height;
@@ -56,7 +55,7 @@ public class DungeonMap {
             map = maze.placeCorridorWithWalls(map);
             map = maze.findNextCorridorSquare(map);            
         }
-        map = maze.sealDeadEnds(map);
+//        map = maze.sealDeadEnds(map);
     }
 
     /**
