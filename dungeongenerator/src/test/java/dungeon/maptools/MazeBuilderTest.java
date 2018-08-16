@@ -4,6 +4,7 @@ import dungeon.datastructures.Coordinates;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -132,7 +133,7 @@ public class MazeBuilderTest {
         target[1][2] = 0;
         target[2][1] = 0;
         
-        assertEquals(target, mb.placeCorridorWithWalls(allOnes));
+        Assert.assertArrayEquals(target, mb.placeCorridorWithWalls(allOnes));
     }
     
     @Test
@@ -194,7 +195,7 @@ public class MazeBuilderTest {
         mb = new MazeBuilder(3, 3, 5);
         int[][] allZeroes = mapCreator(0, 3);
 
-        assertEquals(allZeroes, mb.findNextCorridorSquare(allZeroes));
+        Assert.assertArrayEquals(allZeroes, mb.findNextCorridorSquare(allZeroes));
     }
     
     @Test
@@ -210,10 +211,25 @@ public class MazeBuilderTest {
         int[][] allTwos = mapCreator(2, 3);
         
         assertEquals(1, mb.getNeighbouringWalls().size());
-        assertEquals(allTwos, mb.findNextCorridorSquare(allTwos));
+        Assert.assertArrayEquals(allTwos, mb.findNextCorridorSquare(allTwos));
         assertEquals(1, mb.getX());
         assertEquals(1, mb.getY());
         assertEquals(0, mb.getNeighbouringWalls().size());
     }
     
+    @Test
+    public void sealDeadendsTest1() {
+        mb = new MazeBuilder(5, 5, 1);
+        int[][] map = mapCreator(0, 5);
+        map[1][1] = 5;
+        map[2][1] = 5;
+        map[3][1] = 5;
+        map[1][2] = 5;
+        map[3][2] = 5;
+        map[1][3] = 5;
+        map[3][3] = 5;
+        int[][] target = mapCreator(0, 5);
+        
+        Assert.assertArrayEquals(target, mb.sealDeadends(map));
+    }
 }

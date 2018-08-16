@@ -4,7 +4,6 @@ import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.HomemadeRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 /**
  * Includes methods to build rooms by placing walls and floors. Also used to

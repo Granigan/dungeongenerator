@@ -55,11 +55,11 @@ public class DoorBuilder {
      * the room to a different segment is found.
      *
      * @param map being worked on
-     * @param segmentId room being worked on
+     * @param roomId room being worked on
      * @return Coordinates for the wall to replaced with a door
      */
-    public Coordinates findConnectingWall(int[][] map, int segmentId) {
-        ArrayList<Coordinates> walls = roomWalls.get(segmentId);
+    public Coordinates findConnectingWall(int[][] map, int roomId) {
+        ArrayList<Coordinates> walls = roomWalls.get(roomId);
         while (!walls.isEmpty()) {
             Coordinates c = walls.remove(r.nextInt(walls.size()));
             if (connectsTwoSegments(map, c)) {
@@ -114,7 +114,7 @@ public class DoorBuilder {
      * @return details of each wall in placed during room generation, excluding
      * the outer walls
      */
-    public String wallCoordinates() {
+    /*    public String wallCoordinates() {
         String output = "";
         int i = 2;
         while (roomWalls.containsKey(i)) {
@@ -128,7 +128,7 @@ public class DoorBuilder {
 
         return output;
     }
-
+     */
     public ArrayList<Integer> getSegments() {
         return segments;
     }

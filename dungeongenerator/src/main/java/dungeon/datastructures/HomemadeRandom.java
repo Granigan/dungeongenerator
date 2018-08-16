@@ -16,7 +16,8 @@ public class HomemadeRandom {
     long divider;
 
     /**
-     * Constructor for randomizer.
+     * Constructor for random number generator. Seed is taken from system time
+     * at creation.
      */
     public HomemadeRandom() {
         modulus = 2147483647;
@@ -28,7 +29,7 @@ public class HomemadeRandom {
     }
 
     /**
-     * Linear congurential generator
+     * Linear congurential generator for random numbers.
      *
      * @return value from 0 to 32767
      */
@@ -46,6 +47,10 @@ public class HomemadeRandom {
     public int nextInt(int max) {
 
         return (int) (nextInt() % max);
+    }
+
+    public long getSeed() {
+        return seed;
     }
 
 }

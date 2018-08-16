@@ -3,7 +3,6 @@ package dungeon.maptools;
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.HomemadeRandom;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Used to create a maze of corridors that join the rooms together.
@@ -146,7 +145,7 @@ public class MazeBuilder {
      * @param map being worked on
      * @return map being worked on
      */
-    public int[][] sealDeadEnds(int[][] map) {
+    public int[][] sealDeadends(int[][] map) {
         boolean runAgain = true;
         while (runAgain) {
             runAgain = false;

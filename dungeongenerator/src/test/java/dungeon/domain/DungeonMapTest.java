@@ -1,5 +1,6 @@
-package dungeon.maptools;
+package dungeon.domain;
 
+import dungeon.domain.DungeonMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

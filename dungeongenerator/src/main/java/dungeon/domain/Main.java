@@ -1,6 +1,5 @@
 package dungeon.domain;
 
-import dungeon.maptools.DungeonMap;
 import java.io.IOException;
 
 public class Main {

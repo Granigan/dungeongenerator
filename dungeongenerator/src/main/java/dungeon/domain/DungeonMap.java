@@ -1,10 +1,12 @@
-package dungeon.maptools;
+package dungeon.domain;
 
 import dungeon.datastructures.HomemadeRandom;
+import dungeon.maptools.DoorBuilder;
+import dungeon.maptools.MazeBuilder;
+import dungeon.maptools.RoomBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Random;
 
 /**
  * The map object that hosts the tool objects for creating the dungeon.
@@ -77,7 +79,7 @@ public class DungeonMap {
             map = maze.placeCorridorWithWalls(map);
             map = maze.findNextCorridorSquare(map);
         }
-//        map = maze.sealDeadEnds(map);
+//        map = maze.sealDeadends(map);
     }
 
     /**
@@ -183,7 +185,7 @@ public class DungeonMap {
      *
      */
     public void fillDeadends() {
-        map = maze.sealDeadEnds(map);
+        map = maze.sealDeadends(map);
     }
 
     public int getCorridorSegments() {
