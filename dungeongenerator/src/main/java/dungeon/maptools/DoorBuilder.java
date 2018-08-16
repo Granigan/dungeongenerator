@@ -1,6 +1,7 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
+import dungeon.datastructures.HomemadeRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -12,6 +13,7 @@ public class DoorBuilder {
     private int segmentCount;
     private ArrayList<Integer> segments;
     private Random r;
+//    private HomemadeRandom r;
 
     /**
      * DoorBuilder has methods for finding locations and placing doors to
@@ -27,6 +29,7 @@ public class DoorBuilder {
         this.roomWalls = roomWalls;
         this.roomCount = roomCount;
         r = new Random();
+//        r = new HomemadeRandom();
         segmentCount = 0;
 
         segments = new ArrayList<>();

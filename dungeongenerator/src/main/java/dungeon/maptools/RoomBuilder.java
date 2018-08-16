@@ -1,6 +1,7 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
+import dungeon.datastructures.HomemadeRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -16,7 +17,8 @@ public class RoomBuilder {
     private int roomCount;
     private int height;
     private int width;
-//    private boolean[][][] roomWalls;
+//    private HomemadeRandom r;
+    private Random r;
     private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
 
     /**
@@ -24,7 +26,8 @@ public class RoomBuilder {
      */
     public RoomBuilder() {
         this.roomCount = 0;
-
+//        r = new HomemadeRandom();
+        r = new Random();
     }
 
     /**
@@ -75,7 +78,6 @@ public class RoomBuilder {
      * @return map being worked on
      */
     public int[][] addRoom(int[][] map, int rwidth, int rheight) {
-        Random r = new Random();
         int x = r.nextInt(width - rwidth);
         int y = r.nextInt(height - rheight);
         boolean noCollision = true;

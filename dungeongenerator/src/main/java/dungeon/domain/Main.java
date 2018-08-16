@@ -1,6 +1,5 @@
 package dungeon.domain;
 
-import dungeon.datastructures.HomemadeRandom;
 import dungeon.maptools.DungeonMap;
 import java.io.IOException;
 
@@ -19,11 +18,6 @@ public class Main {
         int minRoomSize = 5; // including walls, so 3 is the minimum
         int maxRoomRandom = 12; // up to this much is added to the minRoomSize
 
-        HomemadeRandom r = new HomemadeRandom();
-        System.out.println(r.randomPositiveBoundInteger(3));
-        System.out.println(r.randomPositiveBoundInteger(3));
-        System.out.println(r.randomPositiveBoundInteger(3));
-        /*
         DungeonMap map = new DungeonMap(height, width, roomAttempts);
         map.initialise();
 
@@ -40,6 +34,5 @@ public class Main {
 //        System.out.println(map.toString() + map.getAddedRoomCount() 
 //                + " rooms placed, total segments: " + map.getCorridorSegments());
         map.saveMap();
-        */
     }
 }

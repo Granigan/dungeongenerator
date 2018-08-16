@@ -1,5 +1,6 @@
 package dungeon.maptools;
 
+import dungeon.datastructures.HomemadeRandom;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +19,8 @@ public class DungeonMap {
     private int[][] map;
     private RoomBuilder rooms;
     private MazeBuilder maze;
+    private Random r;
+//    private HomemadeRandom r;
 
     /**
      * Constructor that stores the map size and creates the map object. Also
@@ -32,6 +35,8 @@ public class DungeonMap {
         this.width = width;
         this.roomAttempts = roomAttempts;
         this.map = new int[height][width];
+        r = new Random();
+//        r = new HomemadeRandom();
         rooms = new RoomBuilder();
 
     }
@@ -57,7 +62,6 @@ public class DungeonMap {
      * dimension
      */
     public void addRooms(int attempts, int minRoomSize, int maxRoomRandom) {
-        Random r = new Random();
         while (attempts > 0) {
             map = rooms.addRoom(map, minRoomSize + r.nextInt(maxRoomRandom), minRoomSize + r.nextInt(maxRoomRandom));
             attempts--;

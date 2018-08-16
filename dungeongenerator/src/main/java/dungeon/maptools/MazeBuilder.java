@@ -1,6 +1,7 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
+import dungeon.datastructures.HomemadeRandom;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class MazeBuilder {
     private int y;
     private ArrayList<Coordinates> neighbouringWalls;
     private Random r;
+//    private HomemadeRandom r;
 
     /**
      * Constructor that stores the size of the map and creates counters for
@@ -35,7 +37,8 @@ public class MazeBuilder {
         this.width = width;
         this.mazeId = mazeId;
         this.roomCount = mazeId;
-        this.r = new Random();
+        r = new Random();
+//        r = new HomemadeRandom();
         neighbouringWalls = new ArrayList<>();
     }
 
@@ -127,14 +130,10 @@ public class MazeBuilder {
      */
     public int[][] findNextCorridorSquare(int[][] map) {
         while (!neighbouringWalls.isEmpty()) {
-//            int ri = r.nextInt(neighbouringWalls.size());
             int ri = neighbouringWalls.size() - 1;
             x = neighbouringWalls.get(ri).getX();
             y = neighbouringWalls.remove(ri).getY();
 
-//            System.out.println("current location: " + x + "," + y + "\n"
-//                    + toDebugString(map)
-//            );
             if (checkIfSquareConnectsToOneCorridor(map)) {
                 map = placeCorridorWithWalls(map);
             }
