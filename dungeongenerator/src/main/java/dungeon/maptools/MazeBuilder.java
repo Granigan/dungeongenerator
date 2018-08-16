@@ -21,8 +21,7 @@ public class MazeBuilder {
     private int x;
     private int y;
     private ArrayList<Coordinates> neighbouringWalls;
-    private Random r;
-//    private HomemadeRandom r;
+    private HomemadeRandom r;
 
     /**
      * Constructor that stores the size of the map and creates counters for
@@ -37,8 +36,7 @@ public class MazeBuilder {
         this.width = width;
         this.mazeId = mazeId;
         this.roomCount = mazeId;
-        r = new Random();
-//        r = new HomemadeRandom();
+        r = new HomemadeRandom();
         neighbouringWalls = new ArrayList<>();
     }
 
@@ -73,7 +71,7 @@ public class MazeBuilder {
      */
     public int[][] placeCorridorWithWalls(int[][] map) {
         map[y][x] = mazeId;
-        ArrayList<Direction> directions = new ArrayList<Direction>();
+        ArrayList<Direction> directions = new ArrayList<>();
         directions.add(Direction.N);
         directions.add(Direction.E);
         directions.add(Direction.S);

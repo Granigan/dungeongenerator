@@ -17,8 +17,7 @@ public class RoomBuilder {
     private int roomCount;
     private int height;
     private int width;
-//    private HomemadeRandom r;
-    private Random r;
+    private HomemadeRandom r;
     private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
 
     /**
@@ -26,8 +25,7 @@ public class RoomBuilder {
      */
     public RoomBuilder() {
         this.roomCount = 0;
-//        r = new HomemadeRandom();
-        r = new Random();
+        r = new HomemadeRandom();
     }
 
     /**

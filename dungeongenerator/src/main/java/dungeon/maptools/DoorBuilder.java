@@ -4,7 +4,6 @@ import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.HomemadeRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public class DoorBuilder {
 
@@ -12,8 +11,7 @@ public class DoorBuilder {
     private int roomCount;
     private int segmentCount;
     private ArrayList<Integer> segments;
-    private Random r;
-//    private HomemadeRandom r;
+    private HomemadeRandom r;
 
     /**
      * DoorBuilder has methods for finding locations and placing doors to
@@ -28,8 +26,7 @@ public class DoorBuilder {
             int mazeId) {
         this.roomWalls = roomWalls;
         this.roomCount = roomCount;
-        r = new Random();
-//        r = new HomemadeRandom();
+        r = new HomemadeRandom();
         segmentCount = 0;
 
         segments = new ArrayList<>();

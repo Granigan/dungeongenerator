@@ -19,8 +19,7 @@ public class DungeonMap {
     private int[][] map;
     private RoomBuilder rooms;
     private MazeBuilder maze;
-    private Random r;
-//    private HomemadeRandom r;
+    private HomemadeRandom r;
 
     /**
      * Constructor that stores the map size and creates the map object. Also
@@ -35,8 +34,7 @@ public class DungeonMap {
         this.width = width;
         this.roomAttempts = roomAttempts;
         this.map = new int[height][width];
-        r = new Random();
-//        r = new HomemadeRandom();
+        r = new HomemadeRandom();
         rooms = new RoomBuilder();
 
     }
