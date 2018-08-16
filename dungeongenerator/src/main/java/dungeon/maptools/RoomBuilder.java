@@ -1,5 +1,8 @@
 package dungeon.maptools;
 
+import dungeon.datastructures.Coordinates;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -13,27 +16,38 @@ public class RoomBuilder {
     private int roomCount;
     private int height;
     private int width;
+//    private boolean[][][] roomWalls;
+    private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
 
     /**
-     * Constructor, sets roomCount to zero. 
+     * Constructor, sets roomCount to zero.
      */
     public RoomBuilder() {
         this.roomCount = 0;
+
     }
 
     /**
      * Initialises the map by filling it with empty space "1" and creates the
      * outer walls "0".
-     * 
+     *
+     * Initialises roomWalls int[][][] for storing the walls of each room. Sizes
+     * are amount of rooms (segments) = (5+attempts)*2 to cover all possible
+     * rooms and have plenty of room for separated corridor segments. y and x
+     * are equal to the size of the whole map, which is by default more than the
+     * size of the biggest possible room.
+     *
      * @param map being worked on
      * @param height of the map, walls included
      * @param width of the map, walls included
+     * @param roomAttempts number of room placement attempts
      * @return map being worked on
      */
-    public int[][] initMap(int[][] map, int height, int width) {
+    public int[][] initMap(int[][] map, int height, int width, int roomAttempts) {
         this.height = height;
         this.width = width;
-
+//        roomWalls = new boolean[(roomAttempts + 5)*2][height][width];
+        roomWalls = new HashMap<>();
         roomCount++;
 
         map = buildWalls(map, 0, 0, width, height);
@@ -118,13 +132,33 @@ public class RoomBuilder {
     public int[][] buildWalls(int[][] map, int x, int y, int rwidth, int rheight) {
         for (int j = 0; j < rheight; j++) {
             map[j + y][x] = 0;
+            storeWallCoordinates(x, j + y, roomCount);
             map[j + y][x + rwidth - 1] = 0;
+            storeWallCoordinates(x + rwidth - 1, j + y, roomCount);
         }
         for (int i = 0; i < rwidth; i++) {
             map[y][i + x] = 0;
+            storeWallCoordinates(i + x, y, roomCount);
             map[y + rheight - 1][i + x] = 0;
+            storeWallCoordinates(i + x, y + rheight - 1, roomCount);
         }
         return map;
+    }
+
+    /**
+     * Adds a coordinates and id of a room wall square into the roomWalls
+     * structure
+     *
+     * @param x coordinate of the wall
+     * @param y coordinate of the wall
+     * @param roomId id for the segment
+     */
+    public void storeWallCoordinates(int x, int y, int roomId) {
+//        roomWalls[roomId][y][x] = true;
+        if (!roomWalls.containsKey(roomId)) {
+            roomWalls.put(roomId, new ArrayList<>());
+        }
+        roomWalls.get(roomId).add(new Coordinates(x, y));
     }
 
     /**
@@ -157,4 +191,13 @@ public class RoomBuilder {
     public int getRoomCount() {
         return roomCount;
     }
+
+    public void setRoomWalls(HashMap<Integer, ArrayList<Coordinates>> roomWalls) {
+        this.roomWalls = roomWalls;
+    }
+
+    public HashMap<Integer, ArrayList<Coordinates>> getRoomWalls() {
+        return roomWalls;
+    }
+
 }

@@ -1,5 +1,6 @@
 package dungeon.maptools;
 
+import dungeon.datastructures.Coordinates;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;

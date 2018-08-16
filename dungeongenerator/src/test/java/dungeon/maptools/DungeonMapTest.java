@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public class DungeonMapTest {
 
-    DungeonMap dm = new DungeonMap(3, 3);
+    DungeonMap dm = new DungeonMap(3, 3, 100);
 
     public int[][] mapCreator(int filler, int size) {
         int[][] map = new int[size][size];

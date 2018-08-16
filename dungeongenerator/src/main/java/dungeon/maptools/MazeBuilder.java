@@ -1,5 +1,6 @@
 package dungeon.maptools;
 
+import dungeon.datastructures.Coordinates;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;

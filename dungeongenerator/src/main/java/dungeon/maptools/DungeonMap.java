@@ -14,6 +14,7 @@ public class DungeonMap {
 
     private final int height;
     private final int width;
+    private final int roomAttempts;
     private int[][] map;
     private RoomBuilder rooms;
     private MazeBuilder maze;
@@ -24,10 +25,12 @@ public class DungeonMap {
      *
      * @param height of the map, outer walls included
      * @param width of the map, outer walls included
+     * @param attempts at placing a room into the map
      */
-    public DungeonMap(int height, int width) {
+    public DungeonMap(int height, int width, int roomAttempts) {
         this.height = height;
         this.width = width;
+        this.roomAttempts = roomAttempts;
         this.map = new int[height][width];
         rooms = new RoomBuilder();
 
@@ -39,7 +42,7 @@ public class DungeonMap {
      *
      */
     public void initialise() {
-        map = rooms.initMap(map, height, width);
+        map = rooms.initMap(map, height, width, roomAttempts);
     }
 
     /**
@@ -159,4 +162,13 @@ public class DungeonMap {
         pw.close();
     }
 
+    /**
+     * Runs the DoorBuilder to connect segments (rooms and corridors) to one
+     * network.
+     *
+     */
+    public void placeDoors() {
+        DoorBuilder doors = new DoorBuilder(rooms.getRoomWalls());
+        System.out.println(doors.wallCoordinates());
+    }
 }

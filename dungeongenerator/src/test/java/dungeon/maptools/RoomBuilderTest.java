@@ -67,7 +67,7 @@ public class RoomBuilderTest {
         int[][] target = mapCreator(0, 3);
         rb.setRoomCount(0);
         target[1][1] = 1;
-        assertEquals(target, rb.initMap(map, 3, 3));
+        assertEquals(target, rb.initMap(map, 3, 3, 100));
     }
     
     @Test
