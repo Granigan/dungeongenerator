@@ -1,6 +1,6 @@
 package dungeon.domain;
 
-import dungeon.maptools.DoorBuilder;
+import dungeon.datastructures.HomemadeRandom;
 import dungeon.maptools.DungeonMap;
 import java.io.IOException;
 
@@ -13,29 +13,33 @@ public class Main {
      * @throws IOException problem with writing to disk
      */
     public static void main(String[] args) throws IOException {
-        int width = 40; // map width, screen max 180
-        int height = 15; // map height, screen max 50
-        int roomAttempts = 8; // how many times is addRoom() ran
-        int minRoomSize = 3; // including walls, so 3 is the minimum
-        int maxRoomRandom = 8; // up to this much is added to the minRoomSize
+        int width = 180; // map width, screen max 180
+        int height = 50; // map height, screen max 50
+        int roomAttempts = 50; // how many times is addRoom() ran
+        int minRoomSize = 5; // including walls, so 3 is the minimum
+        int maxRoomRandom = 12; // up to this much is added to the minRoomSize
 
+        HomemadeRandom r = new HomemadeRandom();
+        System.out.println(r.randomPositiveBoundInteger(3));
+        System.out.println(r.randomPositiveBoundInteger(3));
+        System.out.println(r.randomPositiveBoundInteger(3));
+        /*
         DungeonMap map = new DungeonMap(height, width, roomAttempts);
         map.initialise();
-        
-        map.addRooms(roomAttempts, minRoomSize, maxRoomRandom);
-        
-        map.createMaze();
-        
-        
 
+        map.addRooms(roomAttempts, minRoomSize, maxRoomRandom);
+
+        map.createMaze();
 
         map.placeDoors();
-        
+
         map.fillDeadends();
 
-        System.out.println(map.toDebugString() + map.getAddedRoomCount() + " rooms placed");
-        System.out.println(map.toString() + map.getAddedRoomCount() + " rooms placed");
-//        map.saveMap();
-
+//        System.out.println(map.toDebugString() + map.getAddedRoomCount() 
+//                + " rooms placed, corridor segments total: " + map.getCorridorSegments());
+//        System.out.println(map.toString() + map.getAddedRoomCount() 
+//                + " rooms placed, total segments: " + map.getCorridorSegments());
+        map.saveMap();
+        */
     }
 }

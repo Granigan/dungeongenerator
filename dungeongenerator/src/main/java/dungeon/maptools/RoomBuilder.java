@@ -147,7 +147,7 @@ public class RoomBuilder {
 
     /**
      * Adds a coordinates and id of a room wall square into the roomWalls
-     * structure
+     * structure.
      *
      * @param x coordinate of the wall
      * @param y coordinate of the wall

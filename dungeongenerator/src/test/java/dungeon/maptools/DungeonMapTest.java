@@ -67,7 +67,7 @@ public class DungeonMapTest {
         allInOne[1][1] = 5;
         allInOne[1][0] = 0;
         dm.setMap(allInOne);
-        assertEquals("...\n#..\n...\n", dm.toString());
+        assertEquals("+++\n#.+\n+++\n", dm.toString());
     }
 
 }

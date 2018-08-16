@@ -25,7 +25,7 @@ public class DungeonMap {
      *
      * @param height of the map, outer walls included
      * @param width of the map, outer walls included
-     * @param attempts at placing a room into the map
+     * @param roomAttempts at placing a room into the map
      */
     public DungeonMap(int height, int width, int roomAttempts) {
         this.height = height;
@@ -170,13 +170,21 @@ public class DungeonMap {
      *
      */
     public void placeDoors() {
-        DoorBuilder doors = new DoorBuilder(rooms.getRoomWalls(), rooms.getRoomCount(), 
-            maze.getMazeId());
+        DoorBuilder doors = new DoorBuilder(rooms.getRoomWalls(), rooms.getRoomCount(),
+                maze.getMazeId());
         map = doors.findAndPlaceDoors(map);
-        System.out.println(doors.wallCoordinates());
     }
-    
+
+    /**
+     * Fills the deadend corridors up, leaving only one corridor system that
+     * connects all rooms.
+     *
+     */
     public void fillDeadends() {
         map = maze.sealDeadEnds(map);
+    }
+
+    public int getCorridorSegments() {
+        return maze.getMazeId() - rooms.getRoomCount();
     }
 }

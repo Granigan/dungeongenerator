@@ -13,6 +13,15 @@ public class DoorBuilder {
     private ArrayList<Integer> segments;
     private Random r;
 
+    /**
+     * DoorBuilder has methods for finding locations and placing doors to
+     * connect each room to the corridor network.
+     *
+     * @param roomWalls map of rooms and their walls
+     * @param roomCount how many rooms are there in total
+     * @param mazeId gives the id of last corridor segment and thus the highest
+     * segment id
+     */
     public DoorBuilder(HashMap<Integer, ArrayList<Coordinates>> roomWalls, int roomCount,
             int mazeId) {
         this.roomWalls = roomWalls;
@@ -28,25 +37,49 @@ public class DoorBuilder {
         }
     }
 
+    /**
+     * Connects each room to the corridor network.
+     *
+     * @param map being worked on
+     * @return map being worked on
+     */
     public int[][] findAndPlaceDoors(int[][] map) {
-        for(int roomId = 2; roomId <= roomCount; roomId++) {
+        for (int roomId = 2; roomId <= roomCount; roomId++) {
             map = placeDoor(map, findConnectingWall(map, roomId), roomId);
         }
         return map;
     }
 
+    /**
+     * Goes through the walls of a room in random order until one that connects
+     * the room to a different segment is found.
+     *
+     * @param map being worked on
+     * @param segmentId room being worked on
+     * @return Coordinates for the wall to replaced with a door
+     */
     public Coordinates findConnectingWall(int[][] map, int segmentId) {
         ArrayList<Coordinates> walls = roomWalls.get(segmentId);
-        while(!walls.isEmpty()) {
+        while (!walls.isEmpty()) {
             Coordinates c = walls.remove(r.nextInt(walls.size()));
             if (connectsTwoSegments(map, c)) {
-                System.out.println("connector found at " + c.getX() + ", " + c.getY());
                 return c;
             }
         }
+        System.out.println("ERROR: room had no connecting wall! "
+                + "This can be fixed by allowing rooms to be generated "
+                + "next to each other and ensuring all segments are connected.");
         return null;
     }
 
+    /**
+     * Compares north and south squares and east and west squares, and returns
+     * true if both are non-wall and of different segment id.
+     *
+     * @param map being worked on
+     * @param coords to be investigated
+     * @return true if n/s or e/w segments are non-wall and different values
+     */
     public boolean connectsTwoSegments(int[][] map, Coordinates coords) {
         int x = coords.getX();
         int y = coords.getY();

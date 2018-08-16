@@ -2,7 +2,6 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -76,10 +75,9 @@ public class MazeBuilder {
         directions.add(Direction.E);
         directions.add(Direction.S);
         directions.add(Direction.W);
-        Collections.shuffle(directions);
 
         while (!directions.isEmpty()) {
-            map = placeWall(map, directions.remove(0));
+            map = placeWall(map, directions.remove(r.nextInt(directions.size())));
         }
         return map;
     }
