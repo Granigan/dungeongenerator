@@ -15,7 +15,7 @@ public class MazeBuilder {
     private final int height;
     private final int width;
     private int mazeId;
-//    private int roomCount;
+    private int roomCount;
 
     // x and y mark the current location
     private int x;
@@ -35,7 +35,7 @@ public class MazeBuilder {
         this.height = height;
         this.width = width;
         this.mazeId = mazeId;
-//        this.roomCount = mazeId;
+        this.roomCount = mazeId;
         this.r = new Random();
         neighbouringWalls = new ArrayList<>();
     }
@@ -151,7 +151,6 @@ public class MazeBuilder {
      * @param map being worked on
      * @return map being worked on
      */
-    /* not yet in use, though should work
     public int[][] sealDeadEnds(int[][] map) {
         boolean runAgain = true;
         while (runAgain) {
@@ -169,7 +168,7 @@ public class MazeBuilder {
         }
         return map;
     }
-     */
+
     /**
      * Checks the four neighbouring squares for corridors. If exactly one is
      * corridor, this square should also be a corridor.

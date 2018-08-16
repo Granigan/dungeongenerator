@@ -90,6 +90,8 @@ public class DungeonMap {
             for (int x = 0; x < width; x++) {
                 if (map[y][x] == 0) {
                     output += "#";
+                } else if (map[y][x] == 1) {
+                    output += "+";
                 } else {
                     output += ".";
                 }
@@ -170,6 +172,11 @@ public class DungeonMap {
     public void placeDoors() {
         DoorBuilder doors = new DoorBuilder(rooms.getRoomWalls(), rooms.getRoomCount(), 
             maze.getMazeId());
+        map = doors.findAndPlaceDoors(map);
         System.out.println(doors.wallCoordinates());
+    }
+    
+    public void fillDeadends() {
+        map = maze.sealDeadEnds(map);
     }
 }
