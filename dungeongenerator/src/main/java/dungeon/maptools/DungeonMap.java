@@ -168,7 +168,8 @@ public class DungeonMap {
      *
      */
     public void placeDoors() {
-        DoorBuilder doors = new DoorBuilder(rooms.getRoomWalls());
+        DoorBuilder doors = new DoorBuilder(rooms.getRoomWalls(), rooms.getRoomCount(), 
+            maze.getMazeId());
         System.out.println(doors.wallCoordinates());
     }
 }

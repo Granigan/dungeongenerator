@@ -28,10 +28,11 @@ public class Main {
         
         
 
-        System.out.println(map.toString() + map.getAddedRoomCount() + " rooms placed");
+//        System.out.println(map.toString() + map.getAddedRoomCount() + " rooms placed");
 
+        System.out.println(map.toDebugString() + map.getAddedRoomCount() + " rooms placed");
         map.placeDoors();
-//        System.out.println(map.toDebugString() + map.getAddedRoomCount() + " rooms placed");
+
 //        map.saveMap();
 
     }

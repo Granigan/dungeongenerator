@@ -7,10 +7,35 @@ import java.util.HashMap;
 public class DoorBuilder {
 
     private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
+    private int roomCount;
+    private int segmentCount;
+    private ArrayList<Integer> segments;
 
-    public DoorBuilder(HashMap<Integer, ArrayList<Coordinates>> roomWalls) {
+    public DoorBuilder(HashMap<Integer, ArrayList<Coordinates>> roomWalls, int roomCount,
+            int mazeId) {
         this.roomWalls = roomWalls;
+        this.roomCount = roomCount;
+        segmentCount = 0;
+
+        segments = new ArrayList<>();
+        while (mazeId > 1) {
+            segments.add(mazeId);
+            segmentCount++;
+            mazeId--;
+        }
     }
+
+    public int[][] placeDoors(int[][] map) {
+        
+        return map;
+    }
+
+//    public Coordinates findConnectingWall(int[][] map, int segmentId) {
+//        Coordinates doorCoords;
+//        
+//        
+//        return doorCoords;
+//    }
 
     /**
      * For debug and testing, produces a string of wall coordinates.
@@ -31,6 +56,10 @@ public class DoorBuilder {
         }
 
         return output;
+    }
+
+    public ArrayList<Integer> getSegments() {
+        return segments;
     }
 
 }

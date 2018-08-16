@@ -15,7 +15,7 @@ public class MazeBuilder {
     private final int height;
     private final int width;
     private int mazeId;
-    private int roomCount;
+//    private int roomCount;
 
     // x and y mark the current location
     private int x;
@@ -35,7 +35,7 @@ public class MazeBuilder {
         this.height = height;
         this.width = width;
         this.mazeId = mazeId;
-        this.roomCount = mazeId;
+//        this.roomCount = mazeId;
         this.r = new Random();
         neighbouringWalls = new ArrayList<>();
     }
@@ -270,6 +270,10 @@ public class MazeBuilder {
 
     public void setNeighbouringWalls(ArrayList<Coordinates> neighbouringWalls) {
         this.neighbouringWalls = neighbouringWalls;
+    }
+
+    public int getMazeId() {
+        return mazeId;
     }
 
 }
