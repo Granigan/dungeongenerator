@@ -1,8 +1,10 @@
 package dungeon.maptools;
 
+import dungeon.datastructures.TestGenerator;
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -74,15 +76,37 @@ public class RoomBuilderTest {
     }
 
     @Test
-    public void checkCollisionTest1() {
+    public void emptySquareTest1() {
         int[][] collision = mapCreator(1, 1);
-        assertTrue(rb.checkCollision(collision, 0, 0));
+        assertTrue(rb.emptySquare(collision, 0, 0));
     }
 
     @Test
-    public void checkCollisionTest2() {
+    public void emptySquareTest2() {
         int[][] noCollision = mapCreator(0, 1);
-        assertFalse(rb.checkCollision(noCollision, 0, 0));
+        assertFalse(rb.emptySquare(noCollision, 0, 0));
     }
 
+    @Test
+    public void addRoomTest1() {
+        TestGenerator tg = new TestGenerator();
+        rb.setR(tg);
+        rb.setWidth(7);
+        rb.setHeight(7);
+        rb.setRoomCount(0);
+        int[][] map = mapCreator(1, 7);
+
+        int[][] target = mapCreator(1, 7);
+        target[1][1] = 0;
+        target[2][1] = 0;
+        target[3][1] = 0;
+        target[1][2] = 0;
+        target[3][2] = 0;
+        target[1][3] = 0;
+        target[2][3] = 0;
+        target[3][3] = 0;
+
+        Assert.assertArrayEquals(target, rb.addRoom(map, 3, 3));
+
+    }
 }

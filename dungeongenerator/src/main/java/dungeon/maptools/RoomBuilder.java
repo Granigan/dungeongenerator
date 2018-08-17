@@ -2,6 +2,8 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.HomemadeRandom;
+import dungeon.interfaces.RandomGenerator;
+import dungeon.interfaces.RoomBuilding;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,12 +13,12 @@ import java.util.HashMap;
  *
  * @author tgtapio
  */
-public class RoomBuilder {
+public class RoomBuilder implements RoomBuilding {
 
     private int roomCount;
     private int height;
     private int width;
-    private HomemadeRandom r;
+    private RandomGenerator r;
     private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
 
     /**
@@ -46,7 +48,6 @@ public class RoomBuilder {
     public int[][] initMap(int[][] map, int height, int width, int roomAttempts) {
         this.height = height;
         this.width = width;
-//        roomWalls = new boolean[(roomAttempts + 5)*2][height][width];
         roomWalls = new HashMap<>();
         roomCount++;
 
@@ -75,13 +76,13 @@ public class RoomBuilder {
      * @return map being worked on
      */
     public int[][] addRoom(int[][] map, int rwidth, int rheight) {
-        int x = r.nextInt(width - rwidth);
-        int y = r.nextInt(height - rheight);
+        int x = r.nextInt(width -1 - rwidth) + 1;
+        int y = r.nextInt(height -1 - rheight) + 1;
         boolean noCollision = true;
 
         for (int j = 0; j < rheight; j++) {
             for (int i = 0; i < rwidth; i++) {
-                if (!checkCollision(map, x + i, y + j)) {
+                if (!emptySquare(map, x + i, y + j)) {
                     noCollision = false;
                     break;
                 }
@@ -170,7 +171,7 @@ public class RoomBuilder {
      * @param y coordinate
      * @return true if square is free
      */
-    public boolean checkCollision(int[][] map, int x, int y) {
+    public boolean emptySquare(int[][] map, int x, int y) {
         if (map[y][x] == 1) {
             return true;
         }
@@ -199,4 +200,16 @@ public class RoomBuilder {
         return roomWalls;
     }
 
+    public void setR(RandomGenerator r) {
+        this.r = r;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+    
 }

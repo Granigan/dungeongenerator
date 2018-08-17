@@ -1,6 +1,8 @@
 package dungeon.domain;
 
 import dungeon.datastructures.HomemadeRandom;
+import dungeon.interfaces.MazeBuilding;
+import dungeon.interfaces.RoomBuilding;
 import dungeon.maptools.DoorBuilder;
 import dungeon.maptools.MazeBuilder;
 import dungeon.maptools.RoomBuilder;
@@ -17,10 +19,10 @@ public class DungeonMap {
 
     private final int height;
     private final int width;
-    private final int roomAttempts;
+    private int roomAttempts;
     private int[][] map;
-    private RoomBuilder rooms;
-    private MazeBuilder maze;
+    private RoomBuilding rb;
+    private MazeBuilding mb;
     private HomemadeRandom r;
 
     /**
@@ -37,8 +39,8 @@ public class DungeonMap {
         this.roomAttempts = roomAttempts;
         this.map = new int[height][width];
         r = new HomemadeRandom();
-        rooms = new RoomBuilder();
-
+        rb = new RoomBuilder();
+        mb = new MazeBuilder(height, width, -1);
     }
 
     /**
@@ -47,7 +49,7 @@ public class DungeonMap {
      *
      */
     public void initialise() {
-        map = rooms.initMap(map, height, width, roomAttempts);
+        map = rb.initMap(map, height, width, roomAttempts);
     }
 
     /**
@@ -63,23 +65,25 @@ public class DungeonMap {
      */
     public void addRooms(int attempts, int minRoomSize, int maxRoomRandom) {
         while (attempts > 0) {
-            map = rooms.addRoom(map, minRoomSize + r.nextInt(maxRoomRandom), minRoomSize + r.nextInt(maxRoomRandom));
+            map = rb.addRoom(map, minRoomSize + r.nextInt(maxRoomRandom), minRoomSize + r.nextInt(maxRoomRandom));
             attempts--;
         }
     }
 
     /**
-     * Method to run the MazeBuilder in steps. Creates a perfect maze, filling
-     * the empty space left after placing the rooms.
+     * Method to run the MazeBuilder in steps. Creates a perfect mb, filling
+ the empty space left after placing the rooms.
      *
      */
     public void createMaze() {
-        maze = new MazeBuilder(height, width, rooms.getRoomCount());
-        while (maze.findFirstEmpty(map)) {
-            map = maze.placeCorridorWithWalls(map);
-            map = maze.findNextCorridorSquare(map);
+        mb.setRoomCount(rb.getRoomCount());
+        mb.setMazeId(rb.getRoomCount());
+        
+        while (mb.findFirstEmpty(map)) {
+            map = mb.placeCorridorWithWalls(map);
+            map = mb.findNextCorridorSquare(map);
         }
-//        map = maze.sealDeadends(map);
+//        map = mb.sealDeadends(map);
     }
 
     /**
@@ -134,7 +138,7 @@ public class DungeonMap {
      * dungeon floor.
      */
     public int getAddedRoomCount() {
-        return rooms.getRoomCount() - 1;
+        return rb.getRoomCount() - 1;
     }
 
     /**
@@ -174,8 +178,8 @@ public class DungeonMap {
      *
      */
     public void placeDoors() {
-        DoorBuilder doors = new DoorBuilder(rooms.getRoomWalls(), rooms.getRoomCount(),
-                maze.getMazeId());
+        DoorBuilder doors = new DoorBuilder(rb.getRoomWalls(), rb.getRoomCount(),
+                mb.getMazeId());
         map = doors.findAndPlaceDoors(map);
     }
 
@@ -185,10 +189,23 @@ public class DungeonMap {
      *
      */
     public void fillDeadends() {
-        map = maze.sealDeadends(map);
+        map = mb.sealDeadends(map);
     }
 
     public int getCorridorSegments() {
-        return maze.getMazeId() - rooms.getRoomCount();
+        return mb.getMazeId() - rb.getRoomCount();
     }
+
+    public void setRb(RoomBuilding rb) {
+        this.rb = rb;
+    }
+
+    public void setRoomAttempts(int roomAttempts) {
+        this.roomAttempts = roomAttempts;
+    }
+
+    public void setMb(MazeBuilding mb) {
+        this.mb = mb;
+    }
+    
 }

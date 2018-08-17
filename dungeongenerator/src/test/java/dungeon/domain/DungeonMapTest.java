@@ -1,6 +1,7 @@
 package dungeon.domain;
 
-import dungeon.domain.DungeonMap;
+import dungeon.maptools.TestMazeBuilder;
+import dungeon.maptools.TestRoomBuilder;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -70,5 +71,24 @@ public class DungeonMapTest {
         dm.setMap(allInOne);
         assertEquals("+++\n#.+\n+++\n", dm.toString());
     }
+    
+    @Test
+    public void addRoomsTest1() {
+        dm.setRb(new TestRoomBuilder());
+        dm.setRoomAttempts(5);
+        int[][] map = mapCreator(9, 3);
+        dm.setMap(map);
+        int[][] target = mapCreator(9, 3);
+        target[0][0] = 5;
+        target[1][0] = 3;
+        target[0][1] = 2;
+        dm.addRooms(5, 3, 2);
+        assertArrayEquals(map, dm.getMap());
+    }
 
+    @Test
+    public void createMazeTest1() {
+        dm.setMb(new TestMazeBuilder());
+        
+    }
 }

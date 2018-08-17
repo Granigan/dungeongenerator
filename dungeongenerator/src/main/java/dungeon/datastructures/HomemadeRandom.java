@@ -1,5 +1,7 @@
 package dungeon.datastructures;
 
+import dungeon.interfaces.RandomGenerator;
+
 /**
  * Provides pseudorandom positive integers. Uses the "Microsoft formula" from
  * https://rosettacode.org/wiki/Linear_congruential_generator for the magic
@@ -7,7 +9,7 @@ package dungeon.datastructures;
  *
  * @author tgtapio
  */
-public class HomemadeRandom {
+public class HomemadeRandom implements RandomGenerator {
 
     long seed;
     long multiplier;

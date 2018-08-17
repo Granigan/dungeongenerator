@@ -2,6 +2,7 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.HomemadeRandom;
+import dungeon.interfaces.MazeBuilding;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author tgtapio
  */
-public class MazeBuilder {
+public class MazeBuilder implements MazeBuilding {
 
     private final int height;
     private final int width;
@@ -267,6 +268,14 @@ public class MazeBuilder {
 
     public int getMazeId() {
         return mazeId;
+    }
+
+    public void setRoomCount(int roomCount) {
+        this.roomCount = roomCount;
+    }
+
+    public void setMazeId(int mazeId) {
+        this.mazeId = mazeId;
     }
 
 }
