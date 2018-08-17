@@ -5,21 +5,22 @@ import dungeon.interfaces.MazeBuilding;
 import java.util.ArrayList;
 
 /**
- *
+ * Test class to replace MazeBuilder().
  * @author tgtapio
  */
 public class TestMazeBuilder implements MazeBuilding {
 
     int i = 0;
-    
+
     @Override
     public boolean findFirstEmpty(int[][] map) {
-        if(i == 0) {
+        if (i == 0) {
             i++;
             return true;
         }
+        i = 0;
         return false;
-        
+
     }
 
     @Override
@@ -100,7 +101,6 @@ public class TestMazeBuilder implements MazeBuilding {
 
     @Override
     public void setRoomCount(int roomCount) {
-        
+
     }
-    
 }

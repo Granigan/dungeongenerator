@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * Test class to replace RoomBuilder().
  *
  * @author tgtapio
  */
-public class TestRoomBuilder implements RoomBuilding{
+public class TestRoomBuilder implements RoomBuilding {
+
     private int i;
 
     @Override
@@ -81,5 +83,5 @@ public class TestRoomBuilder implements RoomBuilding{
     public void setWidth(int width) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

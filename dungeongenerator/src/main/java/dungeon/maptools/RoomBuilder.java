@@ -76,8 +76,8 @@ public class RoomBuilder implements RoomBuilding {
      * @return map being worked on
      */
     public int[][] addRoom(int[][] map, int rwidth, int rheight) {
-        int x = r.nextInt(width -1 - rwidth) + 1;
-        int y = r.nextInt(height -1 - rheight) + 1;
+        int x = r.nextInt(width - 1 - rwidth) + 1;
+        int y = r.nextInt(height - 1 - rheight) + 1;
         boolean noCollision = true;
 
         for (int j = 0; j < rheight; j++) {
@@ -211,5 +211,5 @@ public class RoomBuilder implements RoomBuilding {
     public void setWidth(int width) {
         this.width = width;
     }
-    
+
 }
