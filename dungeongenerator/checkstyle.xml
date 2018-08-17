@@ -93,6 +93,11 @@
 	</module>
     </module>
 
+	<module name="SuppressionFilter">
+		<property name="file" value="checkstyle-suppressed.xml" />
+	</module>
+
+
     <!-- File Length -->
 
     <module name='FileLength'>
