@@ -10,14 +10,22 @@ import java.util.ArrayList;
  */
 public class TestMazeBuilder implements MazeBuilding {
 
+    int i = 0;
+    
     @Override
     public boolean findFirstEmpty(int[][] map) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(i == 0) {
+            i++;
+            return true;
+        }
+        return false;
+        
     }
 
     @Override
     public int[][] placeCorridorWithWalls(int[][] map) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        map[0][0] = 5;
+        return map;
     }
 
     @Override
@@ -27,7 +35,8 @@ public class TestMazeBuilder implements MazeBuilding {
 
     @Override
     public int[][] findNextCorridorSquare(int[][] map) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        map[1][1] = 5_000_000;
+        return map;
     }
 
     @Override
@@ -87,12 +96,11 @@ public class TestMazeBuilder implements MazeBuilding {
 
     @Override
     public void setMazeId(int mazeId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setRoomCount(int roomCount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

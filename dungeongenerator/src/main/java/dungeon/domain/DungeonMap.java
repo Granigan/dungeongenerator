@@ -83,7 +83,6 @@ public class DungeonMap {
             map = mb.placeCorridorWithWalls(map);
             map = mb.findNextCorridorSquare(map);
         }
-//        map = mb.sealDeadends(map);
     }
 
     /**

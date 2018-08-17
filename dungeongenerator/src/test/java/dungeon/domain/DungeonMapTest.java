@@ -71,7 +71,7 @@ public class DungeonMapTest {
         dm.setMap(allInOne);
         assertEquals("+++\n#.+\n+++\n", dm.toString());
     }
-    
+
     @Test
     public void addRoomsTest1() {
         dm.setRb(new TestRoomBuilder());
@@ -88,7 +88,15 @@ public class DungeonMapTest {
 
     @Test
     public void createMazeTest1() {
+        dm.setRb(new TestRoomBuilder());
         dm.setMb(new TestMazeBuilder());
+        int[][] map = mapCreator(0, 3);
+        int[][] target = mapCreator(0, 3);
+        target[0][0] = 5;
+        target[1][1] = 5_000_000;
+        dm.setMap(map);
+        dm.createMaze();
+        assertArrayEquals(target, dm.getMap());
         
     }
 }
