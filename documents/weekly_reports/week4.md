@@ -10,9 +10,9 @@ The work began on homemade structures and algoriths, starting with replacing the
 Finally, concepts and ideas for [Implementation document](https://github.com/Granigan/dungeongenerator/blob/master/documents/implementation.md) and [Testing plan](https://github.com/Granigan/dungeongenerator/blob/master/documents/testing_plan.md) were put together.
 
 ### How it shows
-![Maze with a homemade randon generator]((https://github.com/Granigan/dungeongenerator/blob/master/documents/images/mapcap1_week4.png)
+![Maze with a homemade randon generator](https://github.com/Granigan/dungeongenerator/blob/master/documents/images/mapcap1_week4.png)
 
-It's starting to look a lot like a randomly generated level!
+*It's starting to look a lot like a randomly generated level!*
 
 ### This week I learned
 Lots! The work on testing and reading about dependency injection was a real revelation. There were some struggles with the random generator (including some that could've been solved much faster by creating tests for it first!), but adding the door placement code was easier than expected - as some of the original features didn't come to play (at least yet.)
