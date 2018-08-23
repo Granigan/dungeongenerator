@@ -51,11 +51,6 @@ public class DoorBuilderTest {
     }
 
     @Test
-    public void constructorTest1() {
-        assertEquals(4, db.getSegments().size());
-    }
-
-    @Test
     public void connectsTwoSegmentsTest1() {
         int[][] map = mapCreator(0, 5);
         map[1][1] = 2;
