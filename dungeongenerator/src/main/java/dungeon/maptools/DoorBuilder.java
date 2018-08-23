@@ -12,6 +12,8 @@ public class DoorBuilder {
     private int segmentCount;
     private ArrayList<Integer> segments;
     private HomemadeRandom r;
+    private int multipleDoorsOdd; // odds grow with this number, 1 = no multiples
+    private int maxDoorsPerRoom;
 
     /**
      * DoorBuilder has methods for finding locations and placing doors to
@@ -23,9 +25,11 @@ public class DoorBuilder {
      * segment id
      */
     public DoorBuilder(HashMap<Integer, ArrayList<Coordinates>> roomWalls, int roomCount,
-            int mazeId) {
+            int mazeId, int maxDoorsPerRoom, int multipleDoorsOdd) {
         this.roomWalls = roomWalls;
         this.roomCount = roomCount;
+        this.maxDoorsPerRoom = maxDoorsPerRoom;
+        this.multipleDoorsOdd = multipleDoorsOdd;
         r = new HomemadeRandom();
         segmentCount = 0;
 
@@ -41,11 +45,21 @@ public class DoorBuilder {
      * Connects each room to the corridor network.
      *
      * @param map being worked on
+     * @param multipleDoorsOdd if 1, no multiple doors, if 2, 50% 
      * @return map being worked on
      */
     public int[][] findAndPlaceDoors(int[][] map) {
-        for (int roomId = 2; roomId <= roomCount; roomId++) {
+        int roomId = 2;
+        int doorsPlaced = 0;
+        while (roomId <= roomCount) {
+            
             map = placeDoor(map, findConnectingWall(map, roomId), roomId);
+            doorsPlaced++;
+
+            if (doorsPlaced >= maxDoorsPerRoom || r.nextInt(multipleDoorsOdd) != 0      ) {
+                roomId++;
+                doorsPlaced = 0;
+            }
         }
         return map;
     }
@@ -66,9 +80,10 @@ public class DoorBuilder {
                 return c;
             }
         }
-        System.out.println("ERROR: room had no connecting wall! "
+        System.out.println("ERROR: room had no connecting wall! roomId: " + roomId
                 + "This can be fixed by allowing rooms to be generated "
                 + "next to each other and ensuring all segments are connected.");
+
         return null;
     }
 

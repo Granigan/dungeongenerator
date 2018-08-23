@@ -16,8 +16,11 @@ public class Main {
         int roomAttempts = 50; // how many times is addRoom() ran
         int minRoomSize = 5; // including walls, so 3 is the minimum
         int maxRoomRandom = 12; // up to this much is added to the minRoomSize
+        int maxDoorsPerRoom = 3; // up to this many doors may be added to each room
+        int multipleDoorsOdd = 3; // minimum of one, odds to add another door are 1/this
 
-        DungeonMap map = new DungeonMap(height, width, roomAttempts);
+        DungeonMap map = new DungeonMap(height, width, roomAttempts, maxDoorsPerRoom, 
+                            multipleDoorsOdd);
         map.initialise();
 
         map.addRooms(roomAttempts, minRoomSize, maxRoomRandom);

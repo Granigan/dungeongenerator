@@ -24,6 +24,8 @@ public class DungeonMap {
     private RoomBuilding rb;
     private MazeBuilding mb;
     private HomemadeRandom r;
+    private int maxDoorsPerRoom;
+    private int multipleDoorsOdd;
 
     /**
      * Constructor that stores the map size and creates the map object. Also
@@ -33,10 +35,13 @@ public class DungeonMap {
      * @param width of the map, outer walls included
      * @param roomAttempts at placing a room into the map
      */
-    public DungeonMap(int height, int width, int roomAttempts) {
+    public DungeonMap(int height, int width, int roomAttempts, int maxDoorsPerRoom,
+                    int multipleDoorsOdd) {
         this.height = height;
         this.width = width;
         this.roomAttempts = roomAttempts;
+        this.maxDoorsPerRoom = maxDoorsPerRoom;
+        this.multipleDoorsOdd = multipleDoorsOdd;
         this.map = new int[height][width];
         r = new HomemadeRandom();
         rb = new RoomBuilder();
@@ -178,7 +183,7 @@ public class DungeonMap {
      */
     public void placeDoors() {
         DoorBuilder doors = new DoorBuilder(rb.getRoomWalls(), rb.getRoomCount(),
-                mb.getMazeId());
+                mb.getMazeId(), maxDoorsPerRoom, multipleDoorsOdd);
         map = doors.findAndPlaceDoors(map);
     }
 
