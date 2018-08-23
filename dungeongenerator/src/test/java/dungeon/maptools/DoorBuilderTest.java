@@ -43,7 +43,7 @@ public class DoorBuilderTest {
 
     @Before
     public void setUp() {
-        db = new DoorBuilder(roomWalls, 5, 5);
+        db = new DoorBuilder(roomWalls, 5, 5, 1, 1);
     }
 
     @After
@@ -94,7 +94,7 @@ public class DoorBuilderTest {
         roomWalls.get(3).add(new Coordinates(2, 1));
         roomWalls.get(3).add(new Coordinates(2, 2));
         roomWalls.get(3).add(new Coordinates(2, 3));
-        db = new DoorBuilder(roomWalls, 3, 0);
+        db = new DoorBuilder(roomWalls, 3, 0, 1, 1);
         int[][] map = mapCreator(0, 5);
         map[2][1] = 3;
         map[2][3] = 4;
@@ -110,7 +110,7 @@ public class DoorBuilderTest {
         roomWalls.get(3).add(new Coordinates(2, 1));
         roomWalls.get(3).add(new Coordinates(2, 2));
         roomWalls.get(3).add(new Coordinates(2, 3));
-        db = new DoorBuilder(roomWalls, 3, 0);
+        db = new DoorBuilder(roomWalls, 3, 0, 1, 1);
         int[][] map = mapCreator(0, 5);
         map[1][1] = 3;
         map[3][3] = 4;
@@ -136,7 +136,7 @@ public class DoorBuilderTest {
         roomWalls.get(5).add(new Coordinates(3, 2));
         roomWalls.get(5).add(new Coordinates(2, 2));
         
-        db = new DoorBuilder(roomWalls, 5, 0);
+        db = new DoorBuilder(roomWalls, 5, 0, 1, 1);
         
         int[][] map = mapCreator(0, 5);
         map[1][1] = 2;
