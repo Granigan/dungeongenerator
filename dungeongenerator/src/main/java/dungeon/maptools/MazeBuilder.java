@@ -1,6 +1,7 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
+import dungeon.datastructures.HomemadeCoordinatesList;
 import dungeon.datastructures.HomemadeRandom;
 import dungeon.interfaces.MazeBuilding;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class MazeBuilder implements MazeBuilding {
     // x and y mark the current location
     private int x;
     private int y;
-    private ArrayList<Coordinates> neighbouringWalls;
+    private HomemadeCoordinatesList neighbouringWalls;
     private HomemadeRandom r;
 
     /**
@@ -37,7 +38,7 @@ public class MazeBuilder implements MazeBuilding {
         this.mazeId = mazeId;
         this.roomCount = mazeId;
         r = new HomemadeRandom();
-        neighbouringWalls = new ArrayList<>();
+        neighbouringWalls = new HomemadeCoordinatesList();
     }
 
     /**
@@ -71,6 +72,8 @@ public class MazeBuilder implements MazeBuilding {
      */
     public int[][] placeCorridorWithWalls(int[][] map) {
         map[y][x] = mazeId;
+//        HomemadeCoordinatesList directions = new HomemadeCoordinatesList();
+        
         ArrayList<Direction> directions = new ArrayList<>();
         directions.add(Direction.N);
         directions.add(Direction.E);
@@ -258,11 +261,11 @@ public class MazeBuilder implements MazeBuilding {
         return y;
     }
 
-    public ArrayList<Coordinates> getNeighbouringWalls() {
+    public HomemadeCoordinatesList getNeighbouringWalls() {
         return neighbouringWalls;
     }
 
-    public void setNeighbouringWalls(ArrayList<Coordinates> neighbouringWalls) {
+    public void setNeighbouringWalls(HomemadeCoordinatesList neighbouringWalls) {
         this.neighbouringWalls = neighbouringWalls;
     }
 

@@ -34,6 +34,8 @@ public class DungeonMap {
      * @param height of the map, outer walls included
      * @param width of the map, outer walls included
      * @param roomAttempts at placing a room into the map
+     * @param maxDoorsPerRoom each room can have up to this many doors
+     * @param multipleDoorsOdd chance of creating an extra door is 1/this
      */
     public DungeonMap(int height, int width, int roomAttempts, int maxDoorsPerRoom,
                     int multipleDoorsOdd) {

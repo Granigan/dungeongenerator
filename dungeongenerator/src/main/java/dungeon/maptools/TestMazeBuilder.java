@@ -81,16 +81,6 @@ public class TestMazeBuilder implements MazeBuilding {
     }
 
     @Override
-    public ArrayList<Coordinates> getNeighbouringWalls() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNeighbouringWalls(ArrayList<Coordinates> neighbouringWalls) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public int getMazeId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

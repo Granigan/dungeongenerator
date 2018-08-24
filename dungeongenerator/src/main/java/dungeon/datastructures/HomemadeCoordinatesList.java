@@ -43,12 +43,10 @@ public class HomemadeCoordinatesList {
      * @param i where the object was removed.
      */
     private void shiftBack(int i) {
-        System.out.println("list before shifting back:\n" + toString());
         for (int j = i; j < highestUsedIndex; j++) {
             list[j] = list[j + 1];
         }
         highestUsedIndex--;
-        System.out.println("list shifted back, now:\n" + toString());
     }
 
     /**
@@ -60,7 +58,6 @@ public class HomemadeCoordinatesList {
      */
     private Coordinates[] extendList(Coordinates[] oldList) {
         Coordinates[] newList = new Coordinates[oldList.length * 2];
-        System.out.println("list extended to " + (newList.length));
         int oldLength = oldList.length;
 
         for (int i = 0; i < oldLength; i++) {

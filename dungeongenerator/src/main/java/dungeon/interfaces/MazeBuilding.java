@@ -34,10 +34,6 @@ public interface MazeBuilding {
     
     public int getY();
     
-    public ArrayList<Coordinates> getNeighbouringWalls();
-    
-    public void setNeighbouringWalls(ArrayList<Coordinates> neighbouringWalls);
-    
     public int getMazeId();
     
     public void setMazeId(int mazeId);

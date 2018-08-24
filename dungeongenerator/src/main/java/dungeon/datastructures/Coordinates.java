@@ -12,7 +12,7 @@ public class Coordinates {
 
     /**
      * Default constructor, needs coordinates.
-     * 
+     *
      * @param x coordinate
      * @param y coordinate
      */
@@ -28,16 +28,16 @@ public class Coordinates {
     public int getY() {
         return y;
     }
-    
+
     @Override
     public String toString() {
         return "" + x + "," + y;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         Coordinates target = (Coordinates) obj;
-        if(target.getX() == getX() && target.getY() == getY()) {
+        if (target.getX() == getX() && target.getY() == getY()) {
             return true;
         }
         return false;

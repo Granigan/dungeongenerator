@@ -21,6 +21,8 @@ public class DoorBuilder {
      * @param roomCount how many rooms are there in total
      * @param mazeId gives the id of last corridor segment and thus the highest
      * segment id
+     * @param maxDoorsPerRoom each room can have up to this many doors 
+     * @param multipleDoorsOdd odds of adding a new door are 1/this
      */
     public DoorBuilder(HashMap<Integer, ArrayList<Coordinates>> roomWalls, int roomCount,
             int mazeId, int maxDoorsPerRoom, int multipleDoorsOdd) {
@@ -35,18 +37,17 @@ public class DoorBuilder {
      * Connects each room to the corridor network.
      *
      * @param map being worked on
-     * @param multipleDoorsOdd if 1, no multiple doors, if 2, 50% 
      * @return map being worked on
      */
     public int[][] findAndPlaceDoors(int[][] map) {
         int roomId = 2;
         int doorsPlaced = 0;
         while (roomId <= roomCount) {
-            
+
             map = placeDoor(map, findConnectingWall(map, roomId), roomId);
             doorsPlaced++;
 
-            if (doorsPlaced >= maxDoorsPerRoom || r.nextInt(multipleDoorsOdd) != 0      ) {
+            if (doorsPlaced >= maxDoorsPerRoom || r.nextInt(multipleDoorsOdd) != 0) {
                 roomId++;
                 doorsPlaced = 0;
             }
