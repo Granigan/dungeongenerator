@@ -1,9 +1,8 @@
 package dungeon.maptools;
 
-import dungeon.datastructures.Coordinates;
+import dungeon.datastructures.HomemadeCoordinatesList;
 import dungeon.interfaces.RandomGenerator;
 import dungeon.interfaces.RoomBuilding;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -60,16 +59,6 @@ public class TestRoomBuilder implements RoomBuilding {
     }
 
     @Override
-    public void setRoomWalls(HashMap<Integer, ArrayList<Coordinates>> roomWalls) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public HashMap<Integer, ArrayList<Coordinates>> getRoomWalls() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void setR(RandomGenerator r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -81,6 +70,11 @@ public class TestRoomBuilder implements RoomBuilding {
 
     @Override
     public void setWidth(int width) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public HashMap<Integer, HomemadeCoordinatesList> getRoomWalls() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

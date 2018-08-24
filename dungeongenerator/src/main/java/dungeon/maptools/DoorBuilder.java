@@ -1,13 +1,13 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
+import dungeon.datastructures.HomemadeCoordinatesList;
 import dungeon.datastructures.HomemadeRandom;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DoorBuilder {
 
-    private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
+    private HashMap<Integer, HomemadeCoordinatesList> roomWalls;
     private int roomCount;
     private HomemadeRandom r;
     private int multipleDoorsOdd; // odds grow with this number, 1 = no multiples
@@ -21,10 +21,10 @@ public class DoorBuilder {
      * @param roomCount how many rooms are there in total
      * @param mazeId gives the id of last corridor segment and thus the highest
      * segment id
-     * @param maxDoorsPerRoom each room can have up to this many doors 
+     * @param maxDoorsPerRoom each room can have up to this many doors
      * @param multipleDoorsOdd odds of adding a new door are 1/this
      */
-    public DoorBuilder(HashMap<Integer, ArrayList<Coordinates>> roomWalls, int roomCount,
+    public DoorBuilder(HashMap<Integer, HomemadeCoordinatesList> roomWalls, int roomCount,
             int mazeId, int maxDoorsPerRoom, int multipleDoorsOdd) {
         this.roomWalls = roomWalls;
         this.roomCount = roomCount;
@@ -64,7 +64,7 @@ public class DoorBuilder {
      * @return Coordinates for the wall to replaced with a door
      */
     public Coordinates findConnectingWall(int[][] map, int roomId) {
-        ArrayList<Coordinates> walls = roomWalls.get(roomId);
+        HomemadeCoordinatesList walls = roomWalls.get(roomId);
         while (!walls.isEmpty()) {
             Coordinates c = walls.remove(r.nextInt(walls.size()));
             if (connectsTwoSegments(map, c)) {

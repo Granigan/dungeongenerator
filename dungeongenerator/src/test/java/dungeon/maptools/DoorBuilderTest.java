@@ -1,6 +1,7 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
+import dungeon.datastructures.HomemadeCoordinatesList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.After;
@@ -17,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class DoorBuilderTest {
 
-    HashMap<Integer, ArrayList<Coordinates>> roomWalls;
+    HashMap<Integer, HomemadeCoordinatesList> roomWalls;
     DoorBuilder db;
 
     public int[][] mapCreator(int filler, int size) {
@@ -85,7 +86,7 @@ public class DoorBuilderTest {
     @Test
     public void findConnectingWallTest1() {
         roomWalls = new HashMap<>();
-        roomWalls.put(3, new ArrayList<>());
+        roomWalls.put(3, new HomemadeCoordinatesList());
         roomWalls.get(3).add(new Coordinates(2, 1));
         roomWalls.get(3).add(new Coordinates(2, 2));
         roomWalls.get(3).add(new Coordinates(2, 3));
@@ -101,7 +102,7 @@ public class DoorBuilderTest {
     @Test
     public void findConnectingWallTest2() {
         roomWalls = new HashMap<>();
-        roomWalls.put(3, new ArrayList<>());
+        roomWalls.put(3, new HomemadeCoordinatesList());
         roomWalls.get(3).add(new Coordinates(2, 1));
         roomWalls.get(3).add(new Coordinates(2, 2));
         roomWalls.get(3).add(new Coordinates(2, 3));
@@ -115,19 +116,19 @@ public class DoorBuilderTest {
     @Test
     public void findAndPlaceDoorsTest1() {
         roomWalls = new HashMap<>();
-        roomWalls.put(2, new ArrayList<>());
+        roomWalls.put(2, new HomemadeCoordinatesList());
         roomWalls.get(2).add(new Coordinates(1, 2));
         roomWalls.get(2).add(new Coordinates(2, 2));
 
-        roomWalls.put(3, new ArrayList<>());
+        roomWalls.put(3, new HomemadeCoordinatesList());
         roomWalls.get(3).add(new Coordinates(2, 3));
         roomWalls.get(3).add(new Coordinates(2, 2));
         
-        roomWalls.put(4, new ArrayList<>());
+        roomWalls.put(4, new HomemadeCoordinatesList());
         roomWalls.get(4).add(new Coordinates(2, 1));
         roomWalls.get(4).add(new Coordinates(2, 2));
 
-        roomWalls.put(5, new ArrayList<>());
+        roomWalls.put(5, new HomemadeCoordinatesList());
         roomWalls.get(5).add(new Coordinates(3, 2));
         roomWalls.get(5).add(new Coordinates(2, 2));
         

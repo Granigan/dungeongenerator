@@ -1,8 +1,6 @@
 package dungeon.interfaces;
 
-import dungeon.datastructures.Coordinates;
-import dungeon.interfaces.RandomGenerator;
-import java.util.ArrayList;
+import dungeon.datastructures.HomemadeCoordinatesList;
 import java.util.HashMap;
 
 /**
@@ -22,14 +20,12 @@ public interface RoomBuilding {
     public void storeWallCoordinates(int x, int y, int roomId);
 
     public boolean emptySquare(int[][] map, int x, int y);
-    
-    public void setRoomCount(int roomCount);
-    
-    public int getRoomCount();
-    
-    public void setRoomWalls(HashMap<Integer, ArrayList<Coordinates>> roomWalls);
 
-    public HashMap<Integer, ArrayList<Coordinates>> getRoomWalls();
+    public void setRoomCount(int roomCount);
+
+    public int getRoomCount();
+
+    public HashMap<Integer, HomemadeCoordinatesList> getRoomWalls();
 
     public void setR(RandomGenerator r);
 

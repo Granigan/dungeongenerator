@@ -1,10 +1,10 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
+import dungeon.datastructures.HomemadeCoordinatesList;
 import dungeon.datastructures.HomemadeRandom;
 import dungeon.interfaces.RandomGenerator;
 import dungeon.interfaces.RoomBuilding;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -19,7 +19,8 @@ public class RoomBuilder implements RoomBuilding {
     private int height;
     private int width;
     private RandomGenerator r;
-    private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
+//    private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
+    private HashMap<Integer, HomemadeCoordinatesList> roomWalls;
 
     /**
      * Constructor, sets roomCount to zero.
@@ -156,7 +157,8 @@ public class RoomBuilder implements RoomBuilding {
     public void storeWallCoordinates(int x, int y, int roomId) {
 //        roomWalls[roomId][y][x] = true;
         if (!roomWalls.containsKey(roomId)) {
-            roomWalls.put(roomId, new ArrayList<>());
+//            roomWalls.put(roomId, new ArrayList<>());
+            roomWalls.put(roomId, new HomemadeCoordinatesList());
         }
         roomWalls.get(roomId).add(new Coordinates(x, y));
     }
@@ -192,14 +194,23 @@ public class RoomBuilder implements RoomBuilding {
         return roomCount;
     }
 
-    public void setRoomWalls(HashMap<Integer, ArrayList<Coordinates>> roomWalls) {
+//    public void setRoomWalls(HashMap<Integer, ArrayList<Coordinates>> roomWalls) {
+//        this.roomWalls = roomWalls;
+//    }
+//
+//    public HashMap<Integer, ArrayList<Coordinates>> getRoomWalls() {
+//        return roomWalls;
+//    }
+//
+
+    public void setRoomWalls(HashMap<Integer, HomemadeCoordinatesList> roomWalls) {
         this.roomWalls = roomWalls;
     }
 
-    public HashMap<Integer, ArrayList<Coordinates>> getRoomWalls() {
+    public HashMap<Integer, HomemadeCoordinatesList> getRoomWalls() {
         return roomWalls;
     }
-
+    
     public void setR(RandomGenerator r) {
         this.r = r;
     }
