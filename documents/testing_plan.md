@@ -13,6 +13,11 @@ and the report is found at target/site/jacoco/index.html.
 - A crawler that goes through all the available squares, making sure they're all accessible.
 - Measuring how time use is affected by the parameters. Presentation with graphs.
 
+![Test coverage on week 5](https://github.com/Granigan/dungeongenerator/blob/master/documents/images/tests_week5.png)
+
+*Test coverage on week five.*
+
+
 ![Test coverage on week 4](https://github.com/Granigan/dungeongenerator/blob/master/documents/images/tests_week4.png)
 
 *Test coverage on week four.*
