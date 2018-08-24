@@ -2,13 +2,9 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.HomemadeCoordinatesList;
-import java.util.ArrayList;
 import java.util.HashMap;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -34,21 +30,9 @@ public class DoorBuilderTest {
     public DoorBuilderTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
         db = new DoorBuilder(roomWalls, 5, 5, 1, 1);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test
@@ -150,9 +134,6 @@ public class DoorBuilderTest {
         target[1][2] = 1;
         target[3][2] = 1;
         
-        
-        Assert.assertArrayEquals(target, db.findAndPlaceDoors(map));
-        
+        Assert.assertArrayEquals(target, db.findAndPlaceDoors(map));        
     }
-
 }

@@ -15,7 +15,6 @@ public class HomemadeRandom implements RandomGenerator {
     long multiplier;
     long increment;
     long modulus;
-    long divider;
 
     /**
      * Constructor for random number generator. Seed is taken from system time
@@ -27,7 +26,6 @@ public class HomemadeRandom implements RandomGenerator {
         seed = System.currentTimeMillis() % modulus;
         multiplier = 214013;
         increment = 2531011;
-        divider = 65536;
     }
 
     /**
@@ -37,7 +35,7 @@ public class HomemadeRandom implements RandomGenerator {
      */
     public int nextInt() {
         seed = (seed * multiplier + increment) % modulus;
-        return (int) (seed / divider);
+        return (int) (seed >> 16); // equal, but faster to dividing by 2^16 = 65536
     }
 
     /**
@@ -47,7 +45,6 @@ public class HomemadeRandom implements RandomGenerator {
      * @return a number from range including zero and excluding max
      */
     public int nextInt(int max) {
-
         return (int) (nextInt() % max);
     }
 
