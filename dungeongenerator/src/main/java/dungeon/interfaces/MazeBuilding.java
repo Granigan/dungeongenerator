@@ -1,8 +1,6 @@
 package dungeon.interfaces;
 
 import dungeon.datastructures.Coordinates;
-import dungeon.maptools.Direction;
-import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +12,7 @@ public interface MazeBuilding {
     
     public int[][] placeCorridorWithWalls(int[][] map);
     
-    public int[][] placeWall(int[][] map, Direction direction);
+    public int[][] placeWall(int[][] map, Coordinates direction);
     
     public int[][] findNextCorridorSquare(int[][] map);
     

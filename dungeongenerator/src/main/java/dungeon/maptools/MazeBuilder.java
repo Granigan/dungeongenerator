@@ -4,7 +4,6 @@ import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.HomemadeCoordinatesList;
 import dungeon.datastructures.HomemadeRandom;
 import dungeon.interfaces.MazeBuilding;
-import java.util.ArrayList;
 
 /**
  * Used to create a maze of corridors that join the rooms together.
@@ -72,14 +71,18 @@ public class MazeBuilder implements MazeBuilding {
      */
     public int[][] placeCorridorWithWalls(int[][] map) {
         map[y][x] = mazeId;
-//        HomemadeCoordinatesList directions = new HomemadeCoordinatesList();
-        
-        ArrayList<Direction> directions = new ArrayList<>();
-        directions.add(Direction.N);
-        directions.add(Direction.E);
-        directions.add(Direction.S);
-        directions.add(Direction.W);
+        HomemadeCoordinatesList directions = new HomemadeCoordinatesList();
+        directions.add(new Coordinates(1, 0));
+        directions.add(new Coordinates(-1, 0));
+        directions.add(new Coordinates(0, 1));
+        directions.add(new Coordinates(0, -1));
 
+//        ArrayList<Direction> directions = new ArrayList<>();
+//        directions.add(Direction.N);
+//        directions.add(Direction.E);
+//        directions.add(Direction.S);
+//        directions.add(Direction.W);
+//
         while (!directions.isEmpty()) {
             map = placeWall(map, directions.remove(r.nextInt(directions.size())));
         }
@@ -92,31 +95,14 @@ public class MazeBuilder implements MazeBuilding {
      * corridor areas.
      *
      * @param map being worked on
-     * @param direction to check
+     * @param direction to check as an adjustment marked as a Coordinates
      * @return map being worked on
      */
-    public int[][] placeWall(int[][] map, Direction direction) {
-        switch (direction) {
-            case N:
-                if (map[y - 1][x] == 1) {
-                    map[y - 1][x] = 0;
-                    neighbouringWalls.add(new Coordinates(x, y - 1));
-                }
-            case E:
-                if (map[y][x + 1] == 1) {
-                    map[y][x + 1] = 0;
-                    neighbouringWalls.add(new Coordinates(x + 1, y));
-                }
-            case S:
-                if (map[y + 1][x] == 1) {
-                    map[y + 1][x] = 0;
-                    neighbouringWalls.add(new Coordinates(x, y + 1));
-                }
-            case W:
-                if (map[y][x - 1] == 1) {
-                    map[y][x - 1] = 0;
-                    neighbouringWalls.add(new Coordinates(x - 1, y));
-                }
+    public int[][] placeWall(int[][] map, Coordinates direction) {
+        Coordinates target = new Coordinates(x + direction.getX(), y + direction.getY());
+        if (map[target.getY()][target.getX()] == 1) {
+            map[target.getY()][target.getX()] = 0;
+            neighbouringWalls.add(target);
         }
         return map;
     }

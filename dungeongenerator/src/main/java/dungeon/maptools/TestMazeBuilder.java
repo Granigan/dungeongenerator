@@ -2,7 +2,6 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import dungeon.interfaces.MazeBuilding;
-import java.util.ArrayList;
 
 /**
  * Test class to replace MazeBuilder().
@@ -27,11 +26,6 @@ public class TestMazeBuilder implements MazeBuilding {
     public int[][] placeCorridorWithWalls(int[][] map) {
         map[0][0] = 5;
         return map;
-    }
-
-    @Override
-    public int[][] placeWall(int[][] map, Direction direction) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -92,5 +86,10 @@ public class TestMazeBuilder implements MazeBuilding {
     @Override
     public void setRoomCount(int roomCount) {
 
+    }
+
+    @Override
+    public int[][] placeWall(int[][] map, Coordinates direction) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

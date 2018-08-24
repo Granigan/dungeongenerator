@@ -86,7 +86,7 @@ public class MazeBuilderTest {
         mb.setX(1);
         mb.setY(1);
         northIsTrue[0][1] = 1;
-        assertEquals(0, mb.placeWall(northIsTrue, Direction.N)[0][1]);
+        assertEquals(0, mb.placeWall(northIsTrue, new Coordinates(0, -1))[0][1]);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class MazeBuilderTest {
         mb.setX(1);
         mb.setY(1);
         southIsFalse[2][1] = 7;
-        assertEquals(7, mb.placeWall(southIsFalse, Direction.S)[2][1]);
+        assertEquals(7, mb.placeWall(southIsFalse, new Coordinates(0, 1))[2][1]);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class MazeBuilderTest {
         mb.setX(1);
         mb.setY(1);
         westIsFalse[1][0] = 7;
-        assertEquals(7, mb.placeWall(westIsFalse, Direction.W)[1][0]);
+        assertEquals(7, mb.placeWall(westIsFalse, new Coordinates(-1, 0))[1][0]);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class MazeBuilderTest {
         mb.setX(1);
         mb.setY(1);
         eastIsTrue[2][1] = 1;
-        assertEquals(0, mb.placeWall(eastIsTrue, Direction.E)[2][1]);
+        assertEquals(0, mb.placeWall(eastIsTrue, new Coordinates(1, 0))[1][2]);
     }
     
     @Test
