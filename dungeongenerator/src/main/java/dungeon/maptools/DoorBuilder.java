@@ -3,13 +3,15 @@ package dungeon.maptools;
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.HomemadeCoordinatesList;
 import dungeon.datastructures.HomemadeRandom;
+import dungeon.interfaces.DoorBuilding;
+import dungeon.interfaces.RandomGenerator;
 import java.util.HashMap;
 
-public class DoorBuilder {
+public class DoorBuilder implements DoorBuilding {
 
     private HashMap<Integer, HomemadeCoordinatesList> roomWalls;
     private int roomCount;
-    private HomemadeRandom r;
+    private RandomGenerator r;
     private int multipleDoorsOdd; // odds grow with this number, 1 = no multiples
     private int maxDoorsPerRoom;
 
@@ -17,17 +19,10 @@ public class DoorBuilder {
      * DoorBuilder has methods for finding locations and placing doors to
      * connect each room to the corridor network.
      *
-     * @param roomWalls map of rooms and their walls
-     * @param roomCount how many rooms are there in total
-     * @param mazeId gives the id of last corridor segment and thus the highest
-     * segment id
      * @param maxDoorsPerRoom each room can have up to this many doors
      * @param multipleDoorsOdd odds of adding a new door are 1/this
      */
-    public DoorBuilder(HashMap<Integer, HomemadeCoordinatesList> roomWalls, int roomCount,
-            int mazeId, int maxDoorsPerRoom, int multipleDoorsOdd) {
-        this.roomWalls = roomWalls;
-        this.roomCount = roomCount;
+    public DoorBuilder( int maxDoorsPerRoom, int multipleDoorsOdd) {
         this.maxDoorsPerRoom = maxDoorsPerRoom;
         this.multipleDoorsOdd = multipleDoorsOdd;
         r = new HomemadeRandom();
@@ -39,6 +34,7 @@ public class DoorBuilder {
      * @param map being worked on
      * @return map being worked on
      */
+    @Override
     public int[][] findAndPlaceDoors(int[][] map) {
         int roomId = 2;
         int doorsPlaced = 0;
@@ -63,6 +59,7 @@ public class DoorBuilder {
      * @param roomId room being worked on
      * @return Coordinates for the wall to replaced with a door
      */
+    @Override
     public Coordinates findConnectingWall(int[][] map, int roomId) {
         HomemadeCoordinatesList walls = roomWalls.get(roomId);
         while (!walls.isEmpty()) {
@@ -86,6 +83,7 @@ public class DoorBuilder {
      * @param coords to be investigated
      * @return true if n/s or e/w segments are non-wall and different values
      */
+    @Override
     public boolean connectsTwoSegments(int[][] map, Coordinates coords) {
         int x = coords.getX();
         int y = coords.getY();
@@ -97,7 +95,6 @@ public class DoorBuilder {
         if (map[y][x + 1] > 1 && map[y][x - 1] > 1 && map[y][x + 1] != map[y][x - 1]) {
             return true;
         }
-
         return false;
     }
 
@@ -109,9 +106,24 @@ public class DoorBuilder {
      * @param segmentId id for the 'door'
      * @return map with the new door
      */
+    @Override
     public int[][] placeDoor(int[][] map, Coordinates coords, int segmentId) {
         map[coords.getY()][coords.getX()] = 1;
         return map;
     }
 
+    @Override
+    public void setR(RandomGenerator r) {
+        this.r = r;
+    }
+
+    @Override
+    public void setRoomWalls(HashMap<Integer, HomemadeCoordinatesList> roomWalls) {
+        this.roomWalls = roomWalls;
+    }
+
+    @Override
+    public void setRoomCount(int roomCount) {
+        this.roomCount = roomCount;
+    }
 }

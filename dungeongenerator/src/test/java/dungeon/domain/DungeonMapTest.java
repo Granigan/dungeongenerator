@@ -1,11 +1,8 @@
 package dungeon.domain;
 
+import dungeon.maptools.TestDoorBuilder;
 import dungeon.maptools.TestMazeBuilder;
 import dungeon.maptools.TestRoomBuilder;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -30,28 +27,12 @@ public class DungeonMapTest {
     public DungeonMapTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void initialiseTest1() {
         int[][] target = mapCreator(0, 3);
         target[1][1] = 1;
         dm.initialise();
-        assertEquals(target, dm.getMap());
+        assertArrayEquals(target, dm.getMap());
     }
 
     @Test
@@ -96,7 +77,20 @@ public class DungeonMapTest {
         target[1][1] = 5_000_000;
         dm.setMap(map);
         dm.createMaze();
-        assertArrayEquals(target, dm.getMap());
+        assertArrayEquals(target, dm.getMap());        
+    }
+    
+    @Test
+    public void placeDoorsTest1() {
+        dm.setDb(new TestDoorBuilder());
+        dm.setRb(new TestRoomBuilder());
+        dm.setMap(mapCreator(0, 2));
+        dm.placeDoors();
         
+        int[][] target = mapCreator(0, 2);
+        target[0][0] = -1;
+        target[1][1] = -1;
+        
+        assertArrayEquals(target, dm.getMap());
     }
 }

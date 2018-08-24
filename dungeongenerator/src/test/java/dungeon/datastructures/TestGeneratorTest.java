@@ -1,9 +1,5 @@
 package dungeon.datastructures;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,22 +14,6 @@ public class TestGeneratorTest {
     public TestGeneratorTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void nextIntTest1() {
         assertEquals(0, tg.nextInt());
@@ -45,7 +25,6 @@ public class TestGeneratorTest {
             tg.nextInt();
         }
         assertEquals(0, tg.nextInt());
-
     }
 
     @Test
@@ -59,7 +38,14 @@ public class TestGeneratorTest {
             tg.nextInt();
         }
         assertEquals(0, tg.nextInt(0));
-
+    }
+    
+    @Test
+    public void setITest1() {
+        int[] numbers = {1, 2, 4, 8};
+        tg.setNumbers(numbers);
+        tg.setI(3);
+        assertEquals(8, tg.nextInt());
     }
 
 }

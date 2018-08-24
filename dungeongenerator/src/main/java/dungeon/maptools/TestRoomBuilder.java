@@ -75,7 +75,9 @@ public class TestRoomBuilder implements RoomBuilding {
 
     @Override
     public HashMap<Integer, HomemadeCoordinatesList> getRoomWalls() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HashMap<Integer, HomemadeCoordinatesList> output = new HashMap();
+        output.put(-1, new HomemadeCoordinatesList());
+        return output;
     }
 
 }

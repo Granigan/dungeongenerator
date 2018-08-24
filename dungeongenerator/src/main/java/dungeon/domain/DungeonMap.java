@@ -1,7 +1,9 @@
 package dungeon.domain;
 
 import dungeon.datastructures.HomemadeRandom;
+import dungeon.interfaces.DoorBuilding;
 import dungeon.interfaces.MazeBuilding;
+import dungeon.interfaces.RandomGenerator;
 import dungeon.interfaces.RoomBuilding;
 import dungeon.maptools.DoorBuilder;
 import dungeon.maptools.MazeBuilder;
@@ -23,9 +25,10 @@ public class DungeonMap {
     private int[][] map;
     private RoomBuilding rb;
     private MazeBuilding mb;
-    private HomemadeRandom r;
-    private int maxDoorsPerRoom;
-    private int multipleDoorsOdd;
+    private RandomGenerator r;
+    private DoorBuilding db;
+    private final int maxDoorsPerRoom;
+    private final int multipleDoorsOdd;
 
     /**
      * Constructor that stores the map size and creates the map object. Also
@@ -48,6 +51,7 @@ public class DungeonMap {
         r = new HomemadeRandom();
         rb = new RoomBuilder();
         mb = new MazeBuilder(height, width, -1);
+        db = new DoorBuilder(maxDoorsPerRoom, multipleDoorsOdd);
     }
 
     /**
@@ -184,9 +188,9 @@ public class DungeonMap {
      *
      */
     public void placeDoors() {
-        DoorBuilder doors = new DoorBuilder(rb.getRoomWalls(), rb.getRoomCount(),
-                mb.getMazeId(), maxDoorsPerRoom, multipleDoorsOdd);
-        map = doors.findAndPlaceDoors(map);
+        db.setRoomWalls(rb.getRoomWalls());
+        db.setRoomCount(rb.getRoomCount());
+        map = db.findAndPlaceDoors(map);
     }
 
     /**
@@ -213,5 +217,8 @@ public class DungeonMap {
     public void setMb(MazeBuilding mb) {
         this.mb = mb;
     }
-    
+
+    public void setDb(DoorBuilding db) {
+        this.db = db;
+    }
 }
