@@ -1,7 +1,7 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
-import dungeon.datastructures.HomemadeCoordinatesList;
+import dungeon.datastructures.CoordinatesList;
 import dungeon.datastructures.TestGenerator;
 import dungeon.interfaces.RandomGenerator;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class DoorBuilderTest {
 
-    HashMap<Integer, HomemadeCoordinatesList> roomWalls;
+    HashMap<Integer, CoordinatesList> roomWalls;
     DoorBuilder db;
 
     public int[][] mapCreator(int filler, int size) {
@@ -99,7 +99,7 @@ public class DoorBuilderTest {
     @Test
     public void findConnectingWallTest1() {
         roomWalls = new HashMap<>();
-        roomWalls.put(3, new HomemadeCoordinatesList());
+        roomWalls.put(3, new CoordinatesList());
         roomWalls.get(3).add(new Coordinates(2, 1));
         roomWalls.get(3).add(new Coordinates(2, 2));
         roomWalls.get(3).add(new Coordinates(2, 3));
@@ -117,7 +117,7 @@ public class DoorBuilderTest {
     @Test
     public void findConnectingWallTest2() {
         roomWalls = new HashMap<>();
-        roomWalls.put(3, new HomemadeCoordinatesList());
+        roomWalls.put(3, new CoordinatesList());
         roomWalls.get(3).add(new Coordinates(2, 1));
         roomWalls.get(3).add(new Coordinates(2, 2));
         roomWalls.get(3).add(new Coordinates(2, 3));
@@ -133,19 +133,19 @@ public class DoorBuilderTest {
     @Test
     public void findAndPlaceDoorsTest1() {
         roomWalls = new HashMap<>();
-        roomWalls.put(2, new HomemadeCoordinatesList());
+        roomWalls.put(2, new CoordinatesList());
         roomWalls.get(2).add(new Coordinates(1, 2));
         roomWalls.get(2).add(new Coordinates(2, 2));
 
-        roomWalls.put(3, new HomemadeCoordinatesList());
+        roomWalls.put(3, new CoordinatesList());
         roomWalls.get(3).add(new Coordinates(2, 3));
         roomWalls.get(3).add(new Coordinates(2, 2));
 
-        roomWalls.put(4, new HomemadeCoordinatesList());
+        roomWalls.put(4, new CoordinatesList());
         roomWalls.get(4).add(new Coordinates(2, 1));
         roomWalls.get(4).add(new Coordinates(2, 2));
 
-        roomWalls.put(5, new HomemadeCoordinatesList());
+        roomWalls.put(5, new CoordinatesList());
         roomWalls.get(5).add(new Coordinates(3, 2));
         roomWalls.get(5).add(new Coordinates(2, 2));
 
@@ -175,7 +175,7 @@ public class DoorBuilderTest {
     @Test
     public void findAndPlaceDoorsTest2() {
         roomWalls = new HashMap<>();
-        roomWalls.put(2, new HomemadeCoordinatesList());
+        roomWalls.put(2, new CoordinatesList());
         roomWalls.get(2).add(new Coordinates(1, 2));
         roomWalls.get(2).add(new Coordinates(2, 2));
         roomWalls.get(2).add(new Coordinates(3, 2));
@@ -214,7 +214,7 @@ public class DoorBuilderTest {
     @Test
     public void findAndPlaceDoorsTest3() {
         roomWalls = new HashMap<>();
-        roomWalls.put(2, new HomemadeCoordinatesList());
+        roomWalls.put(2, new CoordinatesList());
         roomWalls.get(2).add(new Coordinates(1, 2));
         roomWalls.get(2).add(new Coordinates(2, 2));
         roomWalls.get(2).add(new Coordinates(3, 2));

@@ -6,7 +6,7 @@ package dungeon.datastructures;
  *
  * @author tgtapio
  */
-public class HomemadeCoordinatesList {
+public class CoordinatesList {
 
     private Coordinates[] list;
     private int highestUsedIndex;
@@ -15,7 +15,7 @@ public class HomemadeCoordinatesList {
      * Initialises the list to hold up to 250 objects, and sets highest used
      * index to -1.
      */
-    public HomemadeCoordinatesList() {
+    public CoordinatesList() {
         list = new Coordinates[250];
         highestUsedIndex = -1;
     }

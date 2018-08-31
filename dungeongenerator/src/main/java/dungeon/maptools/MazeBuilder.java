@@ -1,8 +1,8 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
-import dungeon.datastructures.HomemadeCoordinatesList;
-import dungeon.datastructures.HomemadeRandom;
+import dungeon.datastructures.CoordinatesList;
+import dungeon.datastructures.OwnRandom;
 import dungeon.interfaces.MazeBuilding;
 
 /**
@@ -20,8 +20,8 @@ public class MazeBuilder implements MazeBuilding {
     // x and y mark the current location
     private int x;
     private int y;
-    private HomemadeCoordinatesList neighbouringWalls;
-    private HomemadeRandom r;
+    private CoordinatesList neighbouringWalls;
+    private OwnRandom r;
 
     /**
      * Constructor that stores the size of the map and creates counters for
@@ -36,8 +36,8 @@ public class MazeBuilder implements MazeBuilding {
         this.width = width;
         this.mazeId = mazeId;
         this.roomCount = mazeId;
-        r = new HomemadeRandom();
-        neighbouringWalls = new HomemadeCoordinatesList();
+        r = new OwnRandom();
+        neighbouringWalls = new CoordinatesList();
     }
 
     /**
@@ -71,7 +71,7 @@ public class MazeBuilder implements MazeBuilding {
      */
     public int[][] placeCorridorWithWalls(int[][] map) {
         map[y][x] = mazeId;
-        HomemadeCoordinatesList directions = new HomemadeCoordinatesList();
+        CoordinatesList directions = new CoordinatesList();
         directions.add(new Coordinates(1, 0));
         directions.add(new Coordinates(-1, 0));
         directions.add(new Coordinates(0, 1));
@@ -247,11 +247,11 @@ public class MazeBuilder implements MazeBuilding {
         return y;
     }
 
-    public HomemadeCoordinatesList getNeighbouringWalls() {
+    public CoordinatesList getNeighbouringWalls() {
         return neighbouringWalls;
     }
 
-    public void setNeighbouringWalls(HomemadeCoordinatesList neighbouringWalls) {
+    public void setNeighbouringWalls(CoordinatesList neighbouringWalls) {
         this.neighbouringWalls = neighbouringWalls;
     }
 

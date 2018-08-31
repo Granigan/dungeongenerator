@@ -1,6 +1,6 @@
 package dungeon.domain;
 
-import dungeon.datastructures.HomemadeRandom;
+import dungeon.datastructures.OwnRandom;
 import dungeon.interfaces.DoorBuilding;
 import dungeon.interfaces.MazeBuilding;
 import dungeon.interfaces.RandomGenerator;
@@ -48,7 +48,7 @@ public class DungeonMap {
         this.maxDoorsPerRoom = maxDoorsPerRoom;
         this.multipleDoorsOdd = multipleDoorsOdd;
         this.map = new int[height][width];
-        r = new HomemadeRandom();
+        r = new OwnRandom();
         rb = new RoomBuilder();
         mb = new MazeBuilder(height, width, -1);
         db = new DoorBuilder(maxDoorsPerRoom, multipleDoorsOdd);

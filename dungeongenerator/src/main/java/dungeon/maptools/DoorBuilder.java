@@ -1,15 +1,15 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
-import dungeon.datastructures.HomemadeCoordinatesList;
-import dungeon.datastructures.HomemadeRandom;
+import dungeon.datastructures.CoordinatesList;
+import dungeon.datastructures.OwnRandom;
 import dungeon.interfaces.DoorBuilding;
 import dungeon.interfaces.RandomGenerator;
 import java.util.HashMap;
 
 public class DoorBuilder implements DoorBuilding {
 
-    private HashMap<Integer, HomemadeCoordinatesList> roomWalls;
+    private HashMap<Integer, CoordinatesList> roomWalls;
     private int roomCount;
     private RandomGenerator r;
     private int multipleDoorsOdd; // odds grow with this number, 1 = no multiples
@@ -25,7 +25,7 @@ public class DoorBuilder implements DoorBuilding {
     public DoorBuilder( int maxDoorsPerRoom, int multipleDoorsOdd) {
         this.maxDoorsPerRoom = maxDoorsPerRoom;
         this.multipleDoorsOdd = multipleDoorsOdd;
-        r = new HomemadeRandom();
+        r = new OwnRandom();
     }
 
     /**
@@ -61,7 +61,7 @@ public class DoorBuilder implements DoorBuilding {
      */
     @Override
     public Coordinates findConnectingWall(int[][] map, int roomId) {
-        HomemadeCoordinatesList walls = roomWalls.get(roomId);
+        CoordinatesList walls = roomWalls.get(roomId);
         while (!walls.isEmpty()) {
             Coordinates c = walls.remove(r.nextInt(walls.size()));
             if (connectsTwoSegments(map, c)) {
@@ -118,7 +118,7 @@ public class DoorBuilder implements DoorBuilding {
     }
 
     @Override
-    public void setRoomWalls(HashMap<Integer, HomemadeCoordinatesList> roomWalls) {
+    public void setRoomWalls(HashMap<Integer, CoordinatesList> roomWalls) {
         this.roomWalls = roomWalls;
     }
 

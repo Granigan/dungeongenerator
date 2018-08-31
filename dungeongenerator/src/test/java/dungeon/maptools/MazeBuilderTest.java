@@ -1,7 +1,7 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
-import dungeon.datastructures.HomemadeCoordinatesList;
+import dungeon.datastructures.CoordinatesList;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -205,7 +205,7 @@ public class MazeBuilderTest {
         mb = new MazeBuilder(3, 3, 5);
         mb.setX(1);
         mb.setY(0);
-        HomemadeCoordinatesList nWalls = new HomemadeCoordinatesList();
+        CoordinatesList nWalls = new CoordinatesList();
         nWalls.add(new Coordinates(1, 1));
         mb.setNeighbouringWalls(nWalls);
         

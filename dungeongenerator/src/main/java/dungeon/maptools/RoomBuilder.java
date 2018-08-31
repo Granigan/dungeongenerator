@@ -1,8 +1,8 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
-import dungeon.datastructures.HomemadeCoordinatesList;
-import dungeon.datastructures.HomemadeRandom;
+import dungeon.datastructures.CoordinatesList;
+import dungeon.datastructures.OwnRandom;
 import dungeon.interfaces.RandomGenerator;
 import dungeon.interfaces.RoomBuilding;
 import java.util.HashMap;
@@ -19,15 +19,14 @@ public class RoomBuilder implements RoomBuilding {
     private int height;
     private int width;
     private RandomGenerator r;
-//    private HashMap<Integer, ArrayList<Coordinates>> roomWalls;
-    private HashMap<Integer, HomemadeCoordinatesList> roomWalls;
+    private HashMap<Integer, CoordinatesList> roomWalls;
 
     /**
      * Constructor, sets roomCount to zero.
      */
     public RoomBuilder() {
         this.roomCount = 0;
-        r = new HomemadeRandom();
+        r = new OwnRandom();
     }
 
     /**
@@ -46,6 +45,7 @@ public class RoomBuilder implements RoomBuilding {
      * @param roomAttempts number of room placement attempts
      * @return map being worked on
      */
+    @Override
     public int[][] initMap(int[][] map, int height, int width, int roomAttempts) {
         this.height = height;
         this.width = width;
@@ -76,6 +76,7 @@ public class RoomBuilder implements RoomBuilding {
      * @param rheight height of the room to be added
      * @return map being worked on
      */
+    @Override
     public int[][] addRoom(int[][] map, int rwidth, int rheight) {
         int x = r.nextInt(width - 1 - rwidth) + 1;
         int y = r.nextInt(height - 1 - rheight) + 1;
@@ -110,6 +111,7 @@ public class RoomBuilder implements RoomBuilding {
      * @param rheight of the room, INCLUDING walls
      * @return map being worked on
      */
+    @Override
     public int[][] buildFloors(int[][] map, int x, int y, int rwidth, int rheight) {
         int roomNumber = roomCount;
         for (int j = 1; j < rheight - 1; j++) {
@@ -130,6 +132,7 @@ public class RoomBuilder implements RoomBuilding {
      * @param rheight height of the room, i.e. length of the y walls
      * @return map being worked on
      */
+    @Override
     public int[][] buildWalls(int[][] map, int x, int y, int rwidth, int rheight) {
         for (int j = 0; j < rheight; j++) {
             map[j + y][x] = 0;
@@ -154,11 +157,12 @@ public class RoomBuilder implements RoomBuilding {
      * @param y coordinate of the wall
      * @param roomId id for the segment
      */
+    @Override
     public void storeWallCoordinates(int x, int y, int roomId) {
 //        roomWalls[roomId][y][x] = true;
         if (!roomWalls.containsKey(roomId)) {
 //            roomWalls.put(roomId, new ArrayList<>());
-            roomWalls.put(roomId, new HomemadeCoordinatesList());
+            roomWalls.put(roomId, new CoordinatesList());
         }
         roomWalls.get(roomId).add(new Coordinates(x, y));
     }
@@ -173,6 +177,7 @@ public class RoomBuilder implements RoomBuilding {
      * @param y coordinate
      * @return true if square is free
      */
+    @Override
     public boolean emptySquare(int[][] map, int x, int y) {
         if (map[y][x] == 1) {
             return true;
@@ -180,6 +185,7 @@ public class RoomBuilder implements RoomBuilding {
         return false;
     }
 
+    @Override
     public void setRoomCount(int roomCount) {
         this.roomCount = roomCount;
     }
@@ -190,35 +196,31 @@ public class RoomBuilder implements RoomBuilding {
      *
      * @return [amount of rooms in the map + 1]: empty map is 'room 1'
      */
+    @Override
     public int getRoomCount() {
         return roomCount;
     }
 
-//    public void setRoomWalls(HashMap<Integer, ArrayList<Coordinates>> roomWalls) {
-//        this.roomWalls = roomWalls;
-//    }
-//
-//    public HashMap<Integer, ArrayList<Coordinates>> getRoomWalls() {
-//        return roomWalls;
-//    }
-//
-
-    public void setRoomWalls(HashMap<Integer, HomemadeCoordinatesList> roomWalls) {
+    public void setRoomWalls(HashMap<Integer, CoordinatesList> roomWalls) {
         this.roomWalls = roomWalls;
     }
 
-    public HashMap<Integer, HomemadeCoordinatesList> getRoomWalls() {
+    @Override
+    public HashMap<Integer, CoordinatesList> getRoomWalls() {
         return roomWalls;
     }
     
+    @Override
     public void setR(RandomGenerator r) {
         this.r = r;
     }
 
+    @Override
     public void setHeight(int height) {
         this.height = height;
     }
 
+    @Override
     public void setWidth(int width) {
         this.width = width;
     }

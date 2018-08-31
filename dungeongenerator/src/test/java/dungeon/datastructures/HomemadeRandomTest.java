@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public class HomemadeRandomTest {
 
-    HomemadeRandom r = new HomemadeRandom();
+    OwnRandom r = new OwnRandom();
 
     public HomemadeRandomTest() {
     }

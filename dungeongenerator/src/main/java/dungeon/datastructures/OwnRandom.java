@@ -9,7 +9,7 @@ import dungeon.interfaces.RandomGenerator;
  *
  * @author tgtapio
  */
-public class HomemadeRandom implements RandomGenerator {
+public class OwnRandom implements RandomGenerator {
 
     long seed;
     long multiplier;
@@ -20,7 +20,7 @@ public class HomemadeRandom implements RandomGenerator {
      * Constructor for random number generator. Seed is taken from system time
      * at creation.
      */
-    public HomemadeRandom() {
+    public OwnRandom() {
         modulus = 2147483647;
         modulus++;
         seed = System.currentTimeMillis() % modulus;

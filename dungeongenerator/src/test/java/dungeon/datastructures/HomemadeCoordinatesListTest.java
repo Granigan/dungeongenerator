@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public class HomemadeCoordinatesListTest {
 
-    private HomemadeCoordinatesList list;
+    private CoordinatesList list;
     Coordinates coords;
 
     public HomemadeCoordinatesListTest() {
@@ -29,12 +29,12 @@ public class HomemadeCoordinatesListTest {
 
     @Before
     public void setUp() {
-        list = new HomemadeCoordinatesList();
+        list = new CoordinatesList();
         coords = new Coordinates(4, 2);
     }
 
-    public HomemadeCoordinatesList fillList() {
-        HomemadeCoordinatesList flist = new HomemadeCoordinatesList();
+    public CoordinatesList fillList() {
+        CoordinatesList flist = new CoordinatesList();
         for (int i = 0; i < 250; i++) {
             flist.add(coords);
         }
@@ -109,7 +109,7 @@ public class HomemadeCoordinatesListTest {
 
     @Test
     public void extendTest1() {
-        HomemadeCoordinatesList flist = fillList();
+        CoordinatesList flist = fillList();
         flist.add(coords);
         assertEquals(251, flist.size());
     }
