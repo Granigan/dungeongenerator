@@ -7,6 +7,9 @@ A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12
 
 ## Weekly Progress
 
+### Week 5
+- [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week5.md)
+
 ### Week 4
 - [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week4.md)
 - [Implementation Document (WIP)](https://github.com/Granigan/dungeongenerator/blob/master/documents/implementation.md)
