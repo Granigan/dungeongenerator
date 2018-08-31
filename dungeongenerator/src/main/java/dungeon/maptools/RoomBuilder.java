@@ -2,6 +2,7 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.CoordinatesList;
+import dungeon.datastructures.IndexOfLists;
 import dungeon.datastructures.OwnRandom;
 import dungeon.interfaces.RandomGenerator;
 import dungeon.interfaces.RoomBuilding;
@@ -20,6 +21,7 @@ public class RoomBuilder implements RoomBuilding {
     private int width;
     private RandomGenerator r;
     private HashMap<Integer, CoordinatesList> roomWalls;
+//    private IndexOfLists roomWalls;
 
     /**
      * Constructor, sets roomCount to zero.
@@ -50,6 +52,7 @@ public class RoomBuilder implements RoomBuilding {
         this.height = height;
         this.width = width;
         roomWalls = new HashMap<>();
+//        roomWalls = new IndexOfLists();
         roomCount++;
 
         map = buildWalls(map, 0, 0, width, height);
@@ -159,10 +162,12 @@ public class RoomBuilder implements RoomBuilding {
      */
     @Override
     public void storeWallCoordinates(int x, int y, int roomId) {
-//        roomWalls[roomId][y][x] = true;
         if (!roomWalls.containsKey(roomId)) {
-//            roomWalls.put(roomId, new ArrayList<>());
             roomWalls.put(roomId, new CoordinatesList());
+//        if(roomWalls.size() +1 < roomId) {
+//            
+//        }
+
         }
         roomWalls.get(roomId).add(new Coordinates(x, y));
     }

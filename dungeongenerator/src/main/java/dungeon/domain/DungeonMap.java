@@ -8,9 +8,6 @@ import dungeon.interfaces.RoomBuilding;
 import dungeon.maptools.DoorBuilder;
 import dungeon.maptools.MazeBuilder;
 import dungeon.maptools.RoomBuilder;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * The map object that hosts the tool objects for creating the dungeon.
@@ -170,19 +167,6 @@ public class DungeonMap {
     }
 
     /**
-     * Saves the map to a file on disk, under project directory with name
-     * 'generated_map.txt'.
-     *
-     * @throws IOException problem with writing to disk
-     */
-    public void saveMap() throws IOException {
-        FileWriter fw = new FileWriter("generated_map.txt");
-        PrintWriter pw = new PrintWriter(fw);
-        pw.print(toString());
-        pw.close();
-    }
-
-    /**
      * Runs the DoorBuilder to connect segments (rooms and corridors) to one
      * network.
      *
@@ -221,4 +205,5 @@ public class DungeonMap {
     public void setDb(DoorBuilding db) {
         this.db = db;
     }
+    
 }

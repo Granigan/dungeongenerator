@@ -28,6 +28,12 @@ public class DoorBuilder implements DoorBuilding {
         r = new OwnRandom();
     }
 
+    // use a list, room id doesn't matter since segments are not required
+//-> refactor segments out
+//-> refactor findandplacedoors to run through the list of rooms, removing them as it goes, thus going through all rooms just as well (better) than when going through room ids
+
+    
+    
     /**
      * Connects each room to the corridor network.
      *
