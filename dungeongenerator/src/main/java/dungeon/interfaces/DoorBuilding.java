@@ -1,8 +1,7 @@
 package dungeon.interfaces;
 
 import dungeon.datastructures.Coordinates;
-import dungeon.datastructures.CoordinatesList;
-import java.util.HashMap;
+import dungeon.datastructures.IndexOfLists;
 
 /**
  *
@@ -20,7 +19,7 @@ public interface DoorBuilding {
 
     public void setR(RandomGenerator r);
 
-    public void setRoomWalls(HashMap<Integer, CoordinatesList> roomWalls);
-    
+    public void setRoomWalls(IndexOfLists roomWalls);
+
     public void setRoomCount(int roomCount);
 }

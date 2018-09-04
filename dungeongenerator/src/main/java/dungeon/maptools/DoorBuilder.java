@@ -2,14 +2,14 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.CoordinatesList;
+import dungeon.datastructures.IndexOfLists;
 import dungeon.datastructures.OwnRandom;
 import dungeon.interfaces.DoorBuilding;
 import dungeon.interfaces.RandomGenerator;
-import java.util.HashMap;
 
 public class DoorBuilder implements DoorBuilding {
 
-    private HashMap<Integer, CoordinatesList> roomWalls;
+    private IndexOfLists roomWalls;
     private int roomCount;
     private RandomGenerator r;
     private int multipleDoorsOdd; // odds grow with this number, 1 = no multiples
@@ -22,18 +22,12 @@ public class DoorBuilder implements DoorBuilding {
      * @param maxDoorsPerRoom each room can have up to this many doors
      * @param multipleDoorsOdd odds of adding a new door are 1/this
      */
-    public DoorBuilder( int maxDoorsPerRoom, int multipleDoorsOdd) {
+    public DoorBuilder(int maxDoorsPerRoom, int multipleDoorsOdd) {
         this.maxDoorsPerRoom = maxDoorsPerRoom;
         this.multipleDoorsOdd = multipleDoorsOdd;
         r = new OwnRandom();
     }
 
-    // use a list, room id doesn't matter since segments are not required
-//-> refactor segments out
-//-> refactor findandplacedoors to run through the list of rooms, removing them as it goes, thus going through all rooms just as well (better) than when going through room ids
-
-    
-    
     /**
      * Connects each room to the corridor network.
      *
@@ -124,7 +118,7 @@ public class DoorBuilder implements DoorBuilding {
     }
 
     @Override
-    public void setRoomWalls(HashMap<Integer, CoordinatesList> roomWalls) {
+    public void setRoomWalls(IndexOfLists roomWalls) {
         this.roomWalls = roomWalls;
     }
 

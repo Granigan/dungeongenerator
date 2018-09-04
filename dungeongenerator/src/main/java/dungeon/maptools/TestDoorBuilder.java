@@ -2,6 +2,7 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.CoordinatesList;
+import dungeon.datastructures.IndexOfLists;
 import dungeon.interfaces.DoorBuilding;
 import dungeon.interfaces.RandomGenerator;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 public class TestDoorBuilder implements DoorBuilding {
 
     int roomCount;
-    HashMap<Integer, CoordinatesList> roomWalls;
+    IndexOfLists roomWalls;
 
     @Override
     public int[][] findAndPlaceDoors(int[][] map) {
@@ -45,7 +46,7 @@ public class TestDoorBuilder implements DoorBuilding {
     }
 
     @Override
-    public void setRoomWalls(HashMap<Integer, CoordinatesList> roomWalls) {
+    public void setRoomWalls(IndexOfLists roomWalls) {
         this.roomWalls = roomWalls;
     }
 

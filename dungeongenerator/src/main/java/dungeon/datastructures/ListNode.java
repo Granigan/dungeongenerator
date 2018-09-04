@@ -26,7 +26,6 @@ public class ListNode {
         if (next != null) {
             return this.getNext().getValue(key);
         }
-
         return null;
     }
     

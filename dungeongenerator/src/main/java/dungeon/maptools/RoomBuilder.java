@@ -6,7 +6,6 @@ import dungeon.datastructures.IndexOfLists;
 import dungeon.datastructures.OwnRandom;
 import dungeon.interfaces.RandomGenerator;
 import dungeon.interfaces.RoomBuilding;
-import java.util.HashMap;
 
 /**
  * Includes methods to build rooms by placing walls and floors. Also used to
@@ -51,7 +50,6 @@ public class RoomBuilder implements RoomBuilding {
     public int[][] initMap(int[][] map, int height, int width, int roomAttempts) {
         this.height = height;
         this.width = width;
-//        roomWalls = new HashMap<>();
         roomWalls = new IndexOfLists();
         roomCount++;
 
@@ -153,8 +151,8 @@ public class RoomBuilder implements RoomBuilding {
     }
 
     /**
-     * Adds a coordinates and id of a room wall square into the roomWalls
-     * structure.
+     * Adds a coordinates and id of a room wall square into the roomWalls data
+     * structure (IndexOfLists)
      *
      * @param x coordinate of the wall
      * @param y coordinate of the wall
@@ -164,10 +162,6 @@ public class RoomBuilder implements RoomBuilding {
     public void storeWallCoordinates(int x, int y, int roomId) {
         if (!roomWalls.containsKey(roomId)) {
             roomWalls.put(roomId, new CoordinatesList());
-//        if(roomWalls.size() +1 < roomId) {
-//            
-//        }
-
         }
         roomWalls.get(roomId).add(new Coordinates(x, y));
     }
@@ -206,15 +200,6 @@ public class RoomBuilder implements RoomBuilding {
         return roomCount;
     }
 
-//    public void setRoomWalls(HashMap<Integer, CoordinatesList> roomWalls) {
-//        this.roomWalls = roomWalls;
-//    }
-//
-//    @Override
-//    public HashMap<Integer, CoordinatesList> getRoomWalls() {
-//        return roomWalls;
-//    }
-//    
     public void setRoomWalls(IndexOfLists roomWalls) {
         this.roomWalls = roomWalls;
     }
@@ -223,7 +208,7 @@ public class RoomBuilder implements RoomBuilding {
     public IndexOfLists getRoomWalls() {
         return roomWalls;
     }
-    
+
     @Override
     public void setR(RandomGenerator r) {
         this.r = r;

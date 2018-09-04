@@ -11,7 +11,7 @@ public class IndexOfLists {
     private int amountOfNodes;
 
     public IndexOfLists() {
-        list = new ListNode[50];
+        list = new ListNode[25];
         amountOfNodes = 0;
     }
 
@@ -47,7 +47,11 @@ public class IndexOfLists {
     }
 
     public boolean containsKey(int key) {
-        return list[findHash(key)] != null;
+        int hashKey = findHash(key);
+        if(list[hashKey] == null) {
+            return false;
+        }
+        return list[findHash(key)].listContains(key);
     }
 
     public CoordinatesList get(int key) {
