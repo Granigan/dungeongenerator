@@ -20,8 +20,8 @@ public class RoomBuilder implements RoomBuilding {
     private int height;
     private int width;
     private RandomGenerator r;
-    private HashMap<Integer, CoordinatesList> roomWalls;
-//    private IndexOfLists roomWalls;
+//    private HashMap<Integer, CoordinatesList> roomWalls;
+    private IndexOfLists roomWalls;
 
     /**
      * Constructor, sets roomCount to zero.
@@ -51,8 +51,8 @@ public class RoomBuilder implements RoomBuilding {
     public int[][] initMap(int[][] map, int height, int width, int roomAttempts) {
         this.height = height;
         this.width = width;
-        roomWalls = new HashMap<>();
-//        roomWalls = new IndexOfLists();
+//        roomWalls = new HashMap<>();
+        roomWalls = new IndexOfLists();
         roomCount++;
 
         map = buildWalls(map, 0, 0, width, height);
@@ -206,12 +206,21 @@ public class RoomBuilder implements RoomBuilding {
         return roomCount;
     }
 
-    public void setRoomWalls(HashMap<Integer, CoordinatesList> roomWalls) {
+//    public void setRoomWalls(HashMap<Integer, CoordinatesList> roomWalls) {
+//        this.roomWalls = roomWalls;
+//    }
+//
+//    @Override
+//    public HashMap<Integer, CoordinatesList> getRoomWalls() {
+//        return roomWalls;
+//    }
+//    
+    public void setRoomWalls(IndexOfLists roomWalls) {
         this.roomWalls = roomWalls;
     }
 
     @Override
-    public HashMap<Integer, CoordinatesList> getRoomWalls() {
+    public IndexOfLists getRoomWalls() {
         return roomWalls;
     }
     

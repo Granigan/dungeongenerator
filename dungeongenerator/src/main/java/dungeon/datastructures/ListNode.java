@@ -29,6 +29,16 @@ public class ListNode {
 
         return null;
     }
+    
+    public boolean listContains(int key) {
+        if (this.key == key && !this.isDeleted) {
+            return true;
+        }
+        if (next != null) {
+            return this.getNext().listContains(key);
+        }
+        return false;
+    }
 
     /**
      * Finds and replaces the first deleted node with given information. If no

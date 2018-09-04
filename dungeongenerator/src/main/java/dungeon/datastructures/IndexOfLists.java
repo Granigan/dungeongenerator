@@ -15,7 +15,7 @@ public class IndexOfLists {
         amountOfNodes = 0;
     }
 
-    public void add(int key, CoordinatesList value) {
+    public void put(int key, CoordinatesList value) {
         double capacity = 1.0 * amountOfNodes / list.length;
 
         if (capacity > 0.75) {
@@ -27,6 +27,8 @@ public class IndexOfLists {
         }
 
     }
+    
+    
 
     private int findHash(int key) {
         int hash = key * key * 313 % list.length;
@@ -42,8 +44,8 @@ public class IndexOfLists {
         return list[findHash(key)].removeValue(key);
     }
 
-    public boolean contains(int key) {
-        return get(key) != null;
+    public boolean containsKey(int key) {
+        return list[findHash(key)] != null;
     }
 
     public CoordinatesList get(int key) {
