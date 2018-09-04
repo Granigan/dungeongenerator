@@ -1,84 +1,93 @@
 package dungeon.datastructures;
 
 /**
- * An extending index of CoordinatesLists. Supports add(), isEmpty(), size(), get().
  *
  * @author tgtapio
  */
 public class IndexOfLists {
 
-    private CoordinatesList[] list;
-    private int highestUsedIndex;
+    private ListNode[] list;
+    private ListNode[] newList;
+    private int amountOfNodes;
 
-    /**
-     * Initialises the list to hold up to 250 objects, and sets highest used
-     * index to -1.
-     */
     public IndexOfLists() {
-        list = new CoordinatesList[250];
-        highestUsedIndex = -1;
+        list = new ListNode[50];
+        amountOfNodes = 0;
     }
 
-    /**
-     * Adds the given Coordinates() object to the end of the list. Calls to
-     * extends the list if full.
-     *
-     * @param coords is added to the end of the list.
-     */
-    public void add(CoordinatesList coords) {
-        highestUsedIndex++;
-        if (highestUsedIndex < list.length) {
-            list[highestUsedIndex] = coords;
-        } else {
-            list = extendList(list);
-            list[highestUsedIndex] = coords;
+    public void add(int key, CoordinatesList value) {
+        double capacity = 1.0 * amountOfNodes / list.length;
+
+        if (capacity > 0.75) {
+            extendList();
         }
+
+        if (list[findHash(key)].addValue(key, value)) {
+            amountOfNodes++;
+        }
+
     }
 
-    /**
-     * Creates a new array, double the size of the old one. and copies the
-     * information from the old array, thus extending the size of the list.
-     *
-     * @param oldList list that's full of entries
-     * @return new list with twice the size
-     */
-    private CoordinatesList[] extendList(CoordinatesList[] oldList) {
-        CoordinatesList[] newList = new CoordinatesList[oldList.length * 2];
-        int oldLength = oldList.length;
+    private int findHash(int key) {
+        int hash = key * key * 313 % list.length;
+        return hash;
+    }
+
+    private int findHash(int key, int listLength) {
+        int hash = key * key * 313 % listLength;
+        return hash;
+    }
+
+    public CoordinatesList remove(int key) {
+        return list[findHash(key)].removeValue(key);
+    }
+
+    public boolean contains(int key) {
+        return get(key) != null;
+    }
+
+    public CoordinatesList get(int key) {
+        return list[findHash(key)].getValue(key);
+    }
+
+    private void extendList() {
+        newList = new ListNode[list.length * 2];
+        int oldLength = list.length;
 
         for (int i = 0; i < oldLength; i++) {
-            newList[i] = oldList[i];
+            if (list[i] != null) {
+                ListNode xferNode = list[i];
+                insertNode(xferNode);
+                while (true) {
+                    insertNode(xferNode);
+                    if (xferNode.hasNext()) {
+                        xferNode = xferNode.getNext();
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        list = newList;
+    }
+
+    private void insertNode(ListNode xferNode) {
+        int newLength = newList.length;
+        int newHash = findHash(xferNode.getKey(), newLength);
+        if (newList[newHash] == null) {
+            newList[newHash] = new ListNode(xferNode.getKey(), xferNode.getValue());
+        } else {
+            newList[newHash].addValue(xferNode.getKey(), xferNode.getValue());
         }
 
-        return newList;
     }
 
-    /**
-     * Used to check if list has any objects.
-     *
-     * @return true if list is empty.
-     */
     public boolean isEmpty() {
-        return highestUsedIndex == -1;
+        return amountOfNodes == 0;
     }
 
-    /**
-     * Gives the amount of objects on the list.
-     *
-     * @return amount of objects.
-     */
     public int size() {
-        return highestUsedIndex + 1;
-    }
-
-    /**
-     * Returns the Coordinates object with index i.
-     *
-     * @param i index of the wanted object.
-     * @return the wanted object.
-     */
-    public CoordinatesList get(int i) {
-        return list[i];
+        return list.length;
     }
 
     @Override
@@ -91,12 +100,12 @@ public class IndexOfLists {
         return output;
     }
 
-    public CoordinatesList[] getList() {
+    public ListNode[] getList() {
         return list;
     }
 
-    public int getHighestUsedIndex() {
-        return highestUsedIndex;
+    public int getAmountOfNodes() {
+        return amountOfNodes;
     }
-    
+
 }
