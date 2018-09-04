@@ -22,13 +22,15 @@ public class IndexOfLists {
             extendList();
         }
 
-        if (list[findHash(key)].addValue(key, value)) {
-            amountOfNodes++;
-        }
+        int hashKey = findHash(key);
 
+        if (list[hashKey] == null) {
+            list[hashKey] = new ListNode(key, value);
+        } else {
+            list[hashKey].addValue(key, value);
+        }
+        amountOfNodes++;
     }
-    
-    
 
     private int findHash(int key) {
         int hash = key * key * 313 % list.length;
