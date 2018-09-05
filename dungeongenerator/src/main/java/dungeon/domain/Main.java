@@ -14,12 +14,12 @@ public class Main {
         int width = 180; // map width, screen max 180
         int height = 50; // map height, screen max 50
         int roomAttempts = 50; // how many times is addRoom() ran
-        int minRoomSize = 6; // including walls, so 3 is the minimum
+        int minRoomSize = 5; // including walls, so 3 is the minimum
         int maxRoomRandom = 12; // up to this much is added to the minRoomSize
         int maxDoorsPerRoom = 3; // up to this many doors may be added to each room
         int multipleDoorsOdd = 3; // minimum of one, odds to add another door are 1/this
         boolean saveToFile = true; // whether or not to save the output to a file
-        boolean printOutput = true; // whether or not to print the output
+        boolean printOutput = false; // whether or not to print the output
 
         DungeonMap map = new DungeonMap(height, width, roomAttempts, maxDoorsPerRoom,
                 multipleDoorsOdd);

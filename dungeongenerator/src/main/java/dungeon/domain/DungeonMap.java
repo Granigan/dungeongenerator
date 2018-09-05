@@ -81,8 +81,8 @@ public class DungeonMap {
     }
 
     /**
-     * Method to run the MazeBuilder in steps. Creates a perfect mb, filling the
-     * empty space left after placing the rooms.
+     * Method to run the MazeBuilder in steps. Creates a perfect maze, filling
+     * the empty space left after placing the rooms.
      *
      */
     public void createMaze() {
@@ -151,28 +151,30 @@ public class DungeonMap {
     }
 
     public boolean runCrawlerTest() {
-        mb.findFirstEmpty(map);
-        Coordinates first = new Coordinates(mb.getX(), mb.getY());
+        Coordinates first = findFirstEmpty(map);
 
         int[][] testMap = copyMap(map);
 
         Crawler crawler = new Crawler();
         crawler.addFirst(first);
-        crawler.crawl(testMap);
-
+        testMap = crawler.crawl(testMap);
+        
         return compareArrays(map, testMap);
     }
 
-    public boolean compareArrays(int[][] firstMap, int[][] secondMap) {
-        int lengthX = firstMap[0].length;
-        int lengthY = firstMap.length;
-        if (lengthY != secondMap.length || lengthX != secondMap[0].length) {
+    public boolean compareArrays(int[][] map, int[][] testMap) {
+        int lengthX = map[0].length;
+        int lengthY = map.length;
+        if (lengthY != testMap.length || lengthX != testMap[0].length) {
             return false;
         }
 
         for (int i = 0; i < lengthY; i++) {
             for (int j = 0; j < lengthX; j++) {
-                if(firstMap[i][j] != secondMap[i][j]) {
+                if (map[i][j] < 1 && testMap[i][j] != 0) {
+                    return false;
+                }
+                if (map[i][j] >= 1 && testMap[i][j] != -1) {
                     return false;
                 }
             }
@@ -189,7 +191,18 @@ public class DungeonMap {
                 newMap[i][j] = oldMap[i][j];
             }
         }
-        return oldMap;
+        return newMap;
+    }
+
+    public Coordinates findFirstEmpty(int[][] map) {
+        for (int j = 0; j < height; j++) {
+            for (int i = 0; i < width; i++) {
+                if (map[j][i] > 1) {
+                    return new Coordinates(i, j);
+                }
+            }
+        }
+        return null;
     }
 
     /**
