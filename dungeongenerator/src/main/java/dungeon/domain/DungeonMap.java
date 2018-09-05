@@ -1,10 +1,12 @@
 package dungeon.domain;
 
+import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.OwnRandom;
 import dungeon.interfaces.DoorBuilding;
 import dungeon.interfaces.MazeBuilding;
 import dungeon.interfaces.RandomGenerator;
 import dungeon.interfaces.RoomBuilding;
+import dungeon.maptools.Crawler;
 import dungeon.maptools.DoorBuilder;
 import dungeon.maptools.MazeBuilder;
 import dungeon.maptools.RoomBuilder;
@@ -38,7 +40,7 @@ public class DungeonMap {
      * @param multipleDoorsOdd chance of creating an extra door is 1/this
      */
     public DungeonMap(int height, int width, int roomAttempts, int maxDoorsPerRoom,
-                    int multipleDoorsOdd) {
+            int multipleDoorsOdd) {
         this.height = height;
         this.width = width;
         this.roomAttempts = roomAttempts;
@@ -79,14 +81,14 @@ public class DungeonMap {
     }
 
     /**
-     * Method to run the MazeBuilder in steps. Creates a perfect mb, filling
- the empty space left after placing the rooms.
+     * Method to run the MazeBuilder in steps. Creates a perfect mb, filling the
+     * empty space left after placing the rooms.
      *
      */
     public void createMaze() {
         mb.setRoomCount(rb.getRoomCount());
         mb.setMazeId(rb.getRoomCount());
-        
+
         while (mb.findFirstEmpty(map)) {
             map = mb.placeCorridorWithWalls(map);
             map = mb.findNextCorridorSquare(map);
@@ -104,11 +106,11 @@ public class DungeonMap {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (map[y][x] == 0) {
-                    output += "#";
+                    output += "█";
                 } else if (map[y][x] == 1) {
                     output += "+";
                 } else {
-                    output += ".";
+                    output += " ";
                 }
             }
             output += "\n";
@@ -146,6 +148,48 @@ public class DungeonMap {
      */
     public int getAddedRoomCount() {
         return rb.getRoomCount() - 1;
+    }
+
+    public boolean runCrawlerTest() {
+        mb.findFirstEmpty(map);
+        Coordinates first = new Coordinates(mb.getX(), mb.getY());
+
+        int[][] testMap = copyMap(map);
+
+        Crawler crawler = new Crawler();
+        crawler.addFirst(first);
+        crawler.crawl(testMap);
+
+        return compareArrays(map, testMap);
+    }
+
+    public boolean compareArrays(int[][] firstMap, int[][] secondMap) {
+        int lengthX = firstMap[0].length;
+        int lengthY = firstMap.length;
+        if (lengthY != secondMap.length || lengthX != secondMap[0].length) {
+            return false;
+        }
+
+        for (int i = 0; i < lengthY; i++) {
+            for (int j = 0; j < lengthX; j++) {
+                if(firstMap[i][j] != secondMap[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public int[][] copyMap(int[][] oldMap) {
+        int lengthY = oldMap.length;
+        int lengthX = oldMap[0].length;
+        int[][] newMap = new int[lengthY][lengthX];
+        for (int i = 0; i < lengthY; i++) {
+            for (int j = 0; j < lengthX; j++) {
+                newMap[i][j] = oldMap[i][j];
+            }
+        }
+        return oldMap;
     }
 
     /**
@@ -205,5 +249,5 @@ public class DungeonMap {
     public void setDb(DoorBuilding db) {
         this.db = db;
     }
-    
+
 }
