@@ -11,11 +11,11 @@ import static org.junit.Assert.*;
  *
  * @author tgtapio
  */
-public class HomemadeRandomTest {
+public class OwnRandomTest {
 
     OwnRandom r = new OwnRandom();
 
-    public HomemadeRandomTest() {
+    public OwnRandomTest() {
     }
 
     @BeforeClass

@@ -11,20 +11,12 @@ import static org.junit.Assert.*;
  *
  * @author tgtapio
  */
-public class HomemadeCoordinatesListTest {
+public class CoordinatesListTest {
 
     private CoordinatesList list;
     Coordinates coords;
 
-    public HomemadeCoordinatesListTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
+    public CoordinatesListTest() {
     }
 
     @Before

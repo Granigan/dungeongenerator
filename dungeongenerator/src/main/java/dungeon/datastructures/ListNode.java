@@ -108,7 +108,7 @@ public class ListNode {
             return this.value;
         }
         if (next != null) {
-            return this.getNext().getValue(key);
+            return this.getNext().removeValue(key);
         }
         return null;
     }
@@ -161,4 +161,8 @@ public class ListNode {
         return value;
     }
 
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+    
 }

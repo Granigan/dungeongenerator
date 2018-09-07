@@ -79,6 +79,7 @@ public class IndexOfLists {
      * @return CoordinatesList
      */
     public CoordinatesList remove(int key) {
+        amountOfNodes--;
         return list[findHash(key)].removeValue(key);
     }
 
@@ -166,16 +167,6 @@ public class IndexOfLists {
      */
     public int size() {
         return list.length;
-    }
-
-    @Override
-    public String toString() {
-        String output = "";
-        int max = size();
-        for (int i = 0; i < max; i++) {
-            output += list[i].toString() + " ";
-        }
-        return output;
     }
 
     public ListNode[] getList() {
