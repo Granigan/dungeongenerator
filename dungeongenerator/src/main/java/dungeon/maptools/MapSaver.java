@@ -26,7 +26,7 @@ public class MapSaver {
             PrintWriter pw = new PrintWriter(fw);
             pw.print(output);
             pw.close();
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("IOException caught!\n" + e);
         }
     }

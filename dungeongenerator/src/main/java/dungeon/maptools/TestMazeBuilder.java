@@ -5,6 +5,7 @@ import dungeon.interfaces.MazeBuilding;
 
 /**
  * Test class to replace MazeBuilder().
+ * 
  * @author tgtapio
  */
 public class TestMazeBuilder implements MazeBuilding {

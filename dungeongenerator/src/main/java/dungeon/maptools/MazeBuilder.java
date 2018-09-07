@@ -25,7 +25,7 @@ public class MazeBuilder implements MazeBuilding {
 
     /**
      * Constructor that stores the size of the map and creates counters for
-     * segment ids (mazes & rooms).
+     * segment ids (mazes and rooms).
      *
      * @param height of the map, including walls
      * @param width of the map, including walls

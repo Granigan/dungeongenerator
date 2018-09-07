@@ -146,6 +146,12 @@ public class DungeonMap {
         return rb.getRoomCount() - 1;
     }
 
+    /**
+     * Sets loose a crawler that goes through the map, returning true if it
+     * reaches every non-wall square, and false if the map is not valid for use.
+     *
+     * @return true if all non-wall squares can be reached
+     */
     public boolean runCrawlerTest() {
         Coordinates first = findFirstEmpty(map);
 
@@ -154,10 +160,20 @@ public class DungeonMap {
         Crawler crawler = new Crawler();
         crawler.addFirst(first);
         testMap = crawler.crawl(testMap);
-        
+
         return compareArrays(map, testMap);
     }
 
+    /**
+     * Compares the final map with the one mulled over by the crawler. If a
+     * discrepancy is found, i.e. a difference in size or a square crawler
+     * didn't reach but was supposed to, halts, and returns false.
+     *
+     * @param map the final map
+     * @param testMap copy of the final map
+     * @return result of the validation check, true if crawler reached ever
+     * non-wall square
+     */
     public boolean compareArrays(int[][] map, int[][] testMap) {
         int lengthX = map[0].length;
         int lengthY = map.length;
@@ -178,6 +194,12 @@ public class DungeonMap {
         return true;
     }
 
+    /**
+     * Duplicates the given map (int[][]).
+     *
+     * @param oldMap to be copied
+     * @return clone of the old map
+     */
     public int[][] copyMap(int[][] oldMap) {
         int lengthY = oldMap.length;
         int lengthX = oldMap[0].length;
@@ -190,6 +212,14 @@ public class DungeonMap {
         return newMap;
     }
 
+    /**
+     * Finds the first non-wall square on the map. Used to find a starting
+     * location for the test crawler.
+     *
+     *
+     * @param map int[][]
+     * @return Coordinates for the starting square.
+     */
     public Coordinates findFirstEmpty(int[][] map) {
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {

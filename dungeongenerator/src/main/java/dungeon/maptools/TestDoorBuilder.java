@@ -1,14 +1,13 @@
 package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
-import dungeon.datastructures.CoordinatesList;
 import dungeon.datastructures.IndexOfLists;
 import dungeon.interfaces.DoorBuilding;
 import dungeon.interfaces.RandomGenerator;
-import java.util.HashMap;
 
 /**
- *
+ * Test class to replace DoorBuilder().
+ * 
  * @author tgtapio
  */
 public class TestDoorBuilder implements DoorBuilding {

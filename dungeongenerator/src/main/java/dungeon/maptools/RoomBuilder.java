@@ -151,7 +151,7 @@ public class RoomBuilder implements RoomBuilding {
 
     /**
      * Adds a coordinates and id of a room wall square into the roomWalls data
-     * structure (IndexOfLists)
+     * structure (IndexOfLists).
      *
      * @param x coordinate of the wall
      * @param y coordinate of the wall
@@ -168,7 +168,7 @@ public class RoomBuilder implements RoomBuilding {
     /**
      * Checks to see if the square in the given coordinates is 'empty', i.e. 1.
      * Returns true if square is empty, false if square is 'wall' (0), or
-     * belongs to another room (>1).
+     * belongs to another room (value is over 1).
      *
      * @param map being worked on
      * @param x coordinate

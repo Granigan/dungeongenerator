@@ -259,11 +259,11 @@ Space: O(1)
 *Corridor sealing took: 16ms.*
 
 ### Crawling Check
-Finally, the crawler checking the map uses a standard breath first search that finds every non-wall square (n).
+Finally, the crawler checks the map using a standard breath first search and a cloned copy of the map, trying to find every non-wall square (n).
 
 Time: O(n)
 
-Space: O(n)
+Space: O(W*H)
 ```
 true
 ```
@@ -293,6 +293,7 @@ See [Trello](https://trello.com/b/HVYZZHt6/tiralab-dungeon-generator) for most r
 
 - The code is not optimised in the least, and there's probably a lot of work that could be done to improve the efficiency.
 
+- A lot of the Crawler functionality was left into the DungeonMap object. This should be refactored away for tidier code.
 
 
 ## Information Sources
