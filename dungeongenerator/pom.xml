@@ -26,6 +26,14 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.0</version>
+                <configuration>
+                    <excludes>
+                        <exclude>dungeon/maptools/TestDoorBuilder.*</exclude>
+                        <exclude>dungeon/maptools/TestMazeBuilder.*</exclude>
+                        <exclude>dungeon/maptools/TestRoomBuilder.*</exclude>
+                        <exclude>dungeon/maptools/MapSaver.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>

@@ -11,7 +11,7 @@ mvn compile exec:java -Dexec.mainClass=dungeongenerator.domain.Main
 ```
 
 ### JAR file
-You can also get and execute the [JAR file](url), though this way you can only create maps with the default parameters.
+You can also get and execute the [JAR file](https://github.com/Granigan/dungeongenerator/blob/master/dungeongenerator.jar), though this way you can only create maps with the default parameters.
 
 ### End result
 The latest map is automatically saved into /tiralabra/dungeongenerator/generated_map.txt, making reviewing it a little bit easier. Note that this file is overwritten every time a new map is created.

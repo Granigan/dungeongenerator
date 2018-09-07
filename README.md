@@ -3,7 +3,7 @@
 ## 2D ASCII Dungeon Generator
 A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12/21/rooms-and-mazes/) described by [Bob Nystrom](https://github.com/munificent) but with Java and with homemade data structures.
 
-[Download JAR file.](url)
+[Download JAR file.](https://github.com/Granigan/dungeongenerator/blob/master/dungeongenerator.jar)
 
 ### Documents and Links
 - [User's Guide](https://github.com/Granigan/dungeongenerator/blob/master/documents/users_guide.md)
@@ -15,6 +15,8 @@ A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12
 - [Implementation Document](https://github.com/Granigan/dungeongenerator/blob/master/documents/implementation.md)
 
 - [Testing Document](https://github.com/Granigan/dungeongenerator/blob/master/documents/testing_plan.md)
+
+- [Javadocs](https://github.com/Granigan/dungeongenerator/blob/master/dungeongenerator/target/site/apidocs/index.html)
 
 ## Weekly Progress
 
