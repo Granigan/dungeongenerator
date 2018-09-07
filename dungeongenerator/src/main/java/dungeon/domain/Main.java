@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int width = 180; // map width, screen max 180
         int height = 50; // map height, screen max 50
-        int roomAttempts = 50; // how many times is addRoom() ran
+        int roomAttempts = 5000_000; // how many times is addRoom() ran
         int minRoomSize = 4; // including walls, so 3 is the minimum
         int maxRoomRandom = 13; // up to this much is added to the minRoomSize
         int maxDoorsPerRoom = 2 ; // up to this many doors may be added to each room

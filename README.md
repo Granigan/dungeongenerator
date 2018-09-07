@@ -3,9 +3,23 @@
 ## 2D ASCII Dungeon Generator
 A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12/21/rooms-and-mazes/) described by [Bob Nystrom](https://github.com/munificent) but with Java and with homemade data structures.
 
-**Peer Reviewer, please see [User's Guide](https://github.com/Granigan/dungeongenerator/blob/master/documents/users_guide.md)**
+[Download JAR file.](url)
+
+### Documents and Links
+- [User's Guide](https://github.com/Granigan/dungeongenerator/blob/master/documents/users_guide.md)
+
+- [Trello board](https://trello.com/b/HVYZZHt6/tiralab-dungeon-generator)
+
+- [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md)
+
+- [Implementation Document](https://github.com/Granigan/dungeongenerator/blob/master/documents/implementation.md)
+
+- [Testing Document](https://github.com/Granigan/dungeongenerator/blob/master/documents/testing_plan.md)
 
 ## Weekly Progress
+
+### Final Week (7)
+- [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week7.md)
 
 ### Week 6
 - [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week6.md)
@@ -29,15 +43,4 @@ A replication of a [dungeon generator](http://journal.stuffwithstuff.com/2014/12
 ### Week 1
 - [Weekly Report](https://github.com/Granigan/dungeongenerator/blob/master/documents/weekly_reports/week1.md)
 - [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md)
-
-### Documents and Links
-- [User's Guide](https://github.com/Granigan/dungeongenerator/blob/master/documents/users_guide.md)
-
-- [Trello board](https://trello.com/b/HVYZZHt6/tiralab-dungeon-generator)
-
-- [Project Specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md) (*Määrittelydokumentti*)
-
-- [Implementation Document (WIP)](https://github.com/Granigan/dungeongenerator/blob/master/documents/implementation.md)
-
-- [Testing Document (WIP)](https://github.com/Granigan/dungeongenerator/blob/master/documents/testing_plan.md)
 

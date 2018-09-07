@@ -47,6 +47,7 @@ public class MazeBuilder implements MazeBuilding {
      * @param map being worked on
      * @return false if no more empty squares (1) are found
      */
+    @Override
     public boolean findFirstEmpty(int[][] map) {
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < width; i++) {
@@ -69,6 +70,7 @@ public class MazeBuilder implements MazeBuilding {
      * @param map being worked on
      * @return map being worked on
      */
+    @Override
     public int[][] placeCorridorWithWalls(int[][] map) {
         map[y][x] = mazeId;
         CoordinatesList directions = new CoordinatesList();
@@ -77,12 +79,6 @@ public class MazeBuilder implements MazeBuilding {
         directions.add(new Coordinates(0, 1));
         directions.add(new Coordinates(0, -1));
 
-//        ArrayList<Direction> directions = new ArrayList<>();
-//        directions.add(Direction.N);
-//        directions.add(Direction.E);
-//        directions.add(Direction.S);
-//        directions.add(Direction.W);
-//
         while (!directions.isEmpty()) {
             map = placeWall(map, directions.remove(r.nextInt(directions.size())));
         }
@@ -98,6 +94,7 @@ public class MazeBuilder implements MazeBuilding {
      * @param direction to check as an adjustment marked as a Coordinates
      * @return map being worked on
      */
+    @Override
     public int[][] placeWall(int[][] map, Coordinates direction) {
         Coordinates target = new Coordinates(x + direction.getX(), y + direction.getY());
         if (map[target.getY()][target.getX()] == 1) {
@@ -115,6 +112,7 @@ public class MazeBuilder implements MazeBuilding {
      * @param map being worked on
      * @return map being worked on
      */
+    @Override
     public int[][] findNextCorridorSquare(int[][] map) {
         while (!neighbouringWalls.isEmpty()) {
             int ri = neighbouringWalls.size() - 1;
@@ -135,6 +133,7 @@ public class MazeBuilder implements MazeBuilding {
      * @param map being worked on
      * @return map being worked on
      */
+    @Override
     public int[][] sealDeadends(int[][] map) {
         boolean runAgain = true;
         while (runAgain) {

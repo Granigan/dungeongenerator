@@ -26,8 +26,6 @@ public class DungeonMap {
     private MazeBuilding mb;
     private RandomGenerator r;
     private DoorBuilding db;
-    private final int maxDoorsPerRoom;
-    private final int multipleDoorsOdd;
 
     /**
      * Constructor that stores the map size and creates the map object. Also
@@ -44,8 +42,6 @@ public class DungeonMap {
         this.height = height;
         this.width = width;
         this.roomAttempts = roomAttempts;
-        this.maxDoorsPerRoom = maxDoorsPerRoom;
-        this.multipleDoorsOdd = multipleDoorsOdd;
         this.map = new int[height][width];
         r = new OwnRandom();
         rb = new RoomBuilder();

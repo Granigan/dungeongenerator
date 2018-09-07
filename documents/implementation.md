@@ -1,12 +1,18 @@
-# Implementation Details (WIP)
+# Implementation Details
 
 As planned, the application is able to create 2d ASCII maps in given sizes. The structure follows the [specifications](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md) pretty closely, though there are small differences in design, and perhaps major differences in implementation. For example, room walls cannot overlap, which means that rooms will not have direct access to each other, but only to corridors.
 
 ## Algorithms
-All the algorithms were created organically during the process. Code and O-analyses are split into stages of the program, see below.
+All the algorithms were created organically during the process.O-analyses are split into stages of the program, see below.
 
 
 ### Initialising the map, and placing rooms
+Map initialisation is simply creating int[][] with given height(H) and width(W). Room placement is driven by parameter **roomAttempts** (r) which defines how many times the placement algorithm is ran, and the randomly - within parameters room width and height - generated room size (w and h). Algorithm does not require extra space to speak of, working in the same space required for the map initialisation. In practice, the room placement process will also become quicker the more rooms there are, and the bigger they are, as it runs into a collision much faster (and thus halts the individual placement attempt), so in that sense it 'scales well' despite the dauntingly seeming time requirement.
+
+Time: O(n*w*h)
+
+Space: O(W*H)
+
 ```
 ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
 █+++++++++++++++++++++++++++++++++████████+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++█
@@ -62,6 +68,14 @@ All the algorithms were created organically during the process. Code and O-analy
 *Map init and room placement took: 3ms.*
 
 ### Creating the Maze
+Time required to create the maze is dependent on the empty space remaining on the map: on a sparse map there's more empty space to fill, and vice versa. Empty squares, marked above with '+' define 'n'.  The creation algorithm utilises a CoordinatesList as a stack, which is seeded by finding the first empty square, and then populated during the process, and thus is somewhat similar to a depth first search. The corridor pushes onwards until it reaches a deadend, and then starts trying to expand the network by going through the earlier entries in the stack. Once the stack is empty, it is seeded again with an empty square, if one still exists, and restarted, until all squares are marked. This can lead to there being multiple corridor networks, which was originally intended, but ultimately cause problems. (See Bugs section later on.)
+
+Most squares will be recorded and checked multiple times, but each of them will be processed only once. Thus both time and space requirements are n.
+
+Time: O(n)
+
+Space: O(n)
+
 
 ```
 ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
@@ -118,7 +132,13 @@ All the algorithms were created organically during the process. Code and O-analy
 *Maze creation took: 10ms.*
 
 ### Connecting Rooms and Corridors
+Finding doors for the rooms is straightforward as walls for each room (r) have been saved earlier. To place a door, the list of wall squares (2*(w+h)) are checked in random order, until a square connecting the room with a corridor is found.
 
+At this stage, the process may halt, in the event that a room has no wall square that would connect it to the corridor network. This is further discussed in the Bugs section.
+
+Time: O(2(w+h)*r)
+
+Space: O(2(w+h)*r)
 ```
 ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
 █   █      █       █   █      █ █ ████████      ██    █    █    ██ █       █     █      █      █ ██     █  █   █               █              █ █ █          █    ██      █   █    █
@@ -174,6 +194,15 @@ All the algorithms were created organically during the process. Code and O-analy
 *Door placement took: 0ms.*
 
 ### Seal Deadends
+**BRUTEFORCE WARNING**
+Sealing deadends involves checking each square, and if it has three walls around it, changing it to a wall as well, and then restarting the process when a deadend (d) is found.
+
+Due to the silly implementation of this process, space requirement is minimal, but time requirement drastic.
+
+Time: O(n*d)
+
+Space: O(1)
+
 ```
 ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
 ██████████████████████████████████████████      ██    █    █    ████████████     █      █      ████   ██████   █            ████              ██████████████████████████████████████
@@ -230,36 +259,41 @@ All the algorithms were created organically during the process. Code and O-analy
 *Corridor sealing took: 16ms.*
 
 ### Crawling Check
+Finally, the crawler checking the map uses a standard breath first search that finds every non-wall square (n).
+
+Time: O(n)
+
+Space: O(n)
 ```
 true
 ```
 *Validity check took: 3ms.*
 
-### Main Data Structures
+## Main Data Structures
 - CoordinatesList is a **limited dynamic list** that only handles Coordinates() objects. It supports add(), isEmpty(), size(), get(), remove() and toString(). Additionally, it has private methods extend() and shiftBack() to increase the size when needed, and to keep up the order after removal, respectively.
 
 - IndexOfLists is a **limited HashMap** that accepts integers as keys, and CoordinatesLists as values. It supports put(), remove(), containsKey(), get(), isEmpty(), size(), toString(), has private methods extendList(), findHash(), insertNode(), and help additional debug/test methods getList() and getAmountOfNodes().
 
 - ListNode is a **limited linked list** that's used by the IndexOfLists structure. It stores Coordinates objects as value, and points to the following ListNode to create the list. It supports getValue(), listContains(), addValue(), removeValue(), with a host of private and help methods.
 
-- OwnRandom is a [linear congruential generator](https://en.wikipedia.org/wiki/Linear_congruential_generator),  based on the ["Microsoft code"](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md).
+- OwnRandom is a [linear congruential generator](https://en.wikipedia.org/wiki/Linear_congruential_generator),  based on the ["Microsoft code"](https://rosettacode.org/wiki/Linear_congruential_generator).
 
-### Bugs
+## Bugs
 - If a room is randomly placed so, that it is covered with other rooms from all sides, it cannot get connected to the main network, and will be isolated. This causes the creation process to stop with an error message and a null pointer reference. This however occurs very rarely.
 
-- If, after door placement, there are two or more separate corridor segments connecting to rooms, the network will not be connected. This can be frequent, even common with certain settings. (E.g. large maps with small rooms.)
+- If, after door placement, there are two or more separate corridor segments connecting to rooms, the network will not be connected. This can be frequent, even common with certain settings. (More and more likely with a high amount of room placement attempts.) This bug is found by the crawler doing the systems check, and reported by 'false' at the end of the process.
 
 
-### V2.0
-See [Trello](https://trello.com/b/HVYZZHt6/tiralab-dungeon-generator) for most recent status.
+## V2.0
+See [Trello](https://trello.com/b/HVYZZHt6/tiralab-dungeon-generator) for most recent status. Below are few main picks:
 
-The most immediate improvement would be the allow room walls to overlap, and thus make doors between rooms possible. After this, connecting everything becomes a bit more complicated as well, but should produce more interesting maps. This improvement is also tied to fixing the bug that causes ghost doors and disconnected rooms.
+- The most immediate improvement would be the allow room walls to overlap, and thus make doors between rooms possible. After this, connecting everything becomes a bit more complicated as well, but should produce more interesting maps. This improvement is also tied to fixing the bug that causes ghost doors and disconnected rooms.
 
-Saving the map on disk is not particularily relevant for this course, but improving this by allowing the user to name the map, or at least always give the map an unique name would be a nice touch.
+- Saving the map on disk is not particularily relevant for this course, but improving this by allowing the user to name the map, or at least always give the map an unique name would be a nice touch.
 
-The code is not optimised in the least, and there's probably a lot of work that could be done to improve the efficiency.
+- The code is not optimised in the least, and there's probably a lot of work that could be done to improve the efficiency.
 
 
 
-### Information Sources
-[Random generator: Linear congruential generator with "Microsoft code"](https://github.com/Granigan/dungeongenerator/blob/master/documents/specifications.md)
+## Information Sources
+[Random generator: Linear congruential generator with "Microsoft code"](https://rosettacode.org/wiki/Linear_congruential_generator)
