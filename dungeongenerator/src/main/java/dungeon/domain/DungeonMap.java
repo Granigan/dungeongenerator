@@ -129,7 +129,7 @@ public class DungeonMap {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (map[y][x] == 0) {
-                    output += "#";
+                    output += "0";
                 } else {
                     output += "" + map[y][x];
                 }

@@ -1,5 +1,6 @@
 package dungeon.maptools;
 
+import dungeon.datastructures.IndexOfLists;
 import dungeon.datastructures.TestGenerator;
 import java.util.HashMap;
 import org.junit.After;
@@ -41,7 +42,7 @@ public class RoomBuilderTest {
 
     @Before
     public void setUp() {
-        rb.setRoomWalls(new HashMap<>());
+        rb.setRoomWalls(new IndexOfLists());
     }
 
     @After

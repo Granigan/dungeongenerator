@@ -19,7 +19,6 @@ public class RoomBuilder implements RoomBuilding {
     private int height;
     private int width;
     private RandomGenerator r;
-//    private HashMap<Integer, CoordinatesList> roomWalls;
     private IndexOfLists roomWalls;
 
     /**

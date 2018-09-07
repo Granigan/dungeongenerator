@@ -2,6 +2,7 @@ package dungeon.maptools;
 
 import dungeon.datastructures.Coordinates;
 import dungeon.datastructures.CoordinatesList;
+import dungeon.datastructures.IndexOfLists;
 import dungeon.datastructures.TestGenerator;
 import dungeon.interfaces.RandomGenerator;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import static org.junit.Assert.*;
  */
 public class DoorBuilderTest {
 
-    HashMap<Integer, CoordinatesList> roomWalls;
+    IndexOfLists roomWalls;
     DoorBuilder db;
 
     public int[][] mapCreator(int filler, int size) {
@@ -98,7 +99,7 @@ public class DoorBuilderTest {
 
     @Test
     public void findConnectingWallTest1() {
-        roomWalls = new HashMap<>();
+        roomWalls = new IndexOfLists();
         roomWalls.put(3, new CoordinatesList());
         roomWalls.get(3).add(new Coordinates(2, 1));
         roomWalls.get(3).add(new Coordinates(2, 2));
@@ -116,7 +117,7 @@ public class DoorBuilderTest {
 
     @Test
     public void findConnectingWallTest2() {
-        roomWalls = new HashMap<>();
+        roomWalls = new IndexOfLists();
         roomWalls.put(3, new CoordinatesList());
         roomWalls.get(3).add(new Coordinates(2, 1));
         roomWalls.get(3).add(new Coordinates(2, 2));
@@ -132,7 +133,7 @@ public class DoorBuilderTest {
 
     @Test
     public void findAndPlaceDoorsTest1() {
-        roomWalls = new HashMap<>();
+        roomWalls = new IndexOfLists();
         roomWalls.put(2, new CoordinatesList());
         roomWalls.get(2).add(new Coordinates(1, 2));
         roomWalls.get(2).add(new Coordinates(2, 2));
@@ -174,7 +175,7 @@ public class DoorBuilderTest {
 
     @Test
     public void findAndPlaceDoorsTest2() {
-        roomWalls = new HashMap<>();
+        roomWalls = new IndexOfLists();
         roomWalls.put(2, new CoordinatesList());
         roomWalls.get(2).add(new Coordinates(1, 2));
         roomWalls.get(2).add(new Coordinates(2, 2));
@@ -213,7 +214,7 @@ public class DoorBuilderTest {
 
     @Test
     public void findAndPlaceDoorsTest3() {
-        roomWalls = new HashMap<>();
+        roomWalls = new IndexOfLists();
         roomWalls.put(2, new CoordinatesList());
         roomWalls.get(2).add(new Coordinates(1, 2));
         roomWalls.get(2).add(new Coordinates(2, 2));

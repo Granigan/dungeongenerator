@@ -161,6 +161,7 @@ public class MazeBuilder implements MazeBuilding {
      * @return true if there's exactly one neighbouring corridor, otherwise
      * false
      */
+    @Override
     public boolean checkIfSquareConnectsToOneCorridor(int[][] map) {
         int connections = 0;
         if (map[y - 1][x] > 1) {
@@ -192,6 +193,7 @@ public class MazeBuilder implements MazeBuilding {
      * @param j x coordinate of the square to be checked
      * @return number of neighbouring walls.
      */
+    @Override
     public int countSurroundingWalls(int[][] map, int i, int j) {
         int surroundingWalls = 0;
         if (map[j + 1][i] == 0) {
@@ -216,6 +218,7 @@ public class MazeBuilder implements MazeBuilding {
      * @param map being worked on
      * @return map as string, with numbers for segments
      */
+    @Override
     public String toDebugString(int[][] map) {
         String output = "";
         for (int y = 0; y < height; y++) {
@@ -231,18 +234,22 @@ public class MazeBuilder implements MazeBuilding {
         return output;
     }
 
+    @Override
     public void setX(int x) {
         this.x = x;
     }
 
+    @Override
     public int getX() {
         return x;
     }
 
+    @Override
     public void setY(int y) {
         this.y = y;
     }
 
+    @Override
     public int getY() {
         return y;
     }
@@ -255,14 +262,17 @@ public class MazeBuilder implements MazeBuilding {
         this.neighbouringWalls = neighbouringWalls;
     }
 
+    @Override
     public int getMazeId() {
         return mazeId;
     }
 
+    @Override
     public void setRoomCount(int roomCount) {
         this.roomCount = roomCount;
     }
 
+    @Override
     public void setMazeId(int mazeId) {
         this.mazeId = mazeId;
     }
