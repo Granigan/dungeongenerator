@@ -13,7 +13,7 @@ The final test coverage, with non-essential files (Main, TestRoomBuilder, TestMa
 ![FINAL TEST COVERAGE](https://github.com/Granigan/dungeongenerator/blob/master/documents/images/tests_final_excluding_main.png)
 
 Final report with Main included.
-![Main included](https://github.com/Granigan/dungeongenerator/blob/master/documents/images/tests_final_excluding_main.png)
+![Main included](https://github.com/Granigan/dungeongenerator/blob/master/documents/images/tests_final.png)
 
 *Tests in the final JAR includes Main.java.*
 
