@@ -1,7 +1,8 @@
 package dungeon.datastructures;
 
 /**
- * Object to store x and y coordinates.
+ * A simple object that holds an X and Y integer, denoting coordinates on the
+ * map array.
  *
  * @author tgtapio
  */

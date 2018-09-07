@@ -1,6 +1,10 @@
 package dungeon.datastructures;
 
 /**
+ * A limited HashMap that accepts integers as keys, and CoordinatesLists as
+ * values. It supports put(), remove(), containsKey(), get(), isEmpty(), size(),
+ * toString(), has private methods extendList(), findHash(), insertNode(), and
+ * help additional debug/test methods getList() and getAmountOfNodes().
  *
  * @author tgtapio
  */
@@ -48,7 +52,7 @@ public class IndexOfLists {
 
     public boolean containsKey(int key) {
         int hashKey = findHash(key);
-        if(list[hashKey] == null) {
+        if (list[hashKey] == null) {
             return false;
         }
         return list[findHash(key)].listContains(key);

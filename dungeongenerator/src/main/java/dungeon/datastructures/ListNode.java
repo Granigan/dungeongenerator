@@ -1,7 +1,10 @@
 package dungeon.datastructures;
 
 /**
- * Limited version of a linked list.
+ * A limited linked list that's used by the IndexOfLists structure. It stores
+ * Coordinates objects as value, and points to the following ListNode to create
+ * the list. It supports getValue(), listContains(), addValue(), removeValue(),
+ * with a host of private and help methods.
  *
  * @author tgtapio
  */
@@ -28,7 +31,7 @@ public class ListNode {
         }
         return null;
     }
-    
+
     public boolean listContains(int key) {
         if (this.key == key && !this.isDeleted) {
             return true;
@@ -110,5 +113,4 @@ public class ListNode {
         return value;
     }
 
-    
 }

@@ -1,8 +1,10 @@
 package dungeon.datastructures;
 
 /**
- * An extending list of Coordinates. Supports add(), isEmpty(), size(), get(),
- * remove().
+ * A limited dynamic list that only handles Coordinates() objects. It
+ * supports add(), isEmpty(), size(), get(), remove() and toString().
+ * Additionally, it has private methods extend() and shiftBack() to increase the
+ * size when needed, and to keep up the order after removal, respectively.
  *
  * @author tgtapio
  */
