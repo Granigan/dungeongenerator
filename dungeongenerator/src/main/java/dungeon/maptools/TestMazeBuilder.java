@@ -37,7 +37,9 @@ public class TestMazeBuilder implements MazeBuilding {
 
     @Override
     public int[][] sealDeadends(int[][] map) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        map[2][1] = 0;
+        map[1][2] = 0;
+        return map;
     }
 
     @Override

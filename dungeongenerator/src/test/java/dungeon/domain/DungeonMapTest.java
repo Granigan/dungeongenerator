@@ -1,5 +1,6 @@
 package dungeon.domain;
 
+import dungeon.datastructures.Coordinates;
 import dungeon.maptools.TestDoorBuilder;
 import dungeon.maptools.TestMazeBuilder;
 import dungeon.maptools.TestRoomBuilder;
@@ -77,20 +78,85 @@ public class DungeonMapTest {
         target[1][1] = 5_000_000;
         dm.setMap(map);
         dm.createMaze();
-        assertArrayEquals(target, dm.getMap());        
+        assertArrayEquals(target, dm.getMap());
     }
-    
+
     @Test
     public void placeDoorsTest1() {
         dm.setDb(new TestDoorBuilder());
         dm.setRb(new TestRoomBuilder());
         dm.setMap(mapCreator(0, 2));
         dm.placeDoors();
-        
+
         int[][] target = mapCreator(0, 2);
         target[0][0] = -1;
         target[1][1] = -1;
-        
+
         assertArrayEquals(target, dm.getMap());
     }
+
+    @Test
+    public void compareArraysTest1() {
+        int[][] map = mapCreator(0, 3);
+        int[][] test = mapCreator(0, 3);
+        assertTrue(dm.compareArrays(map, test));
+    }
+
+    @Test
+    public void compareArraysTest2() {
+        int[][] map = mapCreator(5, 3);
+        int[][] test = new int[3][4];
+        assertFalse(dm.compareArrays(map, test));
+    }
+
+    @Test
+    public void compareArraysTest3() {
+        int[][] map = mapCreator(5, 3);
+        int[][] test = new int[4][3];
+        assertFalse(dm.compareArrays(map, test));
+    }
+
+    @Test
+    public void compareArraysTest4() {
+        int[][] map = mapCreator(5, 3);
+        int[][] test = mapCreator(-1, 3);
+        assertTrue(dm.compareArrays(map, test));
+    }
+
+    @Test
+    public void findFirstEmptyTest1() {
+        int[][] map = mapCreator(0, 3);
+        assertNull(dm.findFirstEmpty(map));
+    }
+
+    @Test
+    public void findFirstEmptyTest2() {
+        int[][] map = mapCreator(0, 3);
+        map[2][2] = 5;
+        assertEquals(new Coordinates(2, 2), dm.findFirstEmpty(map));
+    }
+
+    @Test
+    public void runCrawlerTestTest1() {
+        int[][] map = mapCreator(0, 5);
+        map[2][1] = 2;
+        map[2][2] = 2;
+        map[1][2] = 2;
+        dm.setMap(map);
+        assertTrue(dm.runCrawlerTest());
+    }
+    
+    @Test
+    public void fillDeadendsTest1() {
+        int[][] map = mapCreator(0, 5);
+        map[2][1] = 2;
+        map[1][2] = 2;
+        int[][] target = mapCreator(0, 5);
+        dm.setMap(map);
+        dm.setMb(new TestMazeBuilder());
+        dm.fillDeadends();
+        assertArrayEquals(target, dm.getMap());
+
+    }
+
 }
